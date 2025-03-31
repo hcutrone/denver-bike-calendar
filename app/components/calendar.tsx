@@ -8,6 +8,7 @@ import moment from "moment";
 import { useState } from "react";
 import { Box } from "@radix-ui/themes";
 import { NewEventDialog } from "./new-event";
+import { createEvent } from "./calendar-event";
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
@@ -16,11 +17,20 @@ export function BikeCalendar() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<Event>({});
   const [events, setEvents] = useState<Event[]>([
-    {
+    createEvent({
       title: "Bike Fest!",
+      body: "The ultimate celebration of Denver's bicycle community. Join us at the\
+        City Park Pavilion on Saturday, April 26th, for prizes, live music, food,\
+        and booths from local bicycle communities",
+      links: [
+        {
+          text: "Bike Fest Website",
+          url: "https://www.zcycledenver.com/denverbikefest",
+        },
+      ],
       start: new Date(1745701200000),
       end: new Date(1745722800000),
-    },
+    }),
   ]);
 
   const onEventResize: withDragAndDropProps["onEventResize"] = (data) => {

@@ -4,6 +4,9 @@ import { Button, Dialog, Flex } from "@radix-ui/themes";
 import { Label } from "radix-ui";
 import { useEffect, useState } from "react";
 import { Event } from "react-big-calendar";
+import { createEvent } from "./calendar-event";
+
+type NewEvent = Omit<Event, "title"> & { title?: string; body?: string };
 
 export function NewEventDialog({
   isOpen,
@@ -18,7 +21,7 @@ export function NewEventDialog({
   start?: Date;
   end?: Date;
 }) {
-  const [newEvent, setNewEvent] = useState<Event>({ start, end });
+  const [newEvent, setNewEvent] = useState<NewEvent>({ start, end });
   useEffect(() => setNewEvent({ start, end }), [start, end]);
   return (
     <Dialog.Root open={isOpen}>
@@ -61,7 +64,22 @@ export function NewEventDialog({
             />
           </Flex>
           <Flex justify="end" gap="4">
-            <Button onClick={() => onSubmit(newEvent)}>Save</Button>
+            <Button
+              disabled={!newEvent.start || !newEvent.end}
+              onClick={() =>
+                onSubmit(
+                  // we disable the button if there's no start/end, so we can force these
+                  createEvent({
+                    start: newEvent.start!,
+                    end: newEvent.end!,
+                    title: newEvent.title ?? "",
+                    body: newEvent.body ?? "",
+                  })
+                )
+              }
+            >
+              Save
+            </Button>
             <Button onClick={onCancel}>Cancel</Button>
           </Flex>
         </Flex>
