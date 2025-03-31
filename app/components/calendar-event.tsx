@@ -58,7 +58,9 @@ const EventComponent = ({
   return (
     <Popover.Root>
       <Popover.Trigger>
-        <Text>{title}</Text>
+        <Flex>
+          <Text>{title}</Text>
+        </Flex>
       </Popover.Trigger>
       <Popover.Content>
         <Flex direction="column" gap="2">
