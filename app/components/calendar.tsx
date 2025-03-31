@@ -7,11 +7,14 @@ import withDragAndDrop, {
 import moment from "moment";
 import { useState } from "react";
 import { Box } from "@radix-ui/themes";
+import { NewEventDialog } from "./new-event";
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 
 export function BikeCalendar() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState<Event>({});
   const [events, setEvents] = useState<Event[]>([
     {
       title: "Bike Fest!",
@@ -36,8 +39,9 @@ export function BikeCalendar() {
     console.log(data);
   };
 
-  function handleSelectSlot({ start, end, slots }) {
-    console.log({ start, end, slots });
+  function handleSelectSlot({ start, end }: { start: Date; end: Date }) {
+    setIsDialogOpen(true);
+    setSelectedSlot({ start, end });
   }
 
   return (
@@ -51,6 +55,16 @@ export function BikeCalendar() {
         selectable
         onSelectSlot={handleSelectSlot}
         style={{ height: "100vh" }}
+      />
+      <NewEventDialog
+        isOpen={isDialogOpen}
+        onCancel={() => setIsDialogOpen(false)}
+        onSubmit={(event) => {
+          setEvents((events) => [...events, event]);
+          setIsDialogOpen(false);
+        }}
+        start={selectedSlot?.start}
+        end={selectedSlot?.end}
       />
     </Box>
   );
