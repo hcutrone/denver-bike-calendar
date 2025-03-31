@@ -13,12 +13,12 @@ export function createEvent({
 }: {
   title: string;
   body: string;
-  links?: { text: string; url: string }[];
+  links?: { text: string; url: URL }[];
   start: Date;
   end: Date;
 }): Event {
   const footerLinks = links?.map((link, idx) => (
-    <Link key={idx} href={link.url}>
+    <Link key={idx} href={link.url.toString()}>
       {link.text}
     </Link>
   ));

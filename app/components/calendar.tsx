@@ -25,7 +25,7 @@ export function BikeCalendar() {
       links: [
         {
           text: "Bike Fest Website",
-          url: "https://www.zcycledenver.com/denverbikefest",
+          url: new URL("https://www.zcycledenver.com/denverbikefest"),
         },
       ],
       start: new Date(1745701200000),

@@ -5,15 +5,21 @@ import {
   Button,
   Dialog,
   Flex,
+  IconButton,
+  Table,
   TextArea,
   TextField,
 } from "@radix-ui/themes";
 import { Label } from "radix-ui";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Event } from "react-big-calendar";
 import { createEvent } from "./calendar-event";
 
-type NewEvent = Omit<Event, "title"> & { title?: string; body?: string };
+type NewEvent = Omit<Event, "title"> & {
+  title?: string;
+  body?: string;
+  links?: { text: string; url: URL }[];
+};
 
 export function NewEventDialog({
   isOpen,
@@ -87,6 +93,10 @@ export function NewEventDialog({
               }
             />
           </Box>
+          <Box>
+            <Label.Root htmlFor="links">Links</Label.Root>
+            <LinksTable newEvent={newEvent} setNewEvent={setNewEvent} />
+          </Box>
           <Flex justify="end" gap="4" style={{ marginTop: "14px" }}>
             <Button
               disabled={!newEvent.start || !newEvent.end}
@@ -98,6 +108,7 @@ export function NewEventDialog({
                     end: newEvent.end!,
                     title: newEvent.title ?? "",
                     body: newEvent.body ?? "",
+                    links: newEvent.links,
                   })
                 )
               }
@@ -109,5 +120,64 @@ export function NewEventDialog({
         </Flex>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function LinksTable({
+  newEvent,
+  setNewEvent,
+}: {
+  newEvent: NewEvent;
+  setNewEvent: Dispatch<SetStateAction<NewEvent>>;
+}) {
+  const newLinkTextRef = useRef<HTMLInputElement>(null);
+  const newLinkURLRef = useRef<HTMLInputElement>(null);
+  function handleSubmit() {
+    if (!newLinkTextRef.current || !newLinkURLRef.current) {
+      return;
+    }
+    setNewEvent({
+      ...newEvent,
+      links: [
+        ...(newEvent?.links ?? []),
+        {
+          text: newLinkTextRef.current.value,
+          url: new URL(newLinkURLRef.current.value),
+        },
+      ],
+    });
+    newLinkTextRef.current.value = "";
+    newLinkURLRef.current.value = "";
+  }
+
+  return (
+    <Table.Root>
+      <Table.Header>
+        <Table.Row>
+          <Table.ColumnHeaderCell>Display Text</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell>URL</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell />
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {newEvent.links?.map((link, idx) => (
+          <Table.Row key={idx}>
+            <Table.Cell>{link.text}</Table.Cell>
+            <Table.Cell>{link.url.toString()}</Table.Cell>
+          </Table.Row>
+        ))}
+        <Table.Row>
+          <Table.Cell>
+            <TextField.Root ref={newLinkTextRef} />
+          </Table.Cell>
+          <Table.Cell>
+            <TextField.Root ref={newLinkURLRef} />
+          </Table.Cell>
+          <Table.Cell>
+            <IconButton onClick={handleSubmit}>+</IconButton>
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table.Root>
   );
 }
