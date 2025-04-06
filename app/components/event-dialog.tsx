@@ -16,6 +16,7 @@ import { Event } from "react-big-calendar";
 import { createEvent } from "./calendar-event";
 import { FaSquarePlus } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
+import moment from "moment";
 
 export type NewEvent = Omit<Event, "title"> & {
   title?: string;
@@ -40,6 +41,7 @@ export function EventDialog({
 }) {
   const [newEvent, setNewEvent] = useState<NewEvent>(initialEvent ?? {});
   useEffect(() => setNewEvent(initialEvent ?? {}), [initialEvent]);
+  const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
   const handleSubmit = (event: NewEvent) => {
     if (isEditing) {
@@ -95,7 +97,7 @@ export function EventDialog({
               <TextField.Root
                 id="start"
                 type="datetime-local"
-                value={newEvent.start?.toISOString().split(".")[0]}
+                value={moment(newEvent.start).format(inputDateFormat)}
                 onChange={(e) =>
                   setNewEvent({
                     ...newEvent,
@@ -110,7 +112,7 @@ export function EventDialog({
               <TextField.Root
                 id="end"
                 type="datetime-local"
-                value={newEvent.end?.toISOString().split(".")[0]}
+                value={moment(newEvent.end).format(inputDateFormat)}
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, end: new Date(e.target.value) })
                 }
