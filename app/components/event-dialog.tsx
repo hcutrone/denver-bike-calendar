@@ -15,6 +15,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Event } from "react-big-calendar";
 import { createEvent } from "./calendar-event";
 import { FaSquarePlus } from "react-icons/fa6";
+import { FaTrashAlt } from "react-icons/fa";
 
 export type NewEvent = Omit<Event, "title"> & {
   title?: string;
@@ -156,6 +157,7 @@ function LinksTable({
 }) {
   const newLinkTextRef = useRef<HTMLInputElement>(null);
   const newLinkURLRef = useRef<HTMLInputElement>(null);
+
   function handleSubmit() {
     if (!newLinkTextRef.current || !newLinkURLRef.current) {
       return;
@@ -174,6 +176,13 @@ function LinksTable({
     newLinkURLRef.current.value = "";
   }
 
+  function removeLink(idx: number) {
+    setNewEvent({
+      ...newEvent,
+      links: newEvent.links?.filter((_, i) => i !== idx),
+    });
+  }
+
   return (
     <Table.Root>
       <Table.Header>
@@ -188,6 +197,11 @@ function LinksTable({
           <Table.Row key={idx}>
             <Table.Cell>{link.text}</Table.Cell>
             <Table.Cell>{link.url.toString()}</Table.Cell>
+            <Table.Cell>
+              <IconButton onClick={() => removeLink(idx)}>
+                <FaTrashAlt />
+              </IconButton>
+            </Table.Cell>
           </Table.Row>
         ))}
         <Table.Row>
