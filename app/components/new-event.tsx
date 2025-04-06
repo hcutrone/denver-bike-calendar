@@ -28,27 +28,46 @@ export function NewEventDialog({
   onClose,
   setEvents,
   initialEvent,
+  isEditing = false,
 }: {
   isOpen: boolean;
   onCancel: () => void;
   onClose: () => void;
   setEvents: Dispatch<SetStateAction<Event[]>>;
   initialEvent: NewEvent;
+  isEditing?: boolean;
 }) {
   const [newEvent, setNewEvent] = useState<NewEvent>(initialEvent ?? {});
   useEffect(() => setNewEvent(initialEvent ?? {}), [initialEvent]);
 
   const handleSubmit = (event: NewEvent) => {
-    setEvents((events) => [
-      ...events,
-      createEvent({
-        start: event.start!,
-        end: event.end!,
-        title: event.title ?? "",
-        body: event.body ?? "",
-        links: event.links,
-      }),
-    ]);
+    if (isEditing) {
+      setEvents((events) =>
+        events.map((e) => {
+          if (e.start === event.start && e.end === event.end) {
+            return createEvent({
+              start: event.start!,
+              end: event.end!,
+              title: event.title ?? "",
+              body: event.body ?? "",
+              links: event.links,
+            });
+          }
+          return e;
+        })
+      );
+    } else {
+      setEvents((events) => [
+        ...events,
+        createEvent({
+          start: event.start!,
+          end: event.end!,
+          title: event.title ?? "",
+          body: event.body ?? "",
+          links: event.links,
+        }),
+      ]);
+    }
     onClose();
   };
 
