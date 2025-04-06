@@ -78,7 +78,9 @@ export function EventDialog({
     <Dialog.Root open={isOpen}>
       <Dialog.Content maxWidth="600px">
         <Flex gap="3" direction="column">
-          <Dialog.Title>New Event</Dialog.Title>
+          <Dialog.Title>
+            {isEditing ? newEvent.title : "New Event"}
+          </Dialog.Title>
           <Box>
             <Label.Root htmlFor="title">Title</Label.Root>
             <TextField.Root
