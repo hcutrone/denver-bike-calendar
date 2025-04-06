@@ -39,7 +39,7 @@ function BikeCalendarComponent() {
   };
 
   return (
-    <Box p="9" m="9">
+    <Box maxWidth="1250px" m="4" p="4" mx="auto">
       <DnDCalendar
         localizer={localizer}
         events={events}
@@ -48,7 +48,7 @@ function BikeCalendarComponent() {
         resizable
         selectable
         onSelectSlot={openEventDialog}
-        style={{ height: "100vh" }}
+        style={{ height: "80vh" }}
       />
     </Box>
   );
