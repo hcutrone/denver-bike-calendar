@@ -47,7 +47,14 @@ function BikeCalendarComponent() {
         onEventResize={onEventResize}
         resizable
         selectable
-        onSelectSlot={openEventDialog}
+        onSelectSlot={(event) => {
+          if (
+            document.getElementsByClassName("eventPopoverContent").length > 0
+          ) {
+            return;
+          }
+          openEventDialog(event);
+        }}
         style={{ height: "80vh" }}
       />
     </Box>

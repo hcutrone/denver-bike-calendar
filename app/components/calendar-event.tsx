@@ -57,7 +57,7 @@ const EventComponent = (event: CalendarEvent) => {
           <Text>{event.title}</Text>
         </Flex>
       </Popover.Trigger>
-      <Popover.Content>
+      <Popover.Content className="eventPopoverContent">
         <Flex direction="column" gap="2">
           <Flex justify="between" align="center">
             <Text>{dateOrTimeRange}</Text>
