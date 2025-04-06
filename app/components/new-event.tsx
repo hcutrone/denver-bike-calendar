@@ -15,7 +15,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Event } from "react-big-calendar";
 import { createEvent } from "./calendar-event";
 
-type NewEvent = Omit<Event, "title"> & {
+export type NewEvent = Omit<Event, "title"> & {
   title?: string;
   body?: string;
   links?: { text: string; url: URL }[];
@@ -24,18 +24,33 @@ type NewEvent = Omit<Event, "title"> & {
 export function NewEventDialog({
   isOpen,
   onCancel,
-  onSubmit,
-  start,
-  end,
+  onClose,
+  setEvents,
+  initialEvent,
 }: {
   isOpen: boolean;
   onCancel: () => void;
-  onSubmit: (newEvent: Event) => void;
-  start?: Date;
-  end?: Date;
+  onClose: () => void;
+  setEvents: Dispatch<SetStateAction<Event[]>>;
+  initialEvent: NewEvent;
 }) {
-  const [newEvent, setNewEvent] = useState<NewEvent>({ start, end });
-  useEffect(() => setNewEvent({ start, end }), [start, end]);
+  const [newEvent, setNewEvent] = useState<NewEvent>(initialEvent ?? {});
+  useEffect(() => setNewEvent(initialEvent ?? {}), [initialEvent]);
+
+  const handleSubmit = (event: NewEvent) => {
+    setEvents((events) => [
+      ...events,
+      createEvent({
+        start: event.start!,
+        end: event.end!,
+        title: event.title ?? "",
+        body: event.body ?? "",
+        links: event.links,
+      }),
+    ]);
+    onClose();
+  };
+
   return (
     <Dialog.Root open={isOpen}>
       <Dialog.Content maxWidth="600px">
@@ -100,18 +115,7 @@ export function NewEventDialog({
           <Flex justify="end" gap="4" style={{ marginTop: "14px" }}>
             <Button
               disabled={!newEvent.start || !newEvent.end}
-              onClick={() =>
-                onSubmit(
-                  // we disable the button if there's no start/end, so we can force these
-                  createEvent({
-                    start: newEvent.start!,
-                    end: newEvent.end!,
-                    title: newEvent.title ?? "",
-                    body: newEvent.body ?? "",
-                    links: newEvent.links,
-                  })
-                )
-              }
+              onClick={() => handleSubmit(newEvent)}
             >
               Save
             </Button>
