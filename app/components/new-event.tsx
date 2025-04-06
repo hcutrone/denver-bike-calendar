@@ -14,6 +14,7 @@ import { Label } from "radix-ui";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Event } from "react-big-calendar";
 import { createEvent } from "./calendar-event";
+import { FaSquarePlus } from "react-icons/fa6";
 
 export type NewEvent = Omit<Event, "title"> & {
   title?: string;
@@ -178,7 +179,9 @@ function LinksTable({
             <TextField.Root ref={newLinkURLRef} />
           </Table.Cell>
           <Table.Cell>
-            <IconButton onClick={handleSubmit}>+</IconButton>
+            <IconButton onClick={handleSubmit}>
+              <FaSquarePlus />
+            </IconButton>
           </Table.Cell>
         </Table.Row>
       </Table.Body>
