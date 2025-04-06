@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { Event } from "react-big-calendar";
-import { type NewEvent, NewEventDialog } from "./new-event";
+import { type NewEvent, EventDialog } from "./event-dialog";
 import { createEvent } from "./calendar-event";
 
 type CalendarContextType = {
@@ -55,7 +55,7 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
   return (
     <CalendarContext.Provider value={calendarContextValue}>
       {children}
-      <NewEventDialog
+      <EventDialog
         isOpen={isDialogOpen}
         onCancel={() => setIsDialogOpen(false)}
         onClose={() => setIsDialogOpen(false)}

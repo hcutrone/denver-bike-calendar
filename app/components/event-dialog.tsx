@@ -22,7 +22,7 @@ export type NewEvent = Omit<Event, "title"> & {
   links?: { text: string; url: URL }[];
 };
 
-export function NewEventDialog({
+export function EventDialog({
   isOpen,
   onCancel,
   onClose,
