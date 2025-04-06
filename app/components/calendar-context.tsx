@@ -61,7 +61,6 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
         onClose={() => setIsDialogOpen(false)}
         setEvents={setEvents}
         initialEvent={initialEvent}
-        isEditing={!!initialEvent.title}
       />
     </CalendarContext.Provider>
   );
