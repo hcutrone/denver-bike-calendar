@@ -37,11 +37,11 @@ export function EventDialog({
   useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
   const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
-  const handleSubmit = (event: DialogEvent) => {
+  const handleSubmit = (event: CalendarEventComponent) => {
     if (isEditing) {
-      updateEvent(event as CalendarEventComponent);
+      updateEvent(event);
     } else {
-      addEvent(event as CalendarEventComponent);
+      addEvent(event);
     }
     onClose();
   };
@@ -121,7 +121,7 @@ export function EventDialog({
                 !dialogEvent.title || !dialogEvent.start || !dialogEvent.end
               }
               onClick={() =>
-                handleSubmit(dialogEvent)
+                handleSubmit(dialogEvent as CalendarEventComponent)
               }
             >
               Save
