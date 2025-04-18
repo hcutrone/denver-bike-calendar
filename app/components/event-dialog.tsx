@@ -12,7 +12,6 @@ import {
 } from "@radix-ui/themes";
 import { Label } from "radix-ui";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { createCalendarEvent } from "./calendar-event";
 import { FaSquarePlus } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
@@ -32,7 +31,7 @@ export function EventDialog({
   initialDialogEvent: DialogEvent;
   isEditing?: boolean;
 }) {
-  const { setEvents } = useCalendarContext();
+  const { addEvent, updateEvent } = useCalendarContext();
   const [dialogEvent, setDialogEvent] =
     useState<DialogEvent>(initialDialogEvent);
   useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
@@ -40,31 +39,9 @@ export function EventDialog({
 
   const handleSubmit = (event: DialogEvent) => {
     if (isEditing) {
-      setEvents((events) =>
-        events.map((e) => {
-          if (e.event.start === event.start && e.event.end === event.end) {
-            return createCalendarEvent({
-              start: event.start!,
-              end: event.end!,
-              title: event.title ?? "",
-              body: event.body ?? "",
-              links: event.links,
-            });
-          }
-          return e;
-        })
-      );
+      updateEvent(event as CalendarEventComponent);
     } else {
-      setEvents((events) => [
-        ...events,
-        createCalendarEvent({
-          start: event.start!,
-          end: event.end!,
-          title: event.title ?? "",
-          body: event.body ?? "",
-          links: event.links,
-        }),
-      ]);
+      addEvent(event as CalendarEventComponent);
     }
     onClose();
   };

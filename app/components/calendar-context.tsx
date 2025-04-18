@@ -7,12 +7,15 @@ import {
   useState,
 } from "react";
 import { EventDialog } from "./event-dialog";
-import { createCalendarEvent } from "./calendar-event";
-import { DialogEvent, CalendarEvent } from "../types";
+import { createCalendarEvent, updateCalendarEvent } from "./calendar-event";
+import { DialogEvent, CalendarEvent, CalendarEventComponent } from "../types";
 
 type CalendarContextType = {
   events: CalendarEvent[];
   setEvents: Dispatch<SetStateAction<CalendarEvent[]>>;
+  addEvent: (event: CalendarEventComponent) => void;
+  updateEvent: (event: CalendarEventComponent) => void;
+  deleteEvent: (event: CalendarEventComponent) => void;
   openEventDialog: (data: DialogEvent) => void;
 };
 
@@ -46,9 +49,37 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
     setIsDialogOpen(true);
   };
 
+  function addEvent(newEvent: CalendarEventComponent) {
+    setEvents((events) => [
+      ...events,
+      createCalendarEvent({
+        start: newEvent.start,
+        end: newEvent.end,
+        title: newEvent.title,
+        body: newEvent.body,
+        links: newEvent.links,
+      }),
+    ]);
+  }
+
+  function updateEvent(updatedEvent: CalendarEventComponent) {
+    setEvents(
+      events.map((event) =>
+        event.id === updatedEvent.id ? updateCalendarEvent(updatedEvent) : event
+      )
+    );
+  }
+
+  function deleteEvent(eventToDelete: CalendarEventComponent) {
+    setEvents(events.filter((event) => event.id !== eventToDelete.id));
+  }
+
   const calendarContextValue = {
     events,
     setEvents,
+    addEvent,
+    updateEvent,
+    deleteEvent,
     openEventDialog,
   };
 

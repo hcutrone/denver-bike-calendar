@@ -1,6 +1,6 @@
 import { Flex, IconButton, Link, Popover, Text } from "@radix-ui/themes";
 import { useCalendarContext } from "./calendar-context";
-import { FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { CalendarEvent, CalendarEventComponent } from "../types";
 
 const DAY_IN_MILLISECONDS = 86400000;
@@ -20,8 +20,21 @@ export function createCalendarEvent(
   };
 }
 
+export function updateCalendarEvent(
+  event: CalendarEventComponent
+): CalendarEvent {
+  return {
+    id: event.id,
+    event: {
+      title: <EventComponent {...event} />,
+      start: event.start,
+      end: event.end,
+    },
+  };
+}
+
 const EventComponent = (event: CalendarEventComponent) => {
-  const { openEventDialog } = useCalendarContext();
+  const { openEventDialog, deleteEvent } = useCalendarContext();
   const dateOrTimeRange = getEventRangeString(event.start, event.end);
   const footerLinks = event.links?.map((link, idx) => (
     <Link key={idx} href={link.url.toString()}>
@@ -40,9 +53,14 @@ const EventComponent = (event: CalendarEventComponent) => {
         <Flex direction="column" gap="2">
           <Flex justify="between" align="center" gap="2">
             <Text>{dateOrTimeRange}</Text>
-            <IconButton onClick={() => openEventDialog(event)}>
-              <FaPencilAlt />
-            </IconButton>
+            <Flex gap="2">
+              <IconButton onClick={() => openEventDialog(event)}>
+                <FaPencilAlt />
+              </IconButton>
+              <IconButton onClick={() => deleteEvent(event)}>
+                <FaTrashAlt />
+              </IconButton>
+            </Flex>
           </Flex>
           <Text>{event.body}</Text>
           {footerLinks && (
