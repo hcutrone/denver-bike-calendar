@@ -12,33 +12,27 @@ import {
 } from "@radix-ui/themes";
 import { Label } from "radix-ui";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { Event } from "react-big-calendar";
-import { createEvent } from "./calendar-event";
+import { createCalendarEvent } from "./calendar-event";
 import { FaSquarePlus } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
-
-export type NewEvent = Omit<Event, "title"> & {
-  title?: string;
-  body?: string;
-  links?: { text: string; url: URL }[];
-};
+import { useCalendarContext } from "./calendar-context";
+import { NewEvent, CalendarEventComponent } from "../types";
 
 export function EventDialog({
   isOpen,
   onCancel,
   onClose,
-  setEvents,
   initialEvent,
   isEditing = false,
 }: {
   isOpen: boolean;
   onCancel: () => void;
   onClose: () => void;
-  setEvents: Dispatch<SetStateAction<Event[]>>;
   initialEvent: NewEvent;
   isEditing?: boolean;
 }) {
+  const { setEvents } = useCalendarContext();
   const [newEvent, setNewEvent] = useState<NewEvent>(initialEvent ?? {});
   useEffect(() => setNewEvent(initialEvent ?? {}), [initialEvent]);
   const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
@@ -47,8 +41,8 @@ export function EventDialog({
     if (isEditing) {
       setEvents((events) =>
         events.map((e) => {
-          if (e.start === event.start && e.end === event.end) {
-            return createEvent({
+          if (e.event.start === event.start && e.event.end === event.end) {
+            return createCalendarEvent({
               start: event.start!,
               end: event.end!,
               title: event.title ?? "",
@@ -62,7 +56,7 @@ export function EventDialog({
     } else {
       setEvents((events) => [
         ...events,
-        createEvent({
+        createCalendarEvent({
           start: event.start!,
           end: event.end!,
           title: event.title ?? "",

@@ -21,17 +21,10 @@ export const BikeCalendar = () => (
 );
 
 function BikeCalendarComponent() {
-  const { events, setEvents, openEventDialog } = useCalendarContext();
-  const onEventResize: withDragAndDropProps["onEventResize"] = (data) => {
-    const { start, end } = data;
+  const { events, openEventDialog } = useCalendarContext();
 
-    setEvents((currentEvents) => {
-      const firstEvent = {
-        start: new Date(start),
-        end: new Date(end),
-      };
-      return [...currentEvents, firstEvent];
-    });
+  const onEventResize: withDragAndDropProps["onEventResize"] = (data) => {
+    console.log(data);
   };
 
   const onEventDrop: withDragAndDropProps["onEventDrop"] = (data) => {
@@ -42,7 +35,7 @@ function BikeCalendarComponent() {
     <Box maxWidth="1250px" m="4" p="4" mx="auto">
       <DnDCalendar
         localizer={localizer}
-        events={events}
+        events={events.map((event) => event.event)}
         onEventDrop={onEventDrop}
         onEventResize={onEventResize}
         resizable

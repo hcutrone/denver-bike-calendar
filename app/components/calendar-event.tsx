@@ -1,47 +1,26 @@
 import { Flex, IconButton, Link, Popover, Text } from "@radix-ui/themes";
-import { Event } from "react-big-calendar";
 import { useCalendarContext } from "./calendar-context";
 import { FaPencilAlt } from "react-icons/fa";
+import { CalendarEvent, CalendarEventComponent } from "../types";
 
 const DAY_IN_MILLISECONDS = 86400000;
+let numEvents = 0;
 
-export function createEvent({
-  title,
-  body,
-  links,
-  start,
-  end,
-}: {
-  title: string;
-  body: string;
-  links?: { text: string; url: URL }[];
-  start: Date;
-  end: Date;
-}): Event {
+export function createCalendarEvent(
+  newEvent: Omit<CalendarEventComponent, "id">
+): CalendarEvent {
+  const eventId = numEvents++;
   return {
-    title: (
-      <EventComponent
-        start={start}
-        end={end}
-        title={title}
-        body={body}
-        links={links}
-      />
-    ),
-    start,
-    end,
+    id: eventId,
+    event: {
+      title: <EventComponent id={eventId} {...newEvent} />,
+      start: newEvent.start,
+      end: newEvent.end,
+    },
   };
 }
 
-export type CalendarEvent = {
-  start: Date;
-  end: Date;
-  title: string;
-  body: string;
-  links?: { text: string; url: URL }[];
-};
-
-const EventComponent = (event: CalendarEvent) => {
+const EventComponent = (event: CalendarEventComponent) => {
   const { openEventDialog } = useCalendarContext();
   const dateOrTimeRange = getEventRangeString(event.start, event.end);
   const footerLinks = event.links?.map((link, idx) => (

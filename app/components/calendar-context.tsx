@@ -6,14 +6,14 @@ import {
   useContext,
   useState,
 } from "react";
-import { Event } from "react-big-calendar";
-import { type NewEvent, EventDialog } from "./event-dialog";
-import { createEvent } from "./calendar-event";
+import { EventDialog } from "./event-dialog";
+import { createCalendarEvent } from "./calendar-event";
+import { NewEvent, CalendarEvent } from "../types";
 
 type CalendarContextType = {
-  events: Event[];
-  setEvents: Dispatch<SetStateAction<Event[]>>;
-  openEventDialog: (data: Event) => void;
+  events: CalendarEvent[];
+  setEvents: Dispatch<SetStateAction<CalendarEvent[]>>;
+  openEventDialog: (data: NewEvent) => void;
 };
 
 const CalendarContext = createContext<CalendarContextType>(
@@ -22,8 +22,8 @@ const CalendarContext = createContext<CalendarContextType>(
 export const useCalendarContext = () => useContext(CalendarContext);
 
 export function CalendarContextProvider({ children }: PropsWithChildren) {
-  const [events, setEvents] = useState<Event[]>([
-    createEvent({
+  const [events, setEvents] = useState<CalendarEvent[]>([
+    createCalendarEvent({
       title: "Bike Fest!",
       body: "The ultimate celebration of Denver's bicycle community. Join us at the\
           City Park Pavilion on Saturday, April 26th, for prizes, live music, food,\
@@ -41,8 +41,8 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [initialEvent, setInitialEvent] = useState<NewEvent>({});
 
-  const openEventDialog = (data: Event) => {
-    setInitialEvent(data as NewEvent);
+  const openEventDialog = (data: NewEvent) => {
+    setInitialEvent(data);
     setIsDialogOpen(true);
   };
 
@@ -59,7 +59,6 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
         isOpen={isDialogOpen}
         onCancel={() => setIsDialogOpen(false)}
         onClose={() => setIsDialogOpen(false)}
-        setEvents={setEvents}
         initialEvent={initialEvent}
         isEditing={!!initialEvent.title}
       />
