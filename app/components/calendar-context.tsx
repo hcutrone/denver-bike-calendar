@@ -8,12 +8,12 @@ import {
 } from "react";
 import { EventDialog } from "./event-dialog";
 import { createCalendarEvent } from "./calendar-event";
-import { NewEvent, CalendarEvent } from "../types";
+import { DialogEvent, CalendarEvent } from "../types";
 
 type CalendarContextType = {
   events: CalendarEvent[];
   setEvents: Dispatch<SetStateAction<CalendarEvent[]>>;
-  openEventDialog: (data: NewEvent) => void;
+  openEventDialog: (data: DialogEvent) => void;
 };
 
 const CalendarContext = createContext<CalendarContextType>(
@@ -39,10 +39,10 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
     }),
   ]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [initialEvent, setInitialEvent] = useState<NewEvent>({});
+  const [dialogEvent, setDialogEvent] = useState<DialogEvent>({});
 
-  const openEventDialog = (data: NewEvent) => {
-    setInitialEvent(data);
+  const openEventDialog = (data: DialogEvent) => {
+    setDialogEvent(data);
     setIsDialogOpen(true);
   };
 
@@ -59,8 +59,8 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
         isOpen={isDialogOpen}
         onCancel={() => setIsDialogOpen(false)}
         onClose={() => setIsDialogOpen(false)}
-        initialEvent={initialEvent}
-        isEditing={!!initialEvent.title}
+        initialDialogEvent={dialogEvent}
+        isEditing={!!dialogEvent.title}
       />
     </CalendarContext.Provider>
   );

@@ -17,27 +17,28 @@ import { FaSquarePlus } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
 import { useCalendarContext } from "./calendar-context";
-import { NewEvent, CalendarEventComponent } from "../types";
+import { DialogEvent, CalendarEventComponent } from "../types";
 
 export function EventDialog({
   isOpen,
   onCancel,
   onClose,
-  initialEvent,
+  initialDialogEvent,
   isEditing = false,
 }: {
   isOpen: boolean;
   onCancel: () => void;
   onClose: () => void;
-  initialEvent: NewEvent;
+  initialDialogEvent: DialogEvent;
   isEditing?: boolean;
 }) {
   const { setEvents } = useCalendarContext();
-  const [newEvent, setNewEvent] = useState<NewEvent>(initialEvent ?? {});
-  useEffect(() => setNewEvent(initialEvent ?? {}), [initialEvent]);
+  const [dialogEvent, setDialogEvent] =
+    useState<DialogEvent>(initialDialogEvent);
+  useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
   const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
-  const handleSubmit = (event: NewEvent) => {
+  const handleSubmit = (event: DialogEvent) => {
     if (isEditing) {
       setEvents((events) =>
         events.map((e) => {
@@ -73,16 +74,16 @@ export function EventDialog({
       <Dialog.Content maxWidth="600px">
         <Flex gap="3" direction="column">
           <Dialog.Title>
-            {isEditing ? newEvent.title : "New Event"}
+            {isEditing ? dialogEvent.title : "New Event"}
           </Dialog.Title>
           <Box>
             <Label.Root htmlFor="title">Title*</Label.Root>
             <TextField.Root
               id="title"
               size="3"
-              value={newEvent?.title?.toString() ?? ""}
+              value={dialogEvent.title ?? ""}
               onChange={(e) =>
-                setNewEvent({ ...newEvent, title: e.target.value })
+                setDialogEvent({ ...dialogEvent, title: e.target.value })
               }
               style={{ height: "44px" }}
             />
@@ -93,10 +94,10 @@ export function EventDialog({
               <TextField.Root
                 id="start"
                 type="datetime-local"
-                value={moment(newEvent.start).format(inputDateFormat)}
+                value={moment(dialogEvent.start).format(inputDateFormat)}
                 onChange={(e) =>
-                  setNewEvent({
-                    ...newEvent,
+                  setDialogEvent({
+                    ...dialogEvent,
                     start: new Date(e.target.value),
                   })
                 }
@@ -108,9 +109,12 @@ export function EventDialog({
               <TextField.Root
                 id="end"
                 type="datetime-local"
-                value={moment(newEvent.end).format(inputDateFormat)}
+                value={moment(dialogEvent.end).format(inputDateFormat)}
                 onChange={(e) =>
-                  setNewEvent({ ...newEvent, end: new Date(e.target.value) })
+                  setDialogEvent({
+                    ...dialogEvent,
+                    end: new Date(e.target.value),
+                  })
                 }
                 style={{ height: "44px" }}
               />
@@ -121,20 +125,27 @@ export function EventDialog({
             <TextArea
               size="3"
               resize="vertical"
-              value={newEvent.body ?? ""}
+              value={dialogEvent.body ?? ""}
               onChange={(e) =>
-                setNewEvent({ ...newEvent, body: e.target.value })
+                setDialogEvent({ ...dialogEvent, body: e.target.value })
               }
             />
           </Box>
           <Box>
             <Label.Root htmlFor="links">Links</Label.Root>
-            <LinksTable newEvent={newEvent} setNewEvent={setNewEvent} />
+            <LinksTable
+              dialogEvent={dialogEvent}
+              setDialogEvent={setDialogEvent}
+            />
           </Box>
           <Flex justify="end" gap="4" style={{ marginTop: "14px" }}>
             <Button
-              disabled={!newEvent.title || !newEvent.start || !newEvent.end}
-              onClick={() => handleSubmit(newEvent)}
+              disabled={
+                !dialogEvent.title || !dialogEvent.start || !dialogEvent.end
+              }
+              onClick={() =>
+                handleSubmit(dialogEvent)
+              }
             >
               Save
             </Button>
@@ -147,11 +158,11 @@ export function EventDialog({
 }
 
 function LinksTable({
-  newEvent,
-  setNewEvent,
+  dialogEvent,
+  setDialogEvent,
 }: {
-  newEvent: NewEvent;
-  setNewEvent: Dispatch<SetStateAction<NewEvent>>;
+  dialogEvent: DialogEvent;
+  setDialogEvent: Dispatch<SetStateAction<DialogEvent>>;
 }) {
   const newLinkTextRef = useRef<HTMLInputElement>(null);
   const newLinkURLRef = useRef<HTMLInputElement>(null);
@@ -160,10 +171,10 @@ function LinksTable({
     if (!newLinkTextRef.current || !newLinkURLRef.current) {
       return;
     }
-    setNewEvent({
-      ...newEvent,
+    setDialogEvent({
+      ...dialogEvent,
       links: [
-        ...(newEvent?.links ?? []),
+        ...(dialogEvent.links ?? []),
         {
           text: newLinkTextRef.current.value,
           url: new URL(newLinkURLRef.current.value),
@@ -175,9 +186,9 @@ function LinksTable({
   }
 
   function removeLink(idx: number) {
-    setNewEvent({
-      ...newEvent,
-      links: newEvent.links?.filter((_, i) => i !== idx),
+    setDialogEvent({
+      ...dialogEvent,
+      links: dialogEvent.links?.filter((_, i) => i !== idx),
     });
   }
 
@@ -191,7 +202,7 @@ function LinksTable({
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {newEvent.links?.map((link, idx) => (
+        {dialogEvent.links?.map((link, idx) => (
           <Table.Row key={idx}>
             <Table.Cell>{link.text}</Table.Cell>
             <Table.Cell>{link.url.toString()}</Table.Cell>
