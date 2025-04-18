@@ -82,7 +82,7 @@ export function EventDialog({
             {isEditing ? newEvent.title : "New Event"}
           </Dialog.Title>
           <Box>
-            <Label.Root htmlFor="title">Title</Label.Root>
+            <Label.Root htmlFor="title">Title*</Label.Root>
             <TextField.Root
               id="title"
               size="3"
@@ -95,7 +95,7 @@ export function EventDialog({
           </Box>
           <Flex gap="3" justify="between">
             <Box>
-              <Label.Root htmlFor="start">Start</Label.Root>
+              <Label.Root htmlFor="start">Start*</Label.Root>
               <TextField.Root
                 id="start"
                 type="datetime-local"
@@ -110,7 +110,7 @@ export function EventDialog({
               />
             </Box>
             <Box>
-              <Label.Root htmlFor="end">End</Label.Root>
+              <Label.Root htmlFor="end">End*</Label.Root>
               <TextField.Root
                 id="end"
                 type="datetime-local"
@@ -139,7 +139,7 @@ export function EventDialog({
           </Box>
           <Flex justify="end" gap="4" style={{ marginTop: "14px" }}>
             <Button
-              disabled={!newEvent.start || !newEvent.end}
+              disabled={!newEvent.title || !newEvent.start || !newEvent.end}
               onClick={() => handleSubmit(newEvent)}
             >
               Save

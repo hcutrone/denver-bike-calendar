@@ -59,7 +59,7 @@ const EventComponent = (event: CalendarEvent) => {
       </Popover.Trigger>
       <Popover.Content className="eventPopoverContent">
         <Flex direction="column" gap="2">
-          <Flex justify="between" align="center">
+          <Flex justify="between" align="center" gap="2">
             <Text>{dateOrTimeRange}</Text>
             <IconButton onClick={() => openEventDialog(event)}>
               <FaPencilAlt />
