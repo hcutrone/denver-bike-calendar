@@ -1,8 +1,8 @@
 import { Event } from "react-big-calendar";
 
-export type DialogEvent = Partial<CalendarEventComponent>;
+export type DialogEvent = Partial<EventData>;
 
-export type CalendarEventComponent = {
+export type EventData = {
   id: number;
   start: Date;
   end: Date;

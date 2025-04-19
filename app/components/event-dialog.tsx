@@ -16,7 +16,7 @@ import { FaSquarePlus } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
 import { useCalendarContext } from "./calendar-context";
-import { DialogEvent, CalendarEventComponent } from "../types";
+import { DialogEvent, EventData } from "../types";
 
 export function EventDialog({
   isOpen,
@@ -37,7 +37,7 @@ export function EventDialog({
   useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
   const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
-  const handleSubmit = (event: CalendarEventComponent) => {
+  const handleSubmit = (event: EventData) => {
     if (isEditing) {
       updateEvent(event);
     } else {
@@ -120,9 +120,7 @@ export function EventDialog({
               disabled={
                 !dialogEvent.title || !dialogEvent.start || !dialogEvent.end
               }
-              onClick={() =>
-                handleSubmit(dialogEvent as CalendarEventComponent)
-              }
+              onClick={() => handleSubmit(dialogEvent as EventData)}
             >
               Save
             </Button>

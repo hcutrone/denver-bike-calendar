@@ -10,12 +10,13 @@ import {
   CalendarContextProvider,
   useCalendarContext,
 } from "./calendar-context";
+import { EventData } from "../types";
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 
-export const BikeCalendar = () => (
-  <CalendarContextProvider>
+export const BikeCalendar = ({ events }: { events: EventData[] }) => (
+  <CalendarContextProvider dbEvents={events}>
     <BikeCalendarComponent />
   </CalendarContextProvider>
 );

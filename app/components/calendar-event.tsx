@@ -1,13 +1,13 @@
 import { Flex, IconButton, Link, Popover, Text } from "@radix-ui/themes";
 import { useCalendarContext } from "./calendar-context";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
-import { CalendarEvent, CalendarEventComponent } from "../types";
+import { CalendarEvent, EventData } from "../types";
 
 const DAY_IN_MILLISECONDS = 86400000;
 let numEvents = 0;
 
 export function createCalendarEvent(
-  newEvent: Omit<CalendarEventComponent, "id">
+  newEvent: Omit<EventData, "id">
 ): CalendarEvent {
   const eventId = numEvents++;
   return {
@@ -20,9 +20,7 @@ export function createCalendarEvent(
   };
 }
 
-export function updateCalendarEvent(
-  event: CalendarEventComponent
-): CalendarEvent {
+export function updateCalendarEvent(event: EventData): CalendarEvent {
   return {
     id: event.id,
     event: {
@@ -33,7 +31,7 @@ export function updateCalendarEvent(
   };
 }
 
-const EventComponent = (event: CalendarEventComponent) => {
+const EventComponent = (event: EventData) => {
   const { openEventDialog, deleteEvent } = useCalendarContext();
   const dateOrTimeRange = getEventRangeString(event.start, event.end);
   const footerLinks = event.links?.map((link, idx) => (

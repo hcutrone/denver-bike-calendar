@@ -8,14 +8,14 @@ import {
 } from "react";
 import { EventDialog } from "./event-dialog";
 import { createCalendarEvent, updateCalendarEvent } from "./calendar-event";
-import { DialogEvent, CalendarEvent, CalendarEventComponent } from "../types";
+import { DialogEvent, CalendarEvent, EventData } from "../types";
 
 type CalendarContextType = {
   events: CalendarEvent[];
   setEvents: Dispatch<SetStateAction<CalendarEvent[]>>;
-  addEvent: (event: CalendarEventComponent) => void;
-  updateEvent: (event: CalendarEventComponent) => void;
-  deleteEvent: (event: CalendarEventComponent) => void;
+  addEvent: (event: EventData) => void;
+  updateEvent: (event: EventData) => void;
+  deleteEvent: (event: EventData) => void;
   openEventDialog: (data: DialogEvent) => void;
 };
 
@@ -24,23 +24,13 @@ const CalendarContext = createContext<CalendarContextType>(
 );
 export const useCalendarContext = () => useContext(CalendarContext);
 
-export function CalendarContextProvider({ children }: PropsWithChildren) {
-  const [events, setEvents] = useState<CalendarEvent[]>([
-    createCalendarEvent({
-      title: "Bike Fest!",
-      body: "The ultimate celebration of Denver's bicycle community. Join us at the\
-          City Park Pavilion on Saturday, April 26th, for prizes, live music, food,\
-          and booths from local bicycle communities",
-      links: [
-        {
-          text: "Bike Fest Website",
-          url: new URL("https://www.zcycledenver.com/denverbikefest"),
-        },
-      ],
-      start: new Date(1745701200000),
-      end: new Date(1745722800000),
-    }),
-  ]);
+export function CalendarContextProvider({
+  dbEvents,
+  children,
+}: PropsWithChildren<{ dbEvents: EventData[] }>) {
+  const [events, setEvents] = useState<CalendarEvent[]>(
+    dbEvents.map((dbEvent) => createCalendarEvent(dbEvent))
+  );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogEvent, setDialogEvent] = useState<DialogEvent>({});
 
@@ -49,7 +39,7 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
     setIsDialogOpen(true);
   };
 
-  function addEvent(newEvent: CalendarEventComponent) {
+  function addEvent(newEvent: EventData) {
     setEvents((events) => [
       ...events,
       createCalendarEvent({
@@ -62,7 +52,7 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
     ]);
   }
 
-  function updateEvent(updatedEvent: CalendarEventComponent) {
+  function updateEvent(updatedEvent: EventData) {
     setEvents(
       events.map((event) =>
         event.id === updatedEvent.id ? updateCalendarEvent(updatedEvent) : event
@@ -70,7 +60,7 @@ export function CalendarContextProvider({ children }: PropsWithChildren) {
     );
   }
 
-  function deleteEvent(eventToDelete: CalendarEventComponent) {
+  function deleteEvent(eventToDelete: EventData) {
     setEvents(events.filter((event) => event.id !== eventToDelete.id));
   }
 
