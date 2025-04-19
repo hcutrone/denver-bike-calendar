@@ -4,8 +4,8 @@ export type DialogEvent = Partial<EventData>;
 
 export type EventData = {
   id: number;
-  start: Date;
-  end: Date;
+  start_time: Date;
+  end_time: Date;
   title: string;
   body: string;
   links?: { text: string; url: URL }[];

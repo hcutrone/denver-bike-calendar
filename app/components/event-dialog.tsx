@@ -71,11 +71,11 @@ export function EventDialog({
               <TextField.Root
                 id="start"
                 type="datetime-local"
-                value={moment(dialogEvent.start).format(inputDateFormat)}
+                value={moment(dialogEvent.start_time).format(inputDateFormat)}
                 onChange={(e) =>
                   setDialogEvent({
                     ...dialogEvent,
-                    start: new Date(e.target.value),
+                    start_time: new Date(e.target.value),
                   })
                 }
                 style={{ height: "44px" }}
@@ -86,11 +86,11 @@ export function EventDialog({
               <TextField.Root
                 id="end"
                 type="datetime-local"
-                value={moment(dialogEvent.end).format(inputDateFormat)}
+                value={moment(dialogEvent.end_time).format(inputDateFormat)}
                 onChange={(e) =>
                   setDialogEvent({
                     ...dialogEvent,
-                    end: new Date(e.target.value),
+                    end_time: new Date(e.target.value),
                   })
                 }
                 style={{ height: "44px" }}
@@ -118,7 +118,9 @@ export function EventDialog({
           <Flex justify="end" gap="4" style={{ marginTop: "14px" }}>
             <Button
               disabled={
-                !dialogEvent.title || !dialogEvent.start || !dialogEvent.end
+                !dialogEvent.title ||
+                !dialogEvent.start_time ||
+                !dialogEvent.end_time
               }
               onClick={() => handleSubmit(dialogEvent as EventData)}
             >

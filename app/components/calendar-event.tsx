@@ -14,8 +14,8 @@ export function createCalendarEvent(
     id: eventId,
     event: {
       title: <EventComponent id={eventId} {...newEvent} />,
-      start: newEvent.start,
-      end: newEvent.end,
+      start: newEvent.start_time,
+      end: newEvent.end_time,
     },
   };
 }
@@ -25,15 +25,15 @@ export function updateCalendarEvent(event: EventData): CalendarEvent {
     id: event.id,
     event: {
       title: <EventComponent {...event} />,
-      start: event.start,
-      end: event.end,
+      start: event.start_time,
+      end: event.end_time,
     },
   };
 }
 
 const EventComponent = (event: EventData) => {
   const { openEventDialog, deleteEvent } = useCalendarContext();
-  const dateOrTimeRange = getEventRangeString(event.start, event.end);
+  const dateOrTimeRange = getEventRangeString(event.start_time, event.end_time);
   const footerLinks = event.links?.map((link, idx) => (
     <Link key={idx} href={link.url.toString()}>
       {link.text}

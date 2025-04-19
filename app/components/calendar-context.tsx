@@ -40,16 +40,7 @@ export function CalendarContextProvider({
   };
 
   function addEvent(newEvent: EventData) {
-    setEvents((events) => [
-      ...events,
-      createCalendarEvent({
-        start: newEvent.start,
-        end: newEvent.end,
-        title: newEvent.title,
-        body: newEvent.body,
-        links: newEvent.links,
-      }),
-    ]);
+    setEvents((events) => [...events, createCalendarEvent(newEvent)]);
   }
 
   function updateEvent(updatedEvent: EventData) {
