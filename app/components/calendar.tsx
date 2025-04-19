@@ -47,7 +47,11 @@ function BikeCalendarComponent() {
           ) {
             return;
           }
-          openEventDialog(event);
+          openEventDialog({
+            ...event,
+            start_time: event.start,
+            end_time: event.end,
+          });
         }}
         style={{ height: "80vh" }}
       />
