@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { EventDialog } from "./event-dialog";
-import { createCalendarEvent, updateCalendarEvent } from "./calendar-event";
+import { createCalendarEvent } from "./calendar-event";
 import { DialogEvent, CalendarEvent, EventData } from "../types";
 import { deleteEvents, insertEvents, updateEvents } from "../helpers/events";
 
@@ -61,7 +61,7 @@ export function CalendarContextProvider({
     }
     setEvents(
       events.map((event) =>
-        event.id === updatedEventID ? updateCalendarEvent(updatedEvent) : event
+        event.id === updatedEventID ? createCalendarEvent(updatedEvent) : event
       )
     );
     return updatedEventID;
