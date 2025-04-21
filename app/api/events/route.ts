@@ -31,14 +31,15 @@ export async function POST(request: NextRequest) {
       `($${num++}, $${num++}, $${num++}::jsonb, to_timestamp($${num++}), to_timestamp($${num++}))`
     );
   }
-  await sql.query(
+  const ids = await sql.query(
     `
       INSERT INTO events (title, body, links, start_time, end_time)
       VALUES ${valueStrings.join(" ")}
+      RETURNING id;
     `,
     params
   );
-  return NextResponse.json({}, { status: 200 });
+  return NextResponse.json({ ids: JSON.stringify(ids) }, { status: 200 });
 }
 
 export async function PATCH(request: NextRequest) {
@@ -71,16 +72,17 @@ export async function PATCH(request: NextRequest) {
         start_time = to_timestamp($${num++}),
         end_time = to_timestamp($${num++})
       WHERE id = $${num++}
+      RETURNING id;
     `);
   }
-  await sql.query(
+  const ids = await sql.query(
     `
     UPDATE events
     ${setStrings.join(" ")}
     `,
     params
   );
-  return NextResponse.json({}, { status: 200 });
+  return NextResponse.json({ ids: JSON.stringify(ids) }, { status: 200 });
 }
 
 export async function DELETE(request: NextRequest) {
@@ -92,8 +94,9 @@ export async function DELETE(request: NextRequest) {
     );
   }
   const arrayOfIds = events.map((event) => event.id);
-  await sql.query(`DELETE FROM events WHERE id IN ($1)`, [
-    arrayOfIds.join(", "),
-  ]);
-  return NextResponse.json({}, { status: 200 });
+  const ids = await sql.query(
+    `DELETE FROM events WHERE id IN ($1) RETURNING id;`,
+    [arrayOfIds.join(", ")]
+  );
+  return NextResponse.json({ ids: JSON.stringify(ids) }, { status: 200 });
 }

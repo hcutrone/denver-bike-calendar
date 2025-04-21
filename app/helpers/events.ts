@@ -35,7 +35,7 @@ export async function updateEvents(
   });
   const responseJson = await getResponseJson(response);
 
-  return responseJson?.id;
+  return JSON.parse(responseJson?.ids);
 }
 
 export async function deleteEvents(
@@ -47,7 +47,7 @@ export async function deleteEvents(
   });
   const responseJson = await getResponseJson(response);
 
-  return responseJson?.id;
+  return JSON.parse(responseJson?.ids);
 }
 
 async function getResponseJson(res: Response) {
