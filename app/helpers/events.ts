@@ -16,38 +16,38 @@ export async function selectEvents(): Promise<EventData[] | null> {
 
 export async function insertEvents(
   events: EventData[]
-): Promise<number | null> {
+): Promise<number[] | null> {
   const response = await fetch("/api/events", {
     method: "POST",
     body: JSON.stringify(events),
   });
   const responseJson = await getResponseJson(response);
 
-  return responseJson?.id;
+  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
 }
 
 export async function updateEvents(
   events: EventData[]
-): Promise<number | null> {
+): Promise<number[] | null> {
   const response = await fetch("/api/events", {
     method: "PATCH",
     body: JSON.stringify(events),
   });
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids);
+  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
 }
 
 export async function deleteEvents(
   events: EventData[]
-): Promise<number | null> {
+): Promise<number[] | null> {
   const response = await fetch("/api/events", {
     method: "DELETE",
     body: JSON.stringify(events),
   });
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids);
+  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
 }
 
 async function getResponseJson(res: Response) {
