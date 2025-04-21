@@ -3,6 +3,7 @@
 import {
   Box,
   Button,
+  Callout,
   Dialog,
   Flex,
   IconButton,
@@ -17,6 +18,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
 import { useCalendarContext } from "./calendar-context";
 import { DialogEvent, EventData } from "../types";
+import { CiSquareInfo } from "react-icons/ci";
 
 export function EventDialog({
   isOpen,
@@ -34,18 +36,30 @@ export function EventDialog({
   const { addEvent, updateEvent } = useCalendarContext();
   const [dialogEvent, setDialogEvent] =
     useState<DialogEvent>(initialDialogEvent);
+  const [isSaving, setIsSaving] = useState(false);
+  const [savingFailed, setSavingFailed] = useState(false);
   useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
   const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
   const handleSubmit = async (event: EventData) => {
+    setIsSaving(true);
     const eventID = isEditing
       ? await updateEvent(event)
       : await addEvent(event);
+    setIsSaving(false);
+
     if (!eventID) {
-      // TODO: Show message
+      setSavingFailed(true);
       return;
     }
+
     onClose();
+    setSavingFailed(false);
+  };
+
+  const handleCancel = () => {
+    setSavingFailed(false);
+    onCancel();
   };
 
   return (
@@ -117,18 +131,33 @@ export function EventDialog({
               setDialogEvent={setDialogEvent}
             />
           </Box>
-          <Flex justify="end" gap="4" style={{ marginTop: "14px" }}>
-            <Button
-              disabled={
-                !dialogEvent.title ||
-                !dialogEvent.start_time ||
-                !dialogEvent.end_time
-              }
-              onClick={async () => await handleSubmit(dialogEvent as EventData)}
-            >
-              Save
-            </Button>
-            <Button onClick={onCancel}>Cancel</Button>
+          <Flex justify="between" align="center" style={{ marginTop: "14px" }}>
+            <Box minHeight="44px">
+              {savingFailed && (
+                <Callout.Root variant="surface" color="red" size="1">
+                  <Callout.Icon>
+                    <CiSquareInfo size="20px" />
+                  </Callout.Icon>
+                  <Callout.Text>Saving failed. Please try again.</Callout.Text>
+                </Callout.Root>
+              )}
+            </Box>
+            <Flex gap="4">
+              <Button
+                disabled={
+                  !dialogEvent.title ||
+                  !dialogEvent.start_time ||
+                  !dialogEvent.end_time
+                }
+                loading={isSaving}
+                onClick={async () =>
+                  await handleSubmit(dialogEvent as EventData)
+                }
+              >
+                Save
+              </Button>
+              <Button onClick={handleCancel}>Cancel</Button>
+            </Flex>
           </Flex>
         </Flex>
       </Dialog.Content>
