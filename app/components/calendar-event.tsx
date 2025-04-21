@@ -1,7 +1,16 @@
-import { Flex, IconButton, Link, Popover, Text } from "@radix-ui/themes";
+import {
+  AlertDialog,
+  Button,
+  Flex,
+  IconButton,
+  Link,
+  Popover,
+  Text,
+} from "@radix-ui/themes";
 import { useCalendarContext } from "./calendar-context";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { CalendarEvent, EventData } from "../types";
+import { useState } from "react";
 
 const DAY_IN_MILLISECONDS = 86400000;
 
@@ -18,6 +27,8 @@ export function createCalendarEvent(newEvent: EventData): CalendarEvent {
 
 const EventComponent = (event: EventData) => {
   const { openEventDialog, deleteEvent } = useCalendarContext();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deletionFailed, setDeletionFailed] = useState(false);
   const dateOrTimeRange = getEventRangeString(event.start_time, event.end_time);
   const footerLinks = event.links?.map((link, idx) => (
     <Link key={idx} href={link.url.toString()}>
@@ -44,11 +55,14 @@ const EventComponent = (event: EventData) => {
                 <FaPencilAlt />
               </IconButton>
               <IconButton
+                loading={isDeleting}
                 onClick={async () => {
+                  setIsDeleting(true);
                   const eventID = await deleteEvent(event);
                   if (!eventID) {
-                    // TODO: Show message
+                    setDeletionFailed(true);
                   }
+                  setIsDeleting(false);
                 }}
               >
                 <FaTrashAlt />
@@ -62,10 +76,36 @@ const EventComponent = (event: EventData) => {
             </Flex>
           )}
         </Flex>
+        <DeleteFailedAlert show={deletionFailed} setShow={setDeletionFailed} />
       </Popover.Content>
     </Popover.Root>
   );
 };
+
+const DeleteFailedAlert = ({
+  show,
+  setShow,
+}: {
+  show: boolean;
+  setShow: (val: boolean) => void;
+}) => (
+  <AlertDialog.Root open={show}>
+    <AlertDialog.Content maxWidth="450px">
+      <AlertDialog.Title>Deletion Failed</AlertDialog.Title>
+      <AlertDialog.Description size="2">
+        Please try again
+      </AlertDialog.Description>
+
+      <Flex gap="3" mt="4" justify="end">
+        <AlertDialog.Action>
+          <Button variant="solid" onClick={() => setShow(false)}>
+            Okay
+          </Button>
+        </AlertDialog.Action>
+      </Flex>
+    </AlertDialog.Content>
+  </AlertDialog.Root>
+);
 
 function getEventRangeString(start: Date, end: Date): string {
   const eventTimeInMs = end.getTime() - start.getTime();
