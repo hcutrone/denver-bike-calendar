@@ -4,29 +4,14 @@ import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { CalendarEvent, EventData } from "../types";
 
 const DAY_IN_MILLISECONDS = 86400000;
-let numEvents = 0;
 
-export function createCalendarEvent(
-  newEvent: EventData & { id?: number }
-): CalendarEvent {
-  const eventId = newEvent.id ?? numEvents++;
+export function createCalendarEvent(newEvent: EventData): CalendarEvent {
   return {
-    id: eventId,
+    id: newEvent.id,
     event: {
-      title: <EventComponent {...newEvent} id={eventId} />,
+      title: <EventComponent {...newEvent} />,
       start: newEvent.start_time,
       end: newEvent.end_time,
-    },
-  };
-}
-
-export function updateCalendarEvent(event: EventData): CalendarEvent {
-  return {
-    id: event.id,
-    event: {
-      title: <EventComponent {...event} />,
-      start: event.start_time,
-      end: event.end_time,
     },
   };
 }
