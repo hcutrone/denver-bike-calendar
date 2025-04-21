@@ -1,13 +1,15 @@
 import { DBEvent, EventData } from "../types";
 
 export async function selectEvents(): Promise<EventData[] | null> {
-  const response = await fetch("/api/events", { method: "GET" });
+  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
+    method: "GET",
+  });
   const eventsJson = await getResponseJson(response);
   if (!eventsJson) {
     return null;
   }
 
-  return (eventsJson.body as DBEvent[]).map((eventJson) => ({
+  return (JSON.parse(eventsJson.body) as DBEvent[]).map((eventJson) => ({
     ...eventJson,
     start_time: new Date(eventJson.start_time),
     end_time: new Date(eventJson.end_time),
@@ -17,7 +19,7 @@ export async function selectEvents(): Promise<EventData[] | null> {
 export async function insertEvents(
   events: EventData[]
 ): Promise<number[] | null> {
-  const response = await fetch("/api/events", {
+  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
     method: "POST",
     body: JSON.stringify(events),
   });
@@ -29,7 +31,7 @@ export async function insertEvents(
 export async function updateEvents(
   events: EventData[]
 ): Promise<number[] | null> {
-  const response = await fetch("/api/events", {
+  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
     method: "PATCH",
     body: JSON.stringify(events),
   });
@@ -41,7 +43,7 @@ export async function updateEvents(
 export async function deleteEvents(
   events: EventData[]
 ): Promise<number[] | null> {
-  const response = await fetch("/api/events", {
+  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
     method: "DELETE",
     body: JSON.stringify(events),
   });
