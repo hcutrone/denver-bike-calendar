@@ -58,7 +58,14 @@ const EventComponent = (event: EventData) => {
               <IconButton onClick={() => openEventDialog(event)}>
                 <FaPencilAlt />
               </IconButton>
-              <IconButton onClick={() => deleteEvent(event)}>
+              <IconButton
+                onClick={async () => {
+                  const eventID = await deleteEvent(event);
+                  if (!eventID) {
+                    // TODO: Show message
+                  }
+                }}
+              >
                 <FaTrashAlt />
               </IconButton>
             </Flex>
