@@ -15,3 +15,9 @@ export type CalendarEvent = {
   id: number;
   event: Event;
 };
+
+export type DBEvent = EventData & {
+  start_time: number;
+  end_time: number;
+  links: string;
+};

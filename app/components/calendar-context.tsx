@@ -1,3 +1,5 @@
+"use client";
+
 import {
   createContext,
   Dispatch,
@@ -41,6 +43,10 @@ export function CalendarContextProvider({
 
   function addEvent(newEvent: EventData) {
     setEvents((events) => [...events, createCalendarEvent(newEvent)]);
+    fetch("/api/events", {
+      method: "POST",
+      body: JSON.stringify([newEvent]),
+    });
   }
 
   function updateEvent(updatedEvent: EventData) {
@@ -49,10 +55,18 @@ export function CalendarContextProvider({
         event.id === updatedEvent.id ? updateCalendarEvent(updatedEvent) : event
       )
     );
+    fetch("/api/events", {
+      method: "PATCH",
+      body: JSON.stringify([updatedEvent]),
+    });
   }
 
   function deleteEvent(eventToDelete: EventData) {
     setEvents(events.filter((event) => event.id !== eventToDelete.id));
+    fetch("/api/events", {
+      method: "DELETE",
+      body: JSON.stringify([eventToDelete]),
+    });
   }
 
   const calendarContextValue = {
