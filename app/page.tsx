@@ -15,7 +15,6 @@ export default async function Home() {
       ...event,
       start_time: new Date(event.start_time),
       end_time: new Date(event.end_time),
-      links: JSON.parse(event.links),
     };
   });
   return (

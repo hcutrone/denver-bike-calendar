@@ -11,13 +11,14 @@ import {
 import { EventDialog } from "./event-dialog";
 import { createCalendarEvent, updateCalendarEvent } from "./calendar-event";
 import { DialogEvent, CalendarEvent, EventData } from "../types";
+import { deleteEvents, insertEvents, updateEvents } from "../helpers/events";
 
 type CalendarContextType = {
   events: CalendarEvent[];
   setEvents: Dispatch<SetStateAction<CalendarEvent[]>>;
-  addEvent: (event: EventData) => void;
-  updateEvent: (event: EventData) => void;
-  deleteEvent: (event: EventData) => void;
+  addEvent: (event: EventData) => Promise<number | null>;
+  updateEvent: (event: EventData) => Promise<number | null>;
+  deleteEvent: (event: EventData) => Promise<number | null>;
   openEventDialog: (data: DialogEvent) => void;
 };
 
@@ -41,32 +42,38 @@ export function CalendarContextProvider({
     setIsDialogOpen(true);
   };
 
-  function addEvent(newEvent: EventData) {
-    setEvents((events) => [...events, createCalendarEvent(newEvent)]);
-    fetch("/api/events", {
-      method: "POST",
-      body: JSON.stringify([newEvent]),
-    });
+  async function addEvent(newEvent: EventData) {
+    const newEventID = await insertEvents([newEvent]);
+    if (!newEventID) {
+      return null;
+    }
+    setEvents((events) => [
+      ...events,
+      createCalendarEvent({ ...newEvent, id: newEventID }),
+    ]);
+    return newEventID;
   }
 
-  function updateEvent(updatedEvent: EventData) {
+  async function updateEvent(updatedEvent: EventData) {
+    const updatedEventID = await updateEvents([updatedEvent]);
+    if (!updatedEventID) {
+      return null;
+    }
     setEvents(
       events.map((event) =>
-        event.id === updatedEvent.id ? updateCalendarEvent(updatedEvent) : event
+        event.id === updatedEventID ? updateCalendarEvent(updatedEvent) : event
       )
     );
-    fetch("/api/events", {
-      method: "PATCH",
-      body: JSON.stringify([updatedEvent]),
-    });
+    return updatedEventID;
   }
 
-  function deleteEvent(eventToDelete: EventData) {
-    setEvents(events.filter((event) => event.id !== eventToDelete.id));
-    fetch("/api/events", {
-      method: "DELETE",
-      body: JSON.stringify([eventToDelete]),
-    });
+  async function deleteEvent(eventToDelete: EventData) {
+    const deletedEventID = await deleteEvents([eventToDelete]);
+    if (!deletedEventID) {
+      return null;
+    }
+    setEvents(events.filter((event) => event.id !== deletedEventID));
+    return deletedEventID;
   }
 
   const calendarContextValue = {

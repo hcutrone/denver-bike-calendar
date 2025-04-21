@@ -37,11 +37,13 @@ export function EventDialog({
   useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
   const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
-  const handleSubmit = (event: EventData) => {
-    if (isEditing) {
-      updateEvent(event);
-    } else {
-      addEvent(event);
+  const handleSubmit = async (event: EventData) => {
+    const eventID = isEditing
+      ? await updateEvent(event)
+      : await addEvent(event);
+    if (!eventID) {
+      // TODO: Show message
+      return;
     }
     onClose();
   };
@@ -122,7 +124,7 @@ export function EventDialog({
                 !dialogEvent.start_time ||
                 !dialogEvent.end_time
               }
-              onClick={() => handleSubmit(dialogEvent as EventData)}
+              onClick={async () => await handleSubmit(dialogEvent as EventData)}
             >
               Save
             </Button>
