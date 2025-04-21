@@ -43,7 +43,7 @@ export function CalendarContextProvider({
   };
 
   async function addEvent(newEvent: EventData) {
-    const newEventID = await insertEvents([newEvent]);
+    const newEventID = (await insertEvents([newEvent]))?.[0];
     if (!newEventID) {
       return null;
     }
@@ -55,7 +55,7 @@ export function CalendarContextProvider({
   }
 
   async function updateEvent(updatedEvent: EventData) {
-    const updatedEventID = await updateEvents([updatedEvent]);
+    const updatedEventID = (await updateEvents([updatedEvent]))?.[0];
     if (!updatedEventID) {
       return null;
     }
@@ -68,7 +68,7 @@ export function CalendarContextProvider({
   }
 
   async function deleteEvent(eventToDelete: EventData) {
-    const deletedEventID = await deleteEvents([eventToDelete]);
+    const deletedEventID = (await deleteEvents([eventToDelete]))?.[0];
     if (!deletedEventID) {
       return null;
     }
