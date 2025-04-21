@@ -7,13 +7,13 @@ const DAY_IN_MILLISECONDS = 86400000;
 let numEvents = 0;
 
 export function createCalendarEvent(
-  newEvent: Omit<EventData, "id">
+  newEvent: EventData & { id?: number }
 ): CalendarEvent {
-  const eventId = numEvents++;
+  const eventId = newEvent.id ?? numEvents++;
   return {
     id: eventId,
     event: {
-      title: <EventComponent id={eventId} {...newEvent} />,
+      title: <EventComponent {...newEvent} id={eventId} />,
       start: newEvent.start_time,
       end: newEvent.end_time,
     },

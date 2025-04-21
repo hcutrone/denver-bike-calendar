@@ -1,21 +1,26 @@
 "use server";
 
-import { neon } from "@neondatabase/serverless";
 import { BikeCalendar } from "./components";
-import { EventData } from "./types";
-import { unstable_cache } from "next/cache";
+import { CalendarContextProvider } from "./components/calendar-context";
+import { DBEvent, EventData } from "./types";
 
 export default async function Home() {
-  const events = await fetchEvents();
-  return <BikeCalendar events={events} />;
+  const events = await fetch("http://localhost:3000/api/events", {
+    method: "GET",
+  });
+  const formattedEvents: EventData[] = JSON.parse(
+    (await events.json()).body
+  ).map((event: DBEvent) => {
+    return {
+      ...event,
+      start_time: new Date(event.start_time),
+      end_time: new Date(event.end_time),
+      links: JSON.parse(event.links),
+    };
+  });
+  return (
+    <CalendarContextProvider dbEvents={formattedEvents}>
+      <BikeCalendar />
+    </CalendarContextProvider>
+  );
 }
-
-const fetchEvents = unstable_cache(
-  async function fetchEvents(): Promise<EventData[]> {
-    // fetch current month, as well as next and previous months
-    const sql = neon(`${process.env.DATABASE_URL}`);
-    return (await sql.query("SELECT * FROM events")) as EventData[];
-  },
-  [],
-  { revalidate: 60 * 5 }
-);

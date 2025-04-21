@@ -6,22 +6,12 @@ import withDragAndDrop, {
 } from "react-big-calendar/lib/addons/dragAndDrop";
 import moment from "moment";
 import { Box } from "@radix-ui/themes";
-import {
-  CalendarContextProvider,
-  useCalendarContext,
-} from "./calendar-context";
-import { EventData } from "../types";
+import { useCalendarContext } from "./calendar-context";
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 
-export const BikeCalendar = ({ events }: { events: EventData[] }) => (
-  <CalendarContextProvider dbEvents={events}>
-    <BikeCalendarComponent />
-  </CalendarContextProvider>
-);
-
-function BikeCalendarComponent() {
+export function BikeCalendar() {
   const { events, openEventDialog } = useCalendarContext();
 
   const onEventResize: withDragAndDropProps["onEventResize"] = (data) => {
