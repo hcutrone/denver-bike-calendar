@@ -11,7 +11,7 @@ import {
 import { EventDialog } from "./event-dialog";
 import { createCalendarEvent } from "./calendar-event";
 import { DialogEvent, CalendarEvent, EventData } from "../types";
-import { deleteEvents, insertEvents, updateEvents } from "../helpers/events";
+import db from "../helpers/events";
 
 type CalendarContextType = {
   events: CalendarEvent[];
@@ -43,7 +43,7 @@ export function CalendarContextProvider({
   };
 
   async function addEvent(newEvent: EventData) {
-    const newEventID = (await insertEvents([newEvent]))?.[0];
+    const newEventID = await db.insertEvent(newEvent);
     if (!newEventID) {
       return null;
     }
@@ -55,7 +55,7 @@ export function CalendarContextProvider({
   }
 
   async function updateEvent(updatedEvent: EventData) {
-    const updatedEventID = (await updateEvents([updatedEvent]))?.[0];
+    const updatedEventID = await db.updateEvent(updatedEvent);
     if (!updatedEventID) {
       return null;
     }
@@ -68,7 +68,7 @@ export function CalendarContextProvider({
   }
 
   async function deleteEvent(eventToDelete: EventData) {
-    const deletedEventID = (await deleteEvents([eventToDelete]))?.[0];
+    const deletedEventID = await db.deleteEvent(eventToDelete);
     if (!deletedEventID) {
       return null;
     }

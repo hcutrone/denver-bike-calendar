@@ -16,40 +16,35 @@ export async function selectEvents(): Promise<EventData[] | null> {
   }));
 }
 
-export async function insertEvents(
-  events: EventData[]
-): Promise<number[] | null> {
-  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
+export async function insertEvent(event: EventData): Promise<number | null> {
+  const response = await fetch(`/api/events`, {
     method: "POST",
-    body: JSON.stringify(events),
+    body: JSON.stringify(event),
   });
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
+  console.log({ response, responseJson });
+  return JSON.parse(responseJson?.id);
 }
 
-export async function updateEvents(
-  events: EventData[]
-): Promise<number[] | null> {
+export async function updateEvent(event: EventData): Promise<number | null> {
   const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
     method: "PATCH",
-    body: JSON.stringify(events),
+    body: JSON.stringify(event),
   });
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
+  return JSON.parse(responseJson?.id);
 }
 
-export async function deleteEvents(
-  events: EventData[]
-): Promise<number[] | null> {
+export async function deleteEvent(event: EventData): Promise<number | null> {
   const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
     method: "DELETE",
-    body: JSON.stringify(events),
+    body: JSON.stringify(event),
   });
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
+  return JSON.parse(responseJson?.id);
 }
 
 async function getResponseJson(res: Response) {
@@ -64,3 +59,6 @@ async function getResponseJson(res: Response) {
 
   return json;
 }
+
+const db = { selectEvents, insertEvent, updateEvent, deleteEvent };
+export default db;
