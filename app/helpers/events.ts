@@ -2,7 +2,7 @@ import type { DBEvent, EventData } from "../types";
 
 export async function selectEvents(): Promise<EventData[] | null> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    '/api/events',
     {
       method: "GET",
     },
@@ -21,7 +21,7 @@ export async function selectEvents(): Promise<EventData[] | null> {
 
 export async function insertEvent(event: EventData): Promise<number | null> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    '/api/events',
     {
       method: "POST",
       body: JSON.stringify(event),
@@ -35,7 +35,7 @@ export async function insertEvent(event: EventData): Promise<number | null> {
 
 export async function updateEvent(event: EventData): Promise<number | null> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    '/api/events',
     {
       method: "PATCH",
       body: JSON.stringify(event),
@@ -48,7 +48,7 @@ export async function updateEvent(event: EventData): Promise<number | null> {
 
 export async function deleteEvent(event: EventData): Promise<number | null> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    '/api/events',
     {
       method: "DELETE",
       body: JSON.stringify(event),
