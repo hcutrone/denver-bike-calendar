@@ -37,11 +37,7 @@ export function BikeCalendar() {
           ) {
             return;
           }
-          openEventDialog({
-            ...event,
-            start_time: event.start,
-            end_time: event.end,
-          });
+          openEventDialog(event);
         }}
         style={{ height: "80vh" }}
       />

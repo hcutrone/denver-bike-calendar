@@ -1,55 +1,62 @@
-import { DBEvent, EventData } from "../types";
+import type { DBEvent, EventData } from "../types";
 
 export async function selectEvents(): Promise<EventData[] | null> {
-  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
-    method: "GET",
-  });
-  const eventsJson = await getResponseJson(response);
-  if (!eventsJson) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    {
+      method: "GET",
+    },
+  );
+  const events = await getResponseJson(response);
+  if (!events) {
     return null;
   }
 
-  return (JSON.parse(eventsJson.body) as DBEvent[]).map((eventJson) => ({
+  return (events as DBEvent[]).map((eventJson) => ({
     ...eventJson,
-    start_time: new Date(eventJson.start_time),
-    end_time: new Date(eventJson.end_time),
+    start: new Date(eventJson.start),
+    end: new Date(eventJson.end),
   }));
 }
 
-export async function insertEvents(
-  events: EventData[]
-): Promise<number[] | null> {
-  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
-    method: "POST",
-    body: JSON.stringify(events),
-  });
+export async function insertEvent(event: EventData): Promise<number | null> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    {
+      method: "POST",
+      body: JSON.stringify(event),
+    },
+  );
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
+  console.log({ response, responseJson });
+  return responseJson?.id || null;
 }
 
-export async function updateEvents(
-  events: EventData[]
-): Promise<number[] | null> {
-  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
-    method: "PATCH",
-    body: JSON.stringify(events),
-  });
+export async function updateEvent(event: EventData): Promise<number | null> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(event),
+    },
+  );
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
+  return responseJson?.id || null;
 }
 
-export async function deleteEvents(
-  events: EventData[]
-): Promise<number[] | null> {
-  const response = await fetch(`${process.env.API_DOMAIN}/api/events`, {
-    method: "DELETE",
-    body: JSON.stringify(events),
-  });
+export async function deleteEvent(event: EventData): Promise<number | null> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}/api/events`,
+    {
+      method: "DELETE",
+      body: JSON.stringify(event),
+    },
+  );
   const responseJson = await getResponseJson(response);
 
-  return JSON.parse(responseJson?.ids).map((idObj: { id: number }) => idObj.id);
+  return responseJson?.id || null;
 }
 
 async function getResponseJson(res: Response) {
@@ -64,3 +71,6 @@ async function getResponseJson(res: Response) {
 
   return json;
 }
+
+const db = { selectEvents, insertEvent, updateEvent, deleteEvent };
+export default db;

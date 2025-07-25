@@ -1,11 +1,11 @@
-import { Event } from "react-big-calendar";
+import type { Event } from "react-big-calendar";
 
 export type DialogEvent = Partial<EventData>;
 
 export type EventData = {
   id: number;
-  start_time: Date;
-  end_time: Date;
+  start: Date;
+  end: Date;
   title: string;
   body: string;
   links?: { text: string; url: URL }[];
@@ -17,7 +17,6 @@ export type CalendarEvent = {
 };
 
 export type DBEvent = EventData & {
-  start_time: number;
-  end_time: number;
-  links: string;
+  start: string;
+  end: string;
 };
