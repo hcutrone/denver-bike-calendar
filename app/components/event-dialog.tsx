@@ -1,240 +1,244 @@
 "use client";
 
 import {
-  Box,
-  Button,
-  Callout,
-  Dialog,
-  Flex,
-  IconButton,
-  Table,
-  TextArea,
-  TextField,
+	Box,
+	Button,
+	Callout,
+	Dialog,
+	Flex,
+	IconButton,
+	Table,
+	TextArea,
+	TextField,
 } from "@radix-ui/themes";
-import { Label } from "radix-ui";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { FaSquarePlus } from "react-icons/fa6";
-import { FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
-import { useCalendarContext } from "./calendar-context";
-import { DialogEvent, EventData } from "../types";
+import { Label } from "radix-ui";
+import {
+	type Dispatch,
+	type SetStateAction,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { CiSquareInfo } from "react-icons/ci";
+import { FaTrashAlt } from "react-icons/fa";
+import { FaSquarePlus } from "react-icons/fa6";
+import type { DialogEvent, EventData } from "../types";
+import { useCalendarContext } from "./calendar-context";
 
 export function EventDialog({
-  isOpen,
-  onCancel,
-  onClose,
-  initialDialogEvent,
-  isEditing = false,
+	isOpen,
+	onCancel,
+	onClose,
+	initialDialogEvent,
+	isEditing = false,
 }: {
-  isOpen: boolean;
-  onCancel: () => void;
-  onClose: () => void;
-  initialDialogEvent: DialogEvent;
-  isEditing?: boolean;
+	isOpen: boolean;
+	onCancel: () => void;
+	onClose: () => void;
+	initialDialogEvent: DialogEvent;
+	isEditing?: boolean;
 }) {
-  const { addEvent, updateEvent } = useCalendarContext();
-  const [dialogEvent, setDialogEvent] =
-    useState<DialogEvent>(initialDialogEvent);
-  const [isSaving, setIsSaving] = useState(false);
-  const [savingFailed, setSavingFailed] = useState(false);
-  useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
-  const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
+	const { addEvent, updateEvent } = useCalendarContext();
+	const [dialogEvent, setDialogEvent] =
+		useState<DialogEvent>(initialDialogEvent);
+	const [isSaving, setIsSaving] = useState(false);
+	const [savingFailed, setSavingFailed] = useState(false);
+	useEffect(() => setDialogEvent(initialDialogEvent), [initialDialogEvent]);
+	const inputDateFormat = "YYYY-MM-DDTHH:mm:ss";
 
-  const handleSubmit = async (event: EventData) => {
-    setIsSaving(true);
-    const eventID = isEditing
-      ? await updateEvent(event)
-      : await addEvent(event);
-    setIsSaving(false);
+	const handleSubmit = async (event: EventData) => {
+		setIsSaving(true);
+		const eventID = isEditing
+			? await updateEvent(event)
+			: await addEvent(event);
+		setIsSaving(false);
 
-    if (!eventID) {
-      setSavingFailed(true);
-      return;
-    }
+		if (!eventID) {
+			setSavingFailed(true);
+			return;
+		}
 
-    onClose();
-    setSavingFailed(false);
-  };
+		onClose();
+		setSavingFailed(false);
+	};
 
-  const handleCancel = () => {
-    setSavingFailed(false);
-    onCancel();
-  };
+	const handleCancel = () => {
+		setSavingFailed(false);
+		onCancel();
+	};
 
-  return (
-    <Dialog.Root open={isOpen}>
-      <Dialog.Content maxWidth="600px">
-        <Flex gap="3" direction="column">
-          <Dialog.Title>
-            {isEditing ? dialogEvent.title : "New Event"}
-          </Dialog.Title>
-          <Box>
-            <Label.Root htmlFor="title">Title*</Label.Root>
-            <TextField.Root
-              id="title"
-              size="3"
-              value={dialogEvent.title ?? ""}
-              onChange={(e) =>
-                setDialogEvent({ ...dialogEvent, title: e.target.value })
-              }
-              style={{ height: "44px" }}
-            />
-          </Box>
-          <Flex gap="3" justify="between">
-            <Box>
-              <Label.Root htmlFor="start">Start*</Label.Root>
-              <TextField.Root
-                id="start"
-                type="datetime-local"
-                value={moment(dialogEvent.start).format(inputDateFormat)}
-                onChange={(e) =>
-                  setDialogEvent({
-                    ...dialogEvent,
-                    start: new Date(e.target.value),
-                  })
-                }
-                style={{ height: "44px" }}
-              />
-            </Box>
-            <Box>
-              <Label.Root htmlFor="end">End*</Label.Root>
-              <TextField.Root
-                id="end"
-                type="datetime-local"
-                value={moment(dialogEvent.end).format(inputDateFormat)}
-                onChange={(e) =>
-                  setDialogEvent({
-                    ...dialogEvent,
-                    end: new Date(e.target.value),
-                  })
-                }
-                style={{ height: "44px" }}
-              />
-            </Box>
-          </Flex>
-          <Box>
-            <Label.Root htmlFor="body">Description</Label.Root>
-            <TextArea
-              size="3"
-              resize="vertical"
-              value={dialogEvent.body ?? ""}
-              onChange={(e) =>
-                setDialogEvent({ ...dialogEvent, body: e.target.value })
-              }
-            />
-          </Box>
-          <Box>
-            <Label.Root htmlFor="links">Links</Label.Root>
-            <LinksTable
-              dialogEvent={dialogEvent}
-              setDialogEvent={setDialogEvent}
-            />
-          </Box>
-          <Flex justify="between" align="center" style={{ marginTop: "14px" }}>
-            <Box minHeight="44px">
-              {savingFailed && (
-                <Callout.Root variant="surface" color="red" size="1">
-                  <Callout.Icon>
-                    <CiSquareInfo size="20px" />
-                  </Callout.Icon>
-                  <Callout.Text>Saving failed. Please try again.</Callout.Text>
-                </Callout.Root>
-              )}
-            </Box>
-            <Flex gap="4">
-              <Button
-                disabled={
-                  !dialogEvent.title ||
-                  !dialogEvent.start ||
-                  !dialogEvent.end
-                }
-                loading={isSaving}
-                onClick={async () =>
-                  await handleSubmit(dialogEvent as EventData)
-                }
-              >
-                Save
-              </Button>
-              <Button onClick={handleCancel}>Cancel</Button>
-            </Flex>
-          </Flex>
-        </Flex>
-      </Dialog.Content>
-    </Dialog.Root>
-  );
+	return (
+		<Dialog.Root open={isOpen}>
+			<Dialog.Content maxWidth="600px">
+				<Flex gap="3" direction="column">
+					<Dialog.Title>
+						{isEditing ? dialogEvent.title : "New Event"}
+					</Dialog.Title>
+					<Box>
+						<Label.Root htmlFor="title">Title*</Label.Root>
+						<TextField.Root
+							id="title"
+							size="3"
+							value={dialogEvent.title ?? ""}
+							onChange={(e) =>
+								setDialogEvent({ ...dialogEvent, title: e.target.value })
+							}
+							style={{ height: "44px" }}
+						/>
+					</Box>
+					<Flex gap="3" justify="between">
+						<Box>
+							<Label.Root htmlFor="start">Start*</Label.Root>
+							<TextField.Root
+								id="start"
+								type="datetime-local"
+								value={moment(dialogEvent.start).format(inputDateFormat)}
+								onChange={(e) =>
+									setDialogEvent({
+										...dialogEvent,
+										start: new Date(e.target.value),
+									})
+								}
+								style={{ height: "44px" }}
+							/>
+						</Box>
+						<Box>
+							<Label.Root htmlFor="end">End*</Label.Root>
+							<TextField.Root
+								id="end"
+								type="datetime-local"
+								value={moment(dialogEvent.end).format(inputDateFormat)}
+								onChange={(e) =>
+									setDialogEvent({
+										...dialogEvent,
+										end: new Date(e.target.value),
+									})
+								}
+								style={{ height: "44px" }}
+							/>
+						</Box>
+					</Flex>
+					<Box>
+						<Label.Root htmlFor="body">Description</Label.Root>
+						<TextArea
+							size="3"
+							resize="vertical"
+							value={dialogEvent.body ?? ""}
+							onChange={(e) =>
+								setDialogEvent({ ...dialogEvent, body: e.target.value })
+							}
+						/>
+					</Box>
+					<Box>
+						<Label.Root htmlFor="links">Links</Label.Root>
+						<LinksTable
+							dialogEvent={dialogEvent}
+							setDialogEvent={setDialogEvent}
+						/>
+					</Box>
+					<Flex justify="between" align="center" style={{ marginTop: "14px" }}>
+						<Box minHeight="44px">
+							{savingFailed && (
+								<Callout.Root variant="surface" color="red" size="1">
+									<Callout.Icon>
+										<CiSquareInfo size="20px" />
+									</Callout.Icon>
+									<Callout.Text>Saving failed. Please try again.</Callout.Text>
+								</Callout.Root>
+							)}
+						</Box>
+						<Flex gap="4">
+							<Button
+								disabled={
+									!dialogEvent.title || !dialogEvent.start || !dialogEvent.end
+								}
+								loading={isSaving}
+								onClick={async () =>
+									await handleSubmit(dialogEvent as EventData)
+								}
+							>
+								Save
+							</Button>
+							<Button onClick={handleCancel}>Cancel</Button>
+						</Flex>
+					</Flex>
+				</Flex>
+			</Dialog.Content>
+		</Dialog.Root>
+	);
 }
 
 function LinksTable({
-  dialogEvent,
-  setDialogEvent,
+	dialogEvent,
+	setDialogEvent,
 }: {
-  dialogEvent: DialogEvent;
-  setDialogEvent: Dispatch<SetStateAction<DialogEvent>>;
+	dialogEvent: DialogEvent;
+	setDialogEvent: Dispatch<SetStateAction<DialogEvent>>;
 }) {
-  const newLinkTextRef = useRef<HTMLInputElement>(null);
-  const newLinkURLRef = useRef<HTMLInputElement>(null);
+	const newLinkTextRef = useRef<HTMLInputElement>(null);
+	const newLinkURLRef = useRef<HTMLInputElement>(null);
 
-  function handleSubmit() {
-    if (!newLinkTextRef.current || !newLinkURLRef.current) {
-      return;
-    }
-    setDialogEvent({
-      ...dialogEvent,
-      links: [
-        ...(dialogEvent.links ?? []),
-        {
-          text: newLinkTextRef.current.value,
-          url: new URL(newLinkURLRef.current.value),
-        },
-      ],
-    });
-    newLinkTextRef.current.value = "";
-    newLinkURLRef.current.value = "";
-  }
+	function handleSubmit() {
+		if (!newLinkTextRef.current || !newLinkURLRef.current) {
+			return;
+		}
+		setDialogEvent({
+			...dialogEvent,
+			links: [
+				...(dialogEvent.links ?? []),
+				{
+					text: newLinkTextRef.current.value,
+					url: new URL(newLinkURLRef.current.value),
+				},
+			],
+		});
+		newLinkTextRef.current.value = "";
+		newLinkURLRef.current.value = "";
+	}
 
-  function removeLink(idx: number) {
-    setDialogEvent({
-      ...dialogEvent,
-      links: dialogEvent.links?.filter((_, i) => i !== idx),
-    });
-  }
+	function removeLink(idx: number) {
+		setDialogEvent({
+			...dialogEvent,
+			links: dialogEvent.links?.filter((_, i) => i !== idx),
+		});
+	}
 
-  return (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.ColumnHeaderCell>Display Text</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>URL</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell />
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {dialogEvent.links?.map((link, idx) => (
-          <Table.Row key={idx}>
-            <Table.Cell>{link.text}</Table.Cell>
-            <Table.Cell>{link.url.toString()}</Table.Cell>
-            <Table.Cell>
-              <IconButton onClick={() => removeLink(idx)}>
-                <FaTrashAlt />
-              </IconButton>
-            </Table.Cell>
-          </Table.Row>
-        ))}
-        <Table.Row>
-          <Table.Cell>
-            <TextField.Root ref={newLinkTextRef} />
-          </Table.Cell>
-          <Table.Cell>
-            <TextField.Root ref={newLinkURLRef} />
-          </Table.Cell>
-          <Table.Cell>
-            <IconButton onClick={handleSubmit}>
-              <FaSquarePlus />
-            </IconButton>
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
-    </Table.Root>
-  );
+	return (
+		<Table.Root>
+			<Table.Header>
+				<Table.Row>
+					<Table.ColumnHeaderCell>Display Text</Table.ColumnHeaderCell>
+					<Table.ColumnHeaderCell>URL</Table.ColumnHeaderCell>
+					<Table.ColumnHeaderCell />
+				</Table.Row>
+			</Table.Header>
+			<Table.Body>
+				{dialogEvent.links?.map((link, idx) => (
+					<Table.Row key={idx}>
+						<Table.Cell>{link.text}</Table.Cell>
+						<Table.Cell>{link.url.toString()}</Table.Cell>
+						<Table.Cell>
+							<IconButton onClick={() => removeLink(idx)}>
+								<FaTrashAlt />
+							</IconButton>
+						</Table.Cell>
+					</Table.Row>
+				))}
+				<Table.Row>
+					<Table.Cell>
+						<TextField.Root ref={newLinkTextRef} />
+					</Table.Cell>
+					<Table.Cell>
+						<TextField.Root ref={newLinkURLRef} />
+					</Table.Cell>
+					<Table.Cell>
+						<IconButton onClick={handleSubmit}>
+							<FaSquarePlus />
+						</IconButton>
+					</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		</Table.Root>
+	);
 }
