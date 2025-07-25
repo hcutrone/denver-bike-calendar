@@ -1,11 +1,15 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/neon-http";
+import { unstable_noStore as noStore } from "next/cache";
 import type { DBEvent, EventData } from "../types";
 import { eventsTable } from "./schema";
 
 export const db = drizzle(process.env.DATABASE_URL!);
 
 export async function selectEventsFromDB(): Promise<DBEvent[] | null> {
+	// Opt out of caching for this function
+	noStore();
+	
 	try {
 		return (await db.select().from(eventsTable)) as DBEvent[];
 	} catch (error) {
