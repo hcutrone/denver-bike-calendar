@@ -41,6 +41,7 @@ export async function updateEventInDB(
 		const eventObject = {
 			...event,
 			links: JSON.stringify(event.links),
+			id: undefined,
 		};
 		const result = await db
 			.update(eventsTable)

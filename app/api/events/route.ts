@@ -1,13 +1,9 @@
-import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/neon-http";
 import { type NextRequest, NextResponse } from "next/server";
-import { eventsTable } from "@/app/db/schema";
 import type { EventData } from "@/app/types";
-
-const db = drizzle(process.env.DATABASE_URL!);
+import { deleteEventFromDB, insertEventToDB, selectEventsFromDB, updateEventInDB } from "@/app/db";
 
 export async function GET() {
-  const events = await db.select().from(eventsTable);
+  const events = await selectEventsFromDB();
   return NextResponse.json(events, { status: 200 });
 }
 
@@ -17,21 +13,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({}, { status: 200 });
   }
 
-  // Don't include id in insert - it's auto-generated
-  const eventObject = {
-    title: event.title,
-    body: event.body,
-    start: new Date(event.start),
-    end: new Date(event.end),
-    links: JSON.stringify(event.links),
-  };
+	const eventData = {
+		...event,
+		start: new Date(event.start),
+		end: new Date(event.end),
+	} as EventData;
 
   try {
-    const result = await db
-      .insert(eventsTable)
-      .values(eventObject)
-      .returning({ insertedId: eventsTable.id });
-    return NextResponse.json({ id: result[0].insertedId }, { status: 200 });
+    const insertedId = await insertEventToDB(eventData);
+    return NextResponse.json({ id: insertedId }, { status: 200 });
   } catch (error) {
     console.error("Error inserting event:", error);
     return NextResponse.json(
@@ -42,7 +32,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-	const event = (await request.json()) as EventData;
+	const event = await request.json();
 	if (!event) {
 		return NextResponse.json(
 			{ message: "No events provided" },
@@ -50,21 +40,15 @@ export async function PATCH(request: NextRequest) {
 		);
 	}
 
-	const eventObject = {
-		title: event.title,
-		body: event.body,
+	const eventData = {
+		...event,
 		start: new Date(event.start),
 		end: new Date(event.end),
-		links: JSON.stringify(event.links),
-	};
+	} as EventData;
 
 	try {
-		const result = await db
-			.update(eventsTable)
-			.set(eventObject)
-			.where(eq(eventsTable.id, event.id))
-			.returning({ updatedId: eventsTable.id });
-		return NextResponse.json({ id: result[0].updatedId }, { status: 200 });
+		const updatedId = await updateEventInDB(eventData);
+		return NextResponse.json({ id: updatedId }, { status: 200 });
 	} catch (error) {
 		console.error("Error updating event:", error);
 		return NextResponse.json(
@@ -76,7 +60,6 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
 	const event = (await request.json()) as EventData;
-	console.log({ request, event });
 	if (!event) {
 		return NextResponse.json(
 			{ message: "No events provided" },
@@ -85,11 +68,8 @@ export async function DELETE(request: NextRequest) {
 	}
 
 	try {
-		const result = await db
-			.delete(eventsTable)
-			.where(eq(eventsTable.id, event.id))
-			.returning({ deletedId: eventsTable.id });
-		return NextResponse.json({ id: result[0].deletedId }, { status: 200 });
+		const deletedId = await deleteEventFromDB(event);
+		return NextResponse.json({ id: deletedId }, { status: 200 });
 	} catch (error) {
 		console.error("Error deleting event:", error);
 		return NextResponse.json(
