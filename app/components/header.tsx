@@ -1,31 +1,80 @@
+"use client";
+
+import { Button, type ButtonProps, Flex, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { Flex } from "@radix-ui/themes";
-import { Button } from "./button";
+import { useState } from "react";
 
 export function Header() {
-  return (
-    <Flex
-      width="100%"
-      height="64px"
-      style={{
-        backgroundColor: "#4d643b",
-        position: "fixed",
-        top: 0,
-        zIndex: 1000,
-      }}
-    >
-      <Image
-        src="/bikefest.png"
-        alt="Logo"
-        width={100}
-        height={100}
-        style={{ margin: "auto" }}
-      />
-      <h1 style={{ color: "white", margin: "auto" }}>About</h1>
-      <h1 style={{ color: "white", margin: "auto" }}>General Info</h1>
-      <h1 style={{ color: "white", margin: "auto" }}>Partners</h1>
-      <h1 style={{ color: "white", margin: "auto" }}>Get Involved</h1>
-      <Button style={{ margin: "auto", borderRadius: "50px" }}>Donate</Button>
-    </Flex>
-  );
+	const scrollToSection = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			element.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+	return (
+		<Flex
+			width="100%"
+			height="64px"
+			justify="center"
+			style={{
+				backgroundColor: "var(--lime-9)",
+				position: "fixed",
+				top: 0,
+				zIndex: 1000,
+				paddingInline: "16px",
+			}}
+		>
+			<Flex width="100%" maxWidth="1280px" justify="between" align="center">
+				<Image src="/bikefest.png" alt="Logo" width={75} height={75} />
+				{HeaderButtons.map(({ label, id }) => (
+					<HeaderButton key={id} onClick={() => scrollToSection(id)}>
+						<Text size="6">{label}</Text>
+					</HeaderButton>
+				))}
+				<Button
+					color="lime"
+					variant="surface"
+					radius="full"
+					style={{
+						padding: "20px",
+						cursor: "pointer",
+						fontFamily: "var(--font-coming-soon)",
+					}}
+				>
+					<Text size="7">Donate</Text>
+				</Button>
+			</Flex>
+		</Flex>
+	);
 }
+
+const HeaderButton = ({
+	children,
+	...props
+}: { children: React.ReactNode } & ButtonProps) => {
+	const [hover, setHover] = useState(false);
+	return (
+		<Button
+			onMouseEnter={() => setHover(true)}
+			onMouseLeave={() => setHover(false)}
+			radius="full"
+			style={{
+				padding: "12px",
+				color: hover ? "var(--lime-12)" : "var(--lime-3)",
+				background: hover ? "var(--lime-8)" : "transparent",
+				cursor: "pointer",
+				fontFamily: "var(--font-coming-soon)",
+			}}
+			{...props}
+		>
+			{children}
+		</Button>
+	);
+};
+
+const HeaderButtons = [
+	{ label: "About", id: "about" },
+	{ label: "General Info", id: "general" },
+	{ label: "Partners", id: "partners" },
+	{ label: "Get Involved", id: "get-involved" },
+];
