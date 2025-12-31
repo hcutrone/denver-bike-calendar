@@ -22,5 +22,86 @@
 body {
 	background: var(--background);
 	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-coming-soon), Arial, Helvetica, sans-serif;
+}
+
+/* Set default Radix UI Text size to 6 */
+.rt-Text:not([class*="rt-r-size"]) {
+	font-size: var(--font-size-6);
+	line-height: var(--line-height-6);
+	letter-spacing: var(--letter-spacing-6);
+}
+
+:root,
+.light,
+.light-theme {
+	--lime-1: #f0f2ef;
+	--lime-2: #ebefe8;
+	--lime-3: #dfe8d9;
+	--lime-4: #d4e0cb;
+	--lime-5: #c8d8bd;
+	--lime-6: #bccfaf;
+	--lime-7: #acc29d;
+	--lime-8: #94af81;
+	--lime-9: #4d643b;
+	--lime-10: #3f552d;
+	--lime-11: #485f36;
+	--lime-12: #202c17;
+
+	--lime-a1: #e1e8ff46;
+	--lime-a2: #0d62d40c;
+	--lime-a3: #02624018;
+	--lime-a4: #065b1524;
+	--lime-a5: #075a0531;
+	--lime-a6: #0f5b0140;
+	--lime-a7: #16590354;
+	--lime-a8: #1b580172;
+	--lime-a9: #143301bf;
+	--lime-a10: #142f00ce;
+	--lime-a11: #143200c4;
+	--lime-a12: #091600e6;
+
+	--lime-contrast: #fff;
+	--lime-surface: #e9eee7cc;
+	--lime-indicator: #4d643b;
+	--lime-track: #4d643b;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+	@media (color-gamut: p3) {
+		:root,
+		.light,
+		.light-theme {
+			--lime-1: oklch(96% 0.0048 132.4);
+			--lime-2: oklch(94.7% 0.0097 132.4);
+			--lime-3: oklch(91.9% 0.0213 132.4);
+			--lime-4: oklch(89.2% 0.0319 132.4);
+			--lime-5: oklch(86.4% 0.0403 132.4);
+			--lime-6: oklch(83.1% 0.0481 132.4);
+			--lime-7: oklch(78.8% 0.0559 132.4);
+			--lime-8: oklch(72.1% 0.0707 132.4);
+			--lime-9: oklch(47.3% 0.0685 132.4);
+			--lime-10: oklch(42.1% 0.0685 132.4);
+			--lime-11: oklch(45.6% 0.0685 132.4);
+			--lime-12: oklch(27.5% 0.0411 132.4);
+
+			--lime-a1: color(display-p3 0.8667 0.902 1 / 0.239);
+			--lime-a2: color(display-p3 0.0118 0.298 0.8235 / 0.041);
+			--lime-a3: color(display-p3 0.0078 0.3294 0.1882 / 0.086);
+			--lime-a4: color(display-p3 0.0078 0.3098 0.051 / 0.131);
+			--lime-a5: color(display-p3 0.051 0.3059 0.0039 / 0.184);
+			--lime-a6: color(display-p3 0.0824 0.3137 0.0039 / 0.24);
+			--lime-a7: color(display-p3 0.102 0.3098 0.0039 / 0.317);
+			--lime-a8: color(display-p3 0.1216 0.3098 0.0039 / 0.432);
+			--lime-a9: color(display-p3 0.0863 0.1765 0 / 0.731);
+			--lime-a10: color(display-p3 0.0784 0.1608 0 / 0.787);
+			--lime-a11: color(display-p3 0.0824 0.1725 0 / 0.753);
+			--lime-a12: color(display-p3 0.0353 0.0784 0 / 0.894);
+
+			--lime-contrast: #fff;
+			--lime-surface: color(display-p3 0.9176 0.9333 0.9137 / 0.8);
+			--lime-indicator: oklch(47.3% 0.0685 132.4);
+			--lime-track: oklch(47.3% 0.0685 132.4);
+		}
+	}
 }

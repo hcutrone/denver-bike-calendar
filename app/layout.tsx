@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Coming_Soon } from "next/font/google";
 import "@radix-ui/themes/styles.css";
+import "./globals.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Theme } from "@radix-ui/themes";
 import { Footer, Header } from "./components";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const comingSoon = Coming_Soon({
+	weight: "400",
+	variable: "--font-coming-soon",
 	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+	display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,11 +24,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				<Theme appearance="light">
+		<html lang="en" className={comingSoon.variable}>
+			<body className={`${comingSoon.className} antialiased`}>
+				<Theme
+					appearance="light"
+					style={{ fontFamily: "var(--font-coming-soon)" }}
+				>
 					<Header />
 					{children}
 					<Footer />
