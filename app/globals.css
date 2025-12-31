@@ -25,13 +25,6 @@ body {
 	font-family: var(--font-coming-soon), Arial, Helvetica, sans-serif;
 }
 
-/* Set default Radix UI Text size to 6 */
-.rt-Text:not([class*="rt-r-size"]) {
-	font-size: var(--font-size-6);
-	line-height: var(--line-height-6);
-	letter-spacing: var(--letter-spacing-6);
-}
-
 :root,
 .light,
 .light-theme {
@@ -104,4 +97,13 @@ body {
 			--lime-track: oklch(47.3% 0.0685 132.4);
 		}
 	}
+}
+
+.rt-Text {
+	color: var(--lime-3);
+}
+.rt-Text:not([class*="rt-r-size"]) {
+	line-height: var(--line-height-8);
+	letter-spacing: var(--letter-spacing-6);
+	font-size: var(--font-size-6);
 }
