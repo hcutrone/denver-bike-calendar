@@ -22,6 +22,7 @@ export function Header() {
 				top: 0,
 				zIndex: 1000,
 				paddingInline: "16px",
+				borderBottom: "3px solid var(--lime-6)",
 			}}
 		>
 			<Flex width="100%" maxWidth="1280px" justify="between" align="center">
