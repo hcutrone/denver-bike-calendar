@@ -1,4 +1,4 @@
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex, Separator, Text } from "@radix-ui/themes";
 import Image from "next/image";
 
 const sponsorTiers = [
@@ -38,16 +38,14 @@ export function Sponsors() {
 		<Flex
 			direction="column"
 			align="center"
-			width="165px"
+			width={{ initial: "90px", sm: "140px", md: "165px" }}
 			gap="8px"
-			style={{
-				marginLeft: "32px",
-				padding: "16px",
-			}}
+			p={{ initial: "4px", sm: "8px", md: "16px" }}
+			ml={{ initial: "8px", sm: "16px" }}
 		>
 			<Image src={logo} alt={name} width={100} height={50} />
 			<Text
-				size="5"
+				size={{ initial: "2", sm: "5" }}
 				style={{
 					color: "white",
 					fontWeight: "bold",
@@ -61,9 +59,6 @@ export function Sponsors() {
 			</Text>
 		</Flex>
 	);
-	const Divider = ({ width, color }: { width: string; color: string }) => (
-		<div style={{ height: "10px", width, backgroundColor: color }}></div>
-	);
 	return (
 		<Flex direction="column" gap="16px">
 			<Flex
@@ -71,16 +66,20 @@ export function Sponsors() {
 					backgroundColor: "var(--lime-9)",
 					justifyContent: "center",
 					paddingBlock: "20px",
+					textAlign: "center",
 				}}
 			>
-				<Text size="9">Thank you to our sponsors:</Text>
+				<Text size={{ initial: "6", sm: "8", md: "9" }}>
+					Thank you to our sponsors:
+				</Text>
 			</Flex>
-			{sponsorTiers.map((tier, index) => (
+			{sponsorTiers.map((tier) => (
 				<Flex direction="column" key={tier.name} gap="16px">
 					<SponsorHeader {...tier} />
-					<Divider
-						width={`${((index + 1) / sponsorTiers.length) * 100}%`}
-						color={tier.color}
+					<Separator
+						orientation="horizontal"
+						size="4"
+						style={{ height: "10px" }}
 					/>
 				</Flex>
 			))}

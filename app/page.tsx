@@ -33,8 +33,10 @@ function LandingImage() {
 				style={{ objectFit: "cover", opacity: 0.5 }}
 			/>
 			<Flex
+				width="100%"
+				px="16px"
+				gap="8px"
 				style={{
-					color: "black",
 					position: "absolute",
 					top: "50%",
 					left: "50%",
@@ -43,12 +45,22 @@ function LandingImage() {
 					fontWeight: "bold",
 					flexDirection: "column",
 					alignItems: "center",
-					gap: "8px",
+					textAlign: "center",
 				}}
 			>
 				<Image src="/bikefest.png" alt="Logo" width={500} height={500} />
-				<Text>Bikes, Community, and Connection!</Text>
 				<Text
+					size={{ initial: "6", sm: "8", md: "9" }}
+					style={{
+						backgroundColor: "#d8af53",
+						paddingInline: "32px",
+						borderRadius: "50px",
+					}}
+				>
+					Bikes, Community, and Connection!
+				</Text>
+				<Text
+					size={{ initial: "6", sm: "8", md: "9" }}
 					style={{
 						backgroundColor: "#d8af53",
 						paddingInline: "32px",
@@ -58,6 +70,7 @@ function LandingImage() {
 					June 13, 2026 | 3PM - 9PM
 				</Text>
 				<Text
+					size={{ initial: "6", sm: "8", md: "9" }}
 					style={{
 						backgroundColor: "#d8af53",
 						paddingInline: "32px",
