@@ -10,15 +10,15 @@ export const About = () => (
 	>
 		<Flex
 			direction="column"
-			style={{
-				padding: "32px",
-				maxWidth: "1280px",
-				margin: "auto",
-				gap: "8px",
-			}}
+			p={{ initial: "24px", sm: "32px" }}
+			m="auto"
+			gap="8px"
+			maxWidth="1280px"
 		>
-			<Text size={"9"}>What is Denver Bike Fest?</Text>
-			<Text>
+			<Text size={{ initial: "6", sm: "8", md: "9" }}>
+				What is Denver Bike Fest?
+			</Text>
+			<Text size={{ initial: "3", sm: "5", md: "6" }}>
 				What started as a simple idea from Emily Kleinfelter (Bike This City) on
 				a Thanksgiving social ride in 2024 hosted by Z Cycle turned into the
 				ultimate celebration of the city&apos;s vibrant bicycle community.
@@ -33,7 +33,12 @@ export const About = () => (
 				connect, learn, and party!
 			</Text>
 
-			<Flex direction="row" style={{ marginTop: "32px", gap: "32px" }}>
+			<Flex
+				direction={{ initial: "column", md: "row" }}
+				mt={{ initial: "8px", sm: "16px", md: "32px" }}
+				gap={{ initial: "16px", sm: "24px", md: "32px" }}
+				width="100%"
+			>
 				<Image
 					src="/bicycle.png"
 					alt="Bike This City"
@@ -41,8 +46,11 @@ export const About = () => (
 					height={100}
 				/>
 				<Flex direction="column" gap="8px">
-					<Text size="8">Bike This City</Text>
-					<Text style={{ lineHeight: "1.6" }}>
+					<Text size={{ initial: "5", sm: "6", md: "8" }}>Bike This City</Text>
+					<Text
+						size={{ initial: "3", sm: "5", md: "6" }}
+						style={{ lineHeight: "1.6" }}
+					>
 						Bike This City is Emily Kleinfelter, a transportation planner, road
 						safety professional, and community organizer who believes bikes can
 						transform how we experience our community. She brought the idea for
