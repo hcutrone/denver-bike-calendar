@@ -155,7 +155,7 @@ export const General = () => (
 		>
 			Getting There
 		</Text>
-		<Flex direction="row" gap="32px">
+		<Flex direction={{ initial: "column", sm: "row" }} gap="32px">
 			<Image
 				src="/map.png"
 				alt="Map to York Street Yards"
