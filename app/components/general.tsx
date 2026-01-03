@@ -10,7 +10,7 @@ export const General = () => (
 				maxWidth: "1280px",
 				margin: "auto",
 			}}
-			id="about"
+			id="general"
 			gap="16px"
 		>
 			<Text size="9" style={{ color: "var(--lime-11)" }}>

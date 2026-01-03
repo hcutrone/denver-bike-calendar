@@ -6,6 +6,7 @@ export const About = () => (
 		style={{
 			backgroundColor: "var(--lime-9)",
 		}}
+		id="about"
 	>
 		<Flex
 			direction="column"

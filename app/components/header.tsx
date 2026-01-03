@@ -42,7 +42,9 @@ export function Header() {
 						fontFamily: "var(--font-coming-soon)",
 					}}
 				>
-					<Text size="7">Donate</Text>
+					<Text size="6" style={{ color: "var(--lime-12)" }}>
+						Donate
+					</Text>
 				</Button>
 			</Flex>
 		</Flex>

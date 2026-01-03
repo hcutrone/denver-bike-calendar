@@ -29,6 +29,7 @@ export default function RootLayout({
 				<Theme
 					appearance="light"
 					style={{ fontFamily: "var(--font-coming-soon)" }}
+					accentColor="lime"
 				>
 					<Header />
 					{children}
