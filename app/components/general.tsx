@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Reset, Section, Text } from "@radix-ui/themes";
+import { Button, Flex, Text } from "@radix-ui/themes";
 import Image from "next/image";
 
 export const General = () => (

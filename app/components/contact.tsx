@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 import { Box, Button, Flex, Text, TextArea, TextField } from "@radix-ui/themes";
 import { Label, Toast } from "radix-ui";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 if (
 	!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ||
@@ -30,7 +30,7 @@ export function ContactUs() {
 	const [showToast, setShowToast] = useState(false);
 	const formRef = useRef<HTMLFormElement | null>(null);
 
-	const sendEmail = (e) => {
+	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!formRef.current) return;
 		const form = formRef.current;
@@ -78,9 +78,9 @@ export function ContactUs() {
 				size={{ initial: "3", sm: "5", md: "6" }}
 				style={{ color: "var(--lime-11)" }}
 			>
-				Have any questions, suggestions, or just want to say hi? We'd love to
-				hear from you! Your feedback and involvement help us make the festival
-				better each year.
+				Have any questions, suggestions, or just want to say hi? We&apos;d love
+				to hear from you! Your feedback and involvement help us make the
+				festival better each year.
 			</Text>
 
 			<form ref={formRef} onSubmit={sendEmail}>
