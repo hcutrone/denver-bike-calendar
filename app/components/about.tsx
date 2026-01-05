@@ -34,7 +34,7 @@ export const About = () => (
 			</Text>
 
 			<Flex
-				direction={{ initial: "column", md: "row" }}
+				direction={{ initial: "column", sm: "row" }}
 				mt={{ initial: "8px", sm: "16px", md: "32px" }}
 				gap={{ initial: "16px", sm: "24px", md: "32px" }}
 				width="100%"

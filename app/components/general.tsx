@@ -65,7 +65,7 @@ export const General = () => (
 			align="center"
 		>
 			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
-			<Flex direction="column" style={{ textAlign: "center" }}>
+			<Flex direction="column" style={{ textAlign: "center" }} width="100%">
 				<Text
 					size={{ initial: "4", sm: "6", md: "7" }}
 					style={{ color: "var(--lime-11)" }}
@@ -87,7 +87,7 @@ export const General = () => (
 			align="center"
 		>
 			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
-			<Flex direction="column" style={{ textAlign: "center" }}>
+			<Flex direction="column" style={{ textAlign: "center" }} width="100%">
 				<Text
 					size={{ initial: "4", sm: "6", md: "7" }}
 					style={{ color: "var(--lime-11)" }}
@@ -108,7 +108,7 @@ export const General = () => (
 			align="center"
 		>
 			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
-			<Flex direction="column" style={{ textAlign: "center" }}>
+			<Flex direction="column" style={{ textAlign: "center" }} width="100%">
 				<Text
 					size={{ initial: "4", sm: "6", md: "7" }}
 					style={{ color: "var(--lime-11)" }}

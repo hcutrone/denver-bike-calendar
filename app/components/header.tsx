@@ -79,5 +79,5 @@ const HeaderButtons = [
 	{ label: "About", id: "about" },
 	{ label: "General Info", id: "general" },
 	{ label: "Partners", id: "partners" },
-	{ label: "Get Involved", id: "get-involved" },
+	{ label: "Contact Us", id: "contact" },
 ];

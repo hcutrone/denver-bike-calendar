@@ -1,4 +1,4 @@
-import { Box, Button, Card, Flex, Inset, Text } from "@radix-ui/themes";
+import { Button, Card, Flex, Inset, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,8 +19,8 @@ export function Partners() {
 				Denver Bike Fest is built by the community, for the community. Whether
 				you want to volunteer, sponsor, perform, or just lend a hand spreading
 				the word, there’s a place for you here.
-				<br />
-				<br />
+			</Text>
+			<Text size={{ initial: "3", sm: "5", md: "6" }}>
 				Click the button below to fill out the form to let us know how you’d
 				like to get involved, and we’ll follow up with more details as we start
 				planning for the next festival!
@@ -95,7 +95,7 @@ export function Partners() {
 						size={{ initial: "4", sm: "6", md: "7" }}
 						style={{ color: "white" }}
 					>
-						Join Us!
+						Get Involved
 					</Text>
 				</Button>
 			</Flex>
