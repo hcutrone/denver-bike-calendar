@@ -4,6 +4,7 @@ import { Flex, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { General, Sponsors } from "./components";
 import { About } from "./components/about";
+import { ContactUs } from "./components/contact";
 import { Partners } from "./components/partners";
 
 export default async function Home() {
@@ -14,6 +15,7 @@ export default async function Home() {
 			<About />
 			<General />
 			<Partners />
+			<ContactUs />
 		</div>
 	);
 }
