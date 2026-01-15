@@ -1,5 +1,6 @@
 import { Button, Flex, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { GOOGLE_MAPS_API_KEY } from "@/env";
 
 export const General = () => (
 	<Flex
@@ -156,11 +157,13 @@ export const General = () => (
 			Getting There
 		</Text>
 		<Flex direction={{ initial: "column", sm: "row" }} gap="32px">
-			<Image
-				src="/map.png"
-				alt="Map to York Street Yards"
-				width={450}
-				height={800}
+			<iframe
+				title="Map to York Street Yards"
+				src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=York+Street+Yards,Denver+CO`}
+				width="450"
+				height="380"
+				style={{ border: 0 }}
+				loading="lazy"
 			/>
 			<Flex direction="column">
 				<Text size="7" style={{ color: "var(--lime-11)" }}>

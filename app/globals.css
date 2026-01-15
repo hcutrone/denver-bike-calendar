@@ -103,9 +103,9 @@ body {
 
 .rt-Text {
 	color: var(--lime-3);
+	line-height: var(--line-height-6);
+	letter-spacing: var(--letter-spacing-6);
 }
 .rt-Text:not([class*="rt-r-size"]) {
-	line-height: var(--line-height-8);
-	letter-spacing: var(--letter-spacing-6);
 	font-size: var(--font-size-6);
 }
