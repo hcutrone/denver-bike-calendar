@@ -62,9 +62,8 @@ export function ContactUs() {
 			direction="column"
 			gap={{ initial: "8px", sm: "16px" }}
 			id="contact"
-			style={{
-				backgroundColor: "var(--lime-3)",
-			}}
+   		maxWidth="1280px"
+   		m="auto"
 		>
 			<Text
 				size={{ initial: "6", sm: "8", md: "9" }}
