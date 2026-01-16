@@ -1,6 +1,7 @@
 import { Button, Card, Flex, Inset, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
+import { featuredPartners } from "../partner-data";
 
 export function Partners() {
 	return (
@@ -30,7 +31,7 @@ export function Partners() {
                planning for the next festival!
             </Text>
             <Flex gap={{ initial: "16px", sm: "32px" }} direction="column">
-               {partners.map((partner) => (
+               {featuredPartners.map((partner) => (
                   <Flex gap="8px" direction="column" key={partner.header}>
                      <Flex justify="between">
                         <Text size={{ initial: "5", sm: "7", md: "8" }}>
@@ -43,8 +44,8 @@ export function Partners() {
                            See All {">"}
                         </Link>
                      </Flex>
-                     <Flex direction="row" overflowX="scroll" gap="8px">
-                        {partner.groups.splice(0, 5).map((group, index) => (
+                     <Flex direction="row" overflowX="scroll" gap={{ initial: "8px", sm: "16px" }}>
+                        {partner.groups.map((group, index) => (
                            <Card
                               key={group.name + index.toString()}
                               style={{
@@ -107,78 +108,3 @@ export function Partners() {
 		</Flex>
 	);
 }
-
-const communityGroups = [
-	{
-		name: "Bike and Brew Denver",
-		logo: "/partners/bike-and-brew.png",
-	},
-	{
-		name: "Bike and Brew Denver",
-		logo: "/partners/bike-and-brew.png",
-	},
-	{
-		name: "Bike and Brew Denver",
-		logo: "/partners/bike-and-brew.png",
-	},
-	{
-		name: "Bike and Brew Denver",
-		logo: "/partners/bike-and-brew.png",
-	},
-	{
-		name: "All Bodies on Bikes",
-		logo: "/partners/all-bodies-on-bikes.png",
-	},
-];
-
-const nonProfits = [
-	{
-		name: "All Bodies on Bikes",
-		logo: "/partners/all-bodies-on-bikes.png",
-	},
-	{
-		name: "All Bodies on Bikes",
-		logo: "/partners/all-bodies-on-bikes.png",
-	},
-	{
-		name: "All Bodies on Bikes",
-		logo: "/partners/all-bodies-on-bikes.png",
-	},
-	{
-		name: "All Bodies on Bikes",
-		logo: "/partners/all-bodies-on-bikes.png",
-	},
-	{
-		name: "All Bodies on Bikes",
-		logo: "/partners/all-bodies-on-bikes.png",
-	},
-];
-
-const localBusinesses = [
-	{
-		name: "Campus Cycles",
-		logo: "/partners/campus-cycles.png",
-	},
-	{
-		name: "Campus Cycles",
-		logo: "/partners/campus-cycles.png",
-	},
-	{
-		name: "Campus Cycles",
-		logo: "/partners/campus-cycles.png",
-	},
-	{
-		name: "Campus Cycles",
-		logo: "/partners/campus-cycles.png",
-	},
-	{
-		name: "Campus Cycles",
-		logo: "/partners/campus-cycles.png",
-	},
-];
-
-const partners = [
-	{ header: "Community Groups", groups: communityGroups },
-	{ header: "NonProfit/Government", groups: nonProfits },
-	{ header: "Local Businesses", groups: localBusinesses },
-];

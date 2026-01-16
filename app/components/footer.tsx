@@ -1,16 +1,20 @@
 import Image from "next/image";
-import { Flex } from "@radix-ui/themes";
+import { Grid, Text } from "@radix-ui/themes";
 
 export function Footer() {
   return (
-    <Flex width="100%" style={{ backgroundColor: "#4d643b" }}>
+   <Grid columns={'3'} width='100%' p="32px" style={{ backgroundColor: "#4d643b"}}>
+      <Text>
+         Made with 🫶🏻 (and without AI 🤖) by Harrison Cutrone
+      </Text>
       <Image
         src="/bikefest.png"
         alt="Logo"
-        width={100}
-        height={100}
+        width={200}
+        height={200}
         style={{ margin: "auto" }}
       />
-    </Flex>
+      <Text>Some other text</Text>
+   </Grid>
   );
 }

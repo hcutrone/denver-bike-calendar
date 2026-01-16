@@ -10,7 +10,7 @@ export const About = () => (
 	>
 		<Flex
 			direction="column"
-			p={{ initial: "24px", sm: "32px" }}
+			p={{ initial: "24px", sm: "32px", md: "64px" }}
 			m="auto"
 			gap="8px"
 			maxWidth="1280px"
@@ -49,7 +49,6 @@ export const About = () => (
 					<Text size={{ initial: "5", sm: "6", md: "8" }}>Bike This City</Text>
 					<Text
 						size={{ initial: "3", sm: "5", md: "6" }}
-						style={{ lineHeight: "1.6" }}
 					>
 						Bike This City is Emily Kleinfelter, a transportation planner, road
 						safety professional, and community organizer who believes bikes can
