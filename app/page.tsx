@@ -53,37 +53,23 @@ function LandingImage() {
 				}}
 			>
 				<Image src="/bikefest.png" alt="Logo" width={500} height={500} />
-				<Text
-					size={{ initial: "6", sm: "8", md: "9" }}
-					style={{
-						backgroundColor: "#d8af53",
-						paddingInline: "32px",
-						borderRadius: "50px",
-					}}
-				>
-					Bikes, Community, and Connection!
-				</Text>
-				<Text
-					size={{ initial: "6", sm: "8", md: "9" }}
-					style={{
-						backgroundColor: "#d8af53",
-						paddingInline: "32px",
-						borderRadius: "50px",
-					}}
-				>
-					June 13, 2026 | 3PM - 9PM
-				</Text>
-				<Text
-					size={{ initial: "6", sm: "8", md: "9" }}
-					style={{
-						backgroundColor: "#d8af53",
-						paddingInline: "32px",
-						borderRadius: "50px",
-					}}
-				>
-					York Street Yards
-				</Text>
+				<HighlightedText>Bikes, Community, and Connection!</HighlightedText>
+				<HighlightedText>June 13, 2026 | 3PM - 9PM</HighlightedText>
+				<HighlightedText>York Street Yards</HighlightedText>
 			</Flex>
 		</Flex>
 	);
 }
+
+const HighlightedText = ({ children }: { children: React.ReactNode }) => (
+	<Flex
+		px={{ initial: "16px", sm: "24px" }}
+		py={{ initial: "4px", sm: "12px" }}
+		style={{
+			backgroundColor: "#d8af53",
+			borderRadius: "50px",
+		}}
+	>
+		<Text size={{ initial: "6", sm: "8" }}>{children}</Text>
+	</Flex>
+);
