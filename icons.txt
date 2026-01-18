@@ -1,0 +1,47 @@
+Strider:
+<div>
+  Icons made by
+  <a href="https://www.flaticon.com/authors/berkahicon" title="berkahicon">
+    berkahicon
+  </a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a>
+</div>
+
+Cruiser:
+<div>
+  Icons made by
+  <a href="https://www.flaticon.com/authors/becris" title="Becris"> Becris </a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a>
+</div>
+
+Commuter:
+<div>
+  Icons made by
+  <a href="https://www.flaticon.com/authors/hajicon" title="HAJICON">
+    HAJICON
+  </a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a>
+</div>
+
+Cargo:
+<div>
+  Icons made by
+  <a href="https://www.flaticon.com/authors/darwin-mulya" title="Darwin Mulya">
+    Darwin Mulya
+  </a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a>
+</div>
+
+Tandem:
+<div>
+  Icons made by
+  <a href="https://www.flaticon.com/authors/fliqqer" title="Fliqqer">
+    Fliqqer
+  </a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a>
+</div>
