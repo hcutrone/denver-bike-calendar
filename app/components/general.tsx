@@ -2,6 +2,7 @@ import {
 	Button,
 	ChevronDownIcon,
 	Flex,
+	Link,
 	Separator,
 	Text,
 } from "@radix-ui/themes";
@@ -75,7 +76,16 @@ export const General = () => (
 			gap={{ initial: "12px", sm: "16px", md: "32px" }}
 			align="center"
 		>
-			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
+			<Image
+				src="/community-connections.png"
+				alt="Community Connections"
+				width={300}
+				height={50}
+				style={{
+					border: "3px solid var(--lime-9)",
+					borderRadius: "12px",
+				}}
+			/>
 			<Flex
 				direction="column"
 				style={{ textAlign: "center" }}
@@ -103,7 +113,16 @@ export const General = () => (
 			gap={{ initial: "12px", sm: "16px", md: "32px" }}
 			align="center"
 		>
-			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
+			<Image
+				src="/live-music.png"
+				alt="Live Music and Entertainment"
+				width={300}
+				height={50}
+				style={{
+					border: "3px solid var(--lime-9)",
+					borderRadius: "12px",
+				}}
+			/>
 			<Flex
 				direction="column"
 				style={{ textAlign: "center" }}
@@ -130,7 +149,16 @@ export const General = () => (
 			gap={{ initial: "12px", sm: "16px", md: "32px" }}
 			align="center"
 		>
-			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
+			<Image
+				src="/food.png"
+				alt="Food and Refreshments"
+				width={300}
+				height={50}
+				style={{
+					border: "3px solid var(--lime-9)",
+					borderRadius: "12px",
+				}}
+			/>
 			<Flex
 				direction="column"
 				style={{ textAlign: "center" }}
@@ -164,19 +192,23 @@ export const General = () => (
 				Learn more about the
 			</Text>
 			<Button
+				asChild
 				radius="full"
 				style={{
 					backgroundColor: "#d8af53",
 					fontFamily: "var(--font-coming-soon)",
 					cursor: "pointer",
+					padding: "20px",
 				}}
 			>
-				<Text
-					size={{ initial: "5", sm: "6", md: "7" }}
-					style={{ color: "white" }}
-				>
-					2026 Partners
-				</Text>
+				<Link href="/partners" underline="none">
+					<Text
+						size={{ initial: "5", sm: "6", md: "7" }}
+						style={{ color: "white" }}
+					>
+						2026 Partners
+					</Text>
+				</Link>
 			</Button>
 		</Flex>
 
@@ -207,6 +239,7 @@ export const General = () => (
 					Denver, CO 80205
 				</Text>
 				<Button
+					asChild
 					radius="full"
 					style={{
 						backgroundColor: "#d8af53",
@@ -216,7 +249,13 @@ export const General = () => (
 						marginTop: "16px",
 					}}
 				>
-					<Text style={{ color: "white" }}>Get Directions</Text>
+					<Link
+						href="https://maps.app.goo.gl/FqQBwv3KrG52Y43x7"
+						underline="none"
+						target="_blank"
+					>
+						<Text style={{ color: "white" }}>Get Directions</Text>
+					</Link>
 				</Button>
 			</Flex>
 		</Flex>
