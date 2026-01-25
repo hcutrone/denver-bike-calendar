@@ -6,6 +6,7 @@ import {
 	Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
+import { Accordion } from "radix-ui";
 import { GOOGLE_MAPS_API_KEY } from "@/env";
 
 export const General = () => (
@@ -245,15 +246,82 @@ export const General = () => (
 		>
 			FAQs
 		</Text>
-		<Text
-			size={{ initial: "3", sm: "5", md: "6" }}
-			style={{ color: "var(--lime-11)" }}
+		<Accordion.Root
+			type="single"
+			collapsible
+			style={{
+				width: "100%",
+				backgroundColor: "var(--lime-3)",
+				border: "1px solid var(--lime-7)",
+				borderRadius: "12px",
+			}}
 		>
-			Are pets allowed?
-			<br />
-			While we love our furry friends, pets are not allowed inside Denver Bike
-			Fest events located on The Yard. However, Skip Town, a dog bar and park is
-			right next door and would love to meet your pup!
-		</Text>
+			{faqs.map((q, index) => (
+				<div key={q.question}>
+					<Accordion.Item
+						value={`item-${index}`}
+						style={{ padding: "16px", width: "100%" }}
+					>
+						<Accordion.Trigger style={{ width: "100%" }}>
+							<Flex
+								direction="row"
+								justify="between"
+								align="center"
+								width="100%"
+							>
+								<Text
+									size={{ initial: "4", sm: "5", md: "6" }}
+									style={{ color: "var(--lime-11)" }}
+								>
+									{q.question}
+								</Text>
+								<ChevronDownIcon
+									className="group-data-[state=open]:rotate-180"
+									aria-hidden
+								/>
+							</Flex>
+						</Accordion.Trigger>
+						<Accordion.Content style={{ paddingTop: "8px" }}>
+							<Text
+								size={{ initial: "3", sm: "4", md: "5" }}
+								style={{ color: "var(--lime-11)" }}
+							>
+								{q.answer}
+							</Text>
+						</Accordion.Content>
+					</Accordion.Item>
+					{index !== faqs.length - 1 && (
+						<Separator
+							orientation="horizontal"
+							size="4"
+							style={{ backgroundColor: "var(--lime-7)" }}
+						/>
+					)}
+				</div>
+			))}
+		</Accordion.Root>
 	</Flex>
 );
+
+const faqs = [
+	{
+		question: "Are pets allowed?",
+		answer:
+			"While we love our furry friends, pets are not allowed inside Denver Bike Fest events located on The Yard. However, Skip Town, a dog bar and park is right next door and would love to meet your pup!",
+	},
+	{
+		question: "How much does it cost to attend?",
+		answer:
+			"Denver Bike Fest is FREE and open to the public to attend. Food and beverages, along with merchandise from vendors will be for sale at the festival. If you would like to participate as a Bike Partner, vendor, or musician, please see the Get Involved page.",
+	},
+	{
+		question: "Is the event family-friendly?",
+		answer:
+			"Yes! There is something for everyone at Denver Bike Fest, including little ones. All ages are welcome to come join in on the fun.",
+	},
+	{
+		question: "Are there bathrooms?",
+		answer:
+			"Yes! There are multiple indoor common area bathrooms (with a total of 24 toilets/urinals) available and additional portable toilets will be available outdoors.",
+	},
+];
