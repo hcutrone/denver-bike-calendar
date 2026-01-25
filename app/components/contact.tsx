@@ -125,6 +125,8 @@ export function ContactUs() {
 						</Label.Root>
 						<TextArea
 							id="message"
+							size="3"
+							resize={"vertical"}
 							style={{ fontFamily: "var(--font-coming-soon)" }}
 						/>
 					</Box>
