@@ -58,15 +58,16 @@ export function ContactUs() {
 
 	return (
 		<Flex
-			p={{ initial: "16px", sm: "24px", md: "32px" }}
+			p={{ initial: "24px", sm: "32px" }}
+			py={{ initial: "32px", sm: "64px" }}
 			direction="column"
 			gap={{ initial: "8px", sm: "16px" }}
 			id="contact"
-   		maxWidth="1280px"
-   		m="auto"
+			maxWidth="1280px"
+			m="auto"
 		>
 			<Text
-				size={{ initial: "6", sm: "8", md: "9" }}
+				size={{ initial: "7", sm: "8", md: "9" }}
 				style={{
 					color: "var(--lime-11)",
 				}}

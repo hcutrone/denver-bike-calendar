@@ -1,4 +1,10 @@
-import { Button, Flex, Text } from "@radix-ui/themes";
+import {
+	Button,
+	ChevronDownIcon,
+	Flex,
+	Separator,
+	Text,
+} from "@radix-ui/themes";
 import Image from "next/image";
 import { GOOGLE_MAPS_API_KEY } from "@/env";
 
@@ -6,14 +12,16 @@ export const General = () => (
 	<Flex
 		id="general"
 		direction="column"
-		p={{ initial: "16px", sm: "24px", md: "32px" }}
+		p={{ initial: "24px", sm: "32px" }}
+		py={{ initial: "32px", sm: "64px" }}
 		maxWidth="1280px"
 		m="auto"
-		gap={{ initial: "8px", sm: "16px" }}
+		gap={{ initial: "8px", sm: "16px", md: "32px" }}
 	>
 		<Text
-			size={{ initial: "6", sm: "8", md: "9" }}
+			size={{ initial: "7", sm: "8", md: "9" }}
 			style={{ color: "var(--lime-11)" }}
+			mb="8px"
 		>
 			General Info
 		</Text>
@@ -57,6 +65,7 @@ export const General = () => (
 		<Text
 			size={{ initial: "5", sm: "7", md: "8" }}
 			style={{ color: "var(--lime-11)" }}
+			mb="8px"
 		>
 			What to Expect
 		</Text>
@@ -66,7 +75,12 @@ export const General = () => (
 			align="center"
 		>
 			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
-			<Flex direction="column" style={{ textAlign: "center" }} width="100%">
+			<Flex
+				direction="column"
+				style={{ textAlign: "center" }}
+				width="100%"
+				gap="8px"
+			>
 				<Text
 					size={{ initial: "4", sm: "6", md: "7" }}
 					style={{ color: "var(--lime-11)" }}
@@ -82,13 +96,19 @@ export const General = () => (
 				</Text>
 			</Flex>
 		</Flex>
+		<Separator orientation="horizontal" size="4" />
 		<Flex
 			direction={{ initial: "column", sm: "row" }}
 			gap={{ initial: "12px", sm: "16px", md: "32px" }}
 			align="center"
 		>
 			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
-			<Flex direction="column" style={{ textAlign: "center" }} width="100%">
+			<Flex
+				direction="column"
+				style={{ textAlign: "center" }}
+				width="100%"
+				gap="8px"
+			>
 				<Text
 					size={{ initial: "4", sm: "6", md: "7" }}
 					style={{ color: "var(--lime-11)" }}
@@ -103,13 +123,19 @@ export const General = () => (
 				</Text>
 			</Flex>
 		</Flex>
+		<Separator orientation="horizontal" size="4" />
 		<Flex
 			direction={{ initial: "column", sm: "row" }}
 			gap={{ initial: "12px", sm: "16px", md: "32px" }}
 			align="center"
 		>
 			<Image src="/bicycle.png" alt="Bike This City" width={200} height={50} />
-			<Flex direction="column" style={{ textAlign: "center" }} width="100%">
+			<Flex
+				direction="column"
+				style={{ textAlign: "center" }}
+				width="100%"
+				gap="8px"
+			>
 				<Text
 					size={{ initial: "4", sm: "6", md: "7" }}
 					style={{ color: "var(--lime-11)" }}
@@ -125,7 +151,11 @@ export const General = () => (
 			</Flex>
 		</Flex>
 
-		<Flex direction="column" style={{ margin: "auto" }}>
+		<Flex
+			direction="column"
+			my={{ initial: "48px", sm: "52px", md: "64px" }}
+			mx="auto"
+		>
 			<Text
 				size={{ initial: "5", sm: "6", md: "7" }}
 				style={{ color: "var(--lime-11)" }}
@@ -209,7 +239,7 @@ export const General = () => (
 		</Text>
 
 		<Text
-			size={{ initial: "5", sm: "6", md: "7" }}
+			size={{ initial: "6", sm: "7", md: "8" }}
 			mt="12px"
 			style={{ color: "var(--lime-11)" }}
 		>
