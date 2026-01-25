@@ -22,13 +22,12 @@ export const About = () => (
 				a Thanksgiving social ride in 2024 hosted by Z Cycle turned into the
 				ultimate celebration of the city&apos;s vibrant bicycle community.
 				Denver Bike Fest is all about celebrating community, connection, and the
-				joy of getting around on two wheels. Hosted by Z Cycle Shop and Bike
-				This City, the festival brings together local community groups,
-				nonprofits, and businesses to showcase their efforts to get more people
-				on bikes. Featuring live music, food trucks, and beer all sourced
-				locally, Denver Bikes Fest is all about supporting and building
-				community. Our first-ever Denver Bike Fest on April 26, 2025 at City
-				Park Pavilion was a huge success — over 2,000 people came out to
+				joy of getting around on two wheels. The festival brings together local
+				community groups, nonprofits, and businesses to showcase their efforts
+				to get more people on bikes. Featuring live music, food trucks, and beer
+				all sourced locally, Denver Bikes Fest is all about supporting and
+				building community. Our first-ever Denver Bike Fest on April 26, 2025 at
+				City Park Pavilion was a huge success — over 2,000 people came out to
 				connect, learn, and party!
 			</Text>
 
@@ -39,14 +38,18 @@ export const About = () => (
 				width="100%"
 			>
 				<Image
-					src="/bicycle.png"
+					src="/bike-this-city.png"
 					alt="Bike This City"
-					width={300}
+					width={250}
 					height={100}
 					style={{
 						margin: "auto",
+						backgroundColor: "var(--lime-3)",
+						padding: "16px",
+						borderRadius: "12px",
 					}}
 				/>
+
 				<Flex direction="column" gap="8px">
 					<Text size={{ initial: "5", sm: "6" }}>Bike This City</Text>
 					<Text size={{ initial: "3", sm: "5" }}>
