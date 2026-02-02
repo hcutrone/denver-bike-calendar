@@ -225,7 +225,7 @@ export const General = () => (
 				src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=York+Street+Yards,Denver+CO`}
 				width="450"
 				height="380"
-				style={{ border: 0 }}
+				style={{ border: 0, maxWidth: "100%" }}
 				loading="lazy"
 			/>
 			<Flex direction="column">
