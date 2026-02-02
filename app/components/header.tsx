@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, type ButtonProps, Flex, Text } from "@radix-ui/themes";
+import { Button, type ButtonProps, Flex, Link, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -9,6 +9,8 @@ export function Header() {
 		const element = document.getElementById(id);
 		if (element) {
 			element.scrollIntoView({ behavior: "smooth" });
+		} else {
+			window.location.href = `/#${id}`;
 		}
 	};
 	return (
@@ -33,6 +35,7 @@ export function Header() {
 					</HeaderButton>
 				))}
 				<Button
+					asChild
 					color="lime"
 					variant="surface"
 					radius="full"
@@ -42,9 +45,16 @@ export function Header() {
 						fontFamily: "var(--font-coming-soon)",
 					}}
 				>
-					<Text size="6" style={{ color: "var(--lime-12)" }}>
-						Donate
-					</Text>
+					<Link
+						href="https://gofund.me/026af392f"
+						target="_blank"
+						rel="noopener noreferrer"
+						underline="none"
+					>
+						<Text size="6" style={{ color: "var(--lime-12)" }}>
+							Donate
+						</Text>
+					</Link>
 				</Button>
 			</Flex>
 		</Flex>
