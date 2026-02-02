@@ -5,6 +5,7 @@ import {
 	Button,
 	type ButtonProps,
 	Container,
+	DropdownMenu,
 	Flex,
 	IconButton,
 	Link,
@@ -88,16 +89,37 @@ const DesktopHeader = () => (
 
 const MobileHeader = () => (
 	<Flex width="100%" height="100%" justify="between" align="center">
-		<Image src="/bikefest.png" alt="Logo" width={75} height={75} />
-		<IconButton
-			radius="full"
-			style={{
-				cursor: "pointer",
-				backgroundColor: "var(--lime-6)",
-			}}
+		<Button
+			onClick={() => scrollToSection("")}
+			style={{ cursor: "pointer", background: "transparent" }}
 		>
-			<HamburgerMenuIcon color="var(--lime-12)" height={16} width={16} />
-		</IconButton>
+			<Image src="/bikefest.png" alt="Logo" width={75} height={75} />
+		</Button>
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger>
+				<IconButton
+					radius="full"
+					style={{
+						cursor: "pointer",
+						backgroundColor: "var(--lime-6)",
+					}}
+				>
+					<HamburgerMenuIcon color="var(--lime-12)" height={16} width={16} />
+				</IconButton>
+			</DropdownMenu.Trigger>
+			<DropdownMenu.Content>
+				{HeaderButtons.map(({ label, id }) => (
+					<DropdownMenu.Item key={id} onSelect={() => scrollToSection(id)}>
+						<Text
+							size={{ initial: "3", sm: "5", md: "6" }}
+							style={{ color: "var(--lime-10)" }}
+						>
+							{label}
+						</Text>
+					</DropdownMenu.Item>
+				))}
+			</DropdownMenu.Content>
+		</DropdownMenu.Root>
 	</Flex>
 );
 
