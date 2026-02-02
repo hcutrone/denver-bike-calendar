@@ -44,6 +44,7 @@ export function Partners() {
 									{partner.header}
 								</Text>
 								<Link
+									size={{ initial: "3", sm: "5", md: "6" }}
 									href="/partners"
 									style={{
 										textDecoration: "underline",

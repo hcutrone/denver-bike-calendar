@@ -112,7 +112,10 @@ const MobileHeader = () => (
 					<DropdownMenu.Item key={id} onSelect={() => scrollToSection(id)}>
 						<Text
 							size={{ initial: "3", sm: "5", md: "6" }}
-							style={{ color: "var(--lime-10)" }}
+							style={{
+								color: "var(--lime-10)",
+								fontFamily: "var(--font-coming-soon)",
+							}}
 						>
 							{label}
 						</Text>
