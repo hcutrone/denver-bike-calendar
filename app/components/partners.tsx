@@ -1,7 +1,6 @@
-import { Button, Card, Flex, Inset, Text } from "@radix-ui/themes";
-import Image from "next/image";
-import Link from "next/link";
+import { Button, Flex, Link, Text } from "@radix-ui/themes";
 import { featuredPartners } from "../partner-data";
+import { PartnerCard } from "../partners/page";
 
 export function Partners() {
 	return (
@@ -60,46 +59,27 @@ export function Partners() {
 								gap={{ initial: "8px", sm: "16px" }}
 							>
 								{partner.groups.map((group, index) => (
-									<Card
+									<PartnerCard
 										key={group.name + index.toString()}
-										style={{
-											minWidth: "150px",
-											maxWidth: "150px",
-											backgroundColor: "var(--lime-3)",
-											textAlign: "center",
-											paddingBottom: "4px",
-										}}
-									>
-										<Flex gap="4px" direction="column" align="center">
-											<Inset pb="current" clip="padding-box">
-												<Image
-													src={group.logo}
-													alt={group.name}
-													width={150}
-													height={150}
-													style={{
-														backgroundColor: "var(--lime-3)",
-														minHeight: "150px",
-														objectFit: "contain",
-													}}
-												/>
-											</Inset>
-											<Text
-												size="3"
-												style={{
-													color: "var(--lime-12)",
-													fontFamily: "var(--font-coming-soon)",
-												}}
-											>
-												{group.name}
-											</Text>
-										</Flex>
-									</Card>
+										group={group}
+									/>
 								))}
+								<div
+									style={{
+										position: "sticky",
+										right: 0,
+										minHeight: "100%",
+										minWidth: "20px",
+										display: "flex",
+										background:
+											"linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--lime-9) 100%)",
+									}}
+								/>
 							</Flex>
 						</Flex>
 					))}
 					<Button
+						asChild
 						radius="full"
 						mt={{ initial: "16px", sm: "32px" }}
 						style={{
@@ -111,12 +91,14 @@ export function Partners() {
 							cursor: "pointer",
 						}}
 					>
-						<Text
-							size={{ initial: "4", sm: "6", md: "7" }}
-							style={{ color: "white" }}
-						>
-							Get Involved
-						</Text>
+						<Link href="/partners#contact-form" underline="none">
+							<Text
+								size={{ initial: "4", sm: "6", md: "7" }}
+								style={{ color: "white" }}
+							>
+								Get Involved
+							</Text>
+						</Link>
 					</Button>
 				</Flex>
 			</Flex>

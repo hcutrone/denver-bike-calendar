@@ -31,9 +31,11 @@ export default function RootLayout({
 					style={{ fontFamily: "var(--font-coming-soon)" }}
 					accentColor="lime"
 				>
-					<Header />
-					{children}
-					<Footer />
+					<div style={{ backgroundColor: "var(--lime-1)" }}>
+						<Header />
+						{children}
+						<Footer />
+					</div>
 				</Theme>
 			</body>
 		</html>

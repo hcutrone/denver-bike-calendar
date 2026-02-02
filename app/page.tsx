@@ -9,14 +9,14 @@ import { Partners } from "./components/partners";
 
 export default async function Home() {
 	return (
-		<div style={{ backgroundColor: "#f6f6e9" }}>
+		<>
 			<LandingImage />
 			<Sponsors />
 			<About />
 			<General />
 			<Partners />
 			<ContactUs />
-		</div>
+		</>
 	);
 }
 
@@ -70,6 +70,8 @@ const HighlightedText = ({ children }: { children: React.ReactNode }) => (
 			borderRadius: "50px",
 		}}
 	>
-		<Text size={{ initial: "6", sm: "8" }}>{children}</Text>
+		<Text size={{ initial: "6", sm: "8" }} style={{ color: "white" }}>
+			{children}
+		</Text>
 	</Flex>
 );

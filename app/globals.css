@@ -109,3 +109,7 @@ body {
 .rt-Text:not([class*="rt-r-size"]) {
 	font-size: var(--font-size-6);
 }
+
+.rt-Heading {
+	font-family: var(--fon-coming-soon);
+}
