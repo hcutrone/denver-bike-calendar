@@ -43,9 +43,8 @@ const poppins = localFont({
 });
 
 const SITE_TITLE = "Denver Bike Fest - Bikes, Community, and Connection!";
-// const SITE_DESCRIPTION = "Denver Bike Fest - The ultimate celebration of Denver's bicycle community. Join us on Saturday, June 13th 2026 for a day of bikes, community, and connection!";
 const SITE_DESCRIPTION =
-   "Denver Bike Fest 2026 - The ultimate celebration of Denver's bicycle community. Join us this summer for a day of bikes, community, and connection!";
+   "Denver Bike Fest - The ultimate celebration of Denver's bicycle community. Join us on Saturday, June 13th, 2026 for a day of bikes, community, and connection!";
 
 export const metadata: Metadata = {
    title: SITE_TITLE,
