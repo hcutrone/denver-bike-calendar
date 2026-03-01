@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import { Accordion } from "radix-ui";
 import { Fragment } from "react";
-// import { GOOGLE_MAPS_API_KEY } from "@/env";
+import { GOOGLE_MAPS_API_KEY } from "@/env";
 
 export const General = () => (
    <Flex id="general" direction="column">
@@ -50,7 +50,7 @@ export const General = () => (
          Denver's cycling community can be. Whether you ride every day or just love
          the vibe, you're invited to join in!`}
             </Text>
-            {/* <Flex
+            <Flex
                direction="column"
                width="fit-content"
                p={{ initial: "12px", sm: "16px", md: "24px" }}
@@ -72,7 +72,7 @@ export const General = () => (
                   size={{ initial: "5", sm: "6", md: "7" }}
                   style={{ color: "white" }}
                >
-                  Time: 3:00 pm - 8:00 pm
+                  Time: 3:00 pm - 9:00 pm
                </Text>
                <Text
                   size={{ initial: "5", sm: "6", md: "7" }}
@@ -86,7 +86,7 @@ export const General = () => (
                >
                   Cost: FREE!
                </Text>
-            </Flex> */}
+            </Flex>
          </Flex>
          <Heading
             as="h3"
@@ -188,13 +188,13 @@ export const General = () => (
             </Button>
          </Flex>
       </ContentContainer>
-      {/* <Box
+      <Box
          width="100%"
          height="20px"
          style={{ backgroundColor: "var(--yellow-accent)" }}
-      /> */}
+      />
       <ContentContainer>
-         {/* <Heading
+         <Heading
             as="h2"
             trim="end"
             size={{ initial: "6", sm: "7", md: "8" }}
@@ -277,7 +277,7 @@ export const General = () => (
                   </Flex>
                </Button>
             </Flex>
-         </Flex> */}
+         </Flex>
 
          <Box py={{ initial: "16px" }}>
             <Heading
