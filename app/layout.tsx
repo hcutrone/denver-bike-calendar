@@ -3,6 +3,8 @@ import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import localFont from "next/font/local";
+import Script from "next/script";
+import type { Event, WithContext } from "schema-dts";
 import { DonateBanner, Footer, Header } from "@/components";
 
 const poppins = localFont({
@@ -41,9 +43,8 @@ const poppins = localFont({
 });
 
 const SITE_TITLE = "Denver Bike Fest - Bikes, Community, and Connection!";
-// const SITE_DESCRIPTION = "Denver Bike Fest - The ultimate celebration of Denver's bicycle community. Join us on Saturday, June 13th 2026 for a day of bikes, community, and connection!";
 const SITE_DESCRIPTION =
-   "Denver Bike Fest 2026 - The ultimate celebration of Denver's bicycle community. Join us this summer for a day of bikes, community, and connection!";
+   "Denver Bike Fest - The ultimate celebration of Denver's bicycle community. Join us on Saturday, June 13th, 2026 for a day of bikes, community, and connection!";
 
 export const metadata: Metadata = {
    title: SITE_TITLE,
@@ -106,6 +107,28 @@ export const metadata: Metadata = {
    },
 };
 
+const jsonLd: WithContext<Event> = {
+   "@context": "https://schema.org",
+   "@type": "Event",
+   name: SITE_TITLE,
+   description: SITE_DESCRIPTION,
+   startDate: "2026-06-13T15:00:00",
+   endDate: "2026-06-13T21:00:00",
+   location: {
+      "@type": "Place",
+      name: "York Street Yards",
+      address: {
+         "@type": "PostalAddress",
+         streetAddress: "3821-3893 Steele Street",
+         addressLocality: "Denver",
+         addressRegion: "CO",
+         postalCode: "80205",
+         addressCountry: "US",
+      },
+   },
+   image: ["https://denverbikefest.app/logo_vertical.jpg"],
+};
+
 export default async function RootLayout({
    children,
 }: {
@@ -113,6 +136,13 @@ export default async function RootLayout({
 }) {
    return (
       <html lang="en" className={poppins.className}>
+         <Script
+            id="json-ld"
+            type="application/ld+json"
+            strategy="afterInteractive"
+         >
+            {JSON.stringify(jsonLd)}
+         </Script>
          <body>
             <Theme
                appearance="light"

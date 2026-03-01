@@ -70,7 +70,10 @@ function LandingImage() {
                <HighlightedText>
                   Bikes, Community, and Connection!
                </HighlightedText>
-               <HighlightedText>Date and location coming soon</HighlightedText>
+               <HighlightedText>
+                  June 13, 2026 | 3:00 pm - 9:00 pm
+               </HighlightedText>
+               <HighlightedText>York Street Yards</HighlightedText>
             </Flex>
          </Flex>
       </Flex>
