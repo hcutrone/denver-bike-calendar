@@ -1,6 +1,6 @@
 "use client";
 
-import { Em, Flex, Heading, Strong, Text } from "@radix-ui/themes";
+import { Em, Flex, Grid, Heading, Strong, Text } from "@radix-ui/themes";
 import { CollapsiblePartnerGrid } from "@/components";
 import { partners, partnerTiers } from "../../partner-data";
 
@@ -28,7 +28,7 @@ export default function PartnersPage() {
             <Heading
                as="h2"
                size={{ initial: "5", sm: "6", md: "7" }}
-               style={{ color: "black" }}
+               style={{ color: "black", textAlign: "center" }}
             >
                <Strong>Partner registration for 2026 opens on March 15!</Strong>
             </Heading>
@@ -61,42 +61,48 @@ export default function PartnersPage() {
 }
 
 const PartnerTiers = () => (
-   <Flex direction="row" gap="16px" wrap="wrap" justify="between">
-      {partnerTiers.map((tier) => (
-         <PartnerInfoCard key={tier.name} title={tier.name} color={tier.color}>
-            <Flex
-               width="100%"
-               p="4px"
-               mt="42px"
-               justify="center"
-               style={{ backgroundColor: tier.color }}
+   <Flex mt="12px" justify={{ initial: "center", md: "start" }}>
+      <Grid columns={{ initial: "1", xs: "2", md: "4" }} gap="24px">
+         {partnerTiers.map((tier) => (
+            <PartnerInfoCard
+               key={tier.name}
+               title={tier.name}
+               color={tier.color}
             >
-               <Text size="7" weight="bold" style={{ color: "white" }}>
-                  ${tier.price}
-               </Text>
-            </Flex>
-            <Flex direction="column" px="16px" pb="12px" gap="8px">
-               <ul style={{ listStyleType: "disc", paddingLeft: "16px" }}>
-                  {tier.bullets.map((bullet) => (
-                     <li key={bullet}>
-                        <Text style={{ color: "black" }}>{bullet}</Text>
-                     </li>
-                  ))}
-               </ul>
-               <Flex justify="center" width="100%">
-                  {tier.subtext && (
-                     <Text
-                        size="1"
-                        weight="light"
-                        style={{ color: "black", textAlign: "center" }}
-                     >
-                        <Em>{tier.subtext}</Em>
-                     </Text>
-                  )}
+               <Flex
+                  width="100%"
+                  p="4px"
+                  mt="42px"
+                  justify="center"
+                  style={{ backgroundColor: tier.color }}
+               >
+                  <Text size="7" weight="bold" style={{ color: "white" }}>
+                     ${tier.price}
+                  </Text>
                </Flex>
-            </Flex>
-         </PartnerInfoCard>
-      ))}
+               <Flex direction="column" px="16px" pb="12px" gap="8px">
+                  <ul style={{ listStyleType: "disc", paddingLeft: "16px" }}>
+                     {tier.bullets.map((bullet) => (
+                        <li key={bullet}>
+                           <Text style={{ color: "black" }}>{bullet}</Text>
+                        </li>
+                     ))}
+                  </ul>
+                  <Flex justify="center" width="100%">
+                     {tier.subtext && (
+                        <Text
+                           size="1"
+                           weight="light"
+                           style={{ color: "black", textAlign: "center" }}
+                        >
+                           <Em>{tier.subtext}</Em>
+                        </Text>
+                     )}
+                  </Flex>
+               </Flex>
+            </PartnerInfoCard>
+         ))}
+      </Grid>
    </Flex>
 );
 
@@ -112,7 +118,7 @@ const PartnerInfoCard = ({
    <Flex
       position="relative"
       direction="column"
-      maxWidth="calc(25% - 12px)"
+      maxWidth="300px"
       mt="16px"
       gap="8px"
       style={{
