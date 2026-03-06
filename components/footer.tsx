@@ -114,12 +114,18 @@ export function Footer() {
                justify="center"
                mx="auto"
             >
-               <Image
-                  src="/sponsors/denver-streets-partnership.png"
-                  alt="Denver Streets Partnership"
-                  width={150}
-                  height={100}
-               />
+               <Link
+                  href="https://denverstreetspartnership.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
+                  <Image
+                     src="/sponsors/denver-streets-partnership.png"
+                     alt="Denver Streets Partnership"
+                     width={150}
+                     height={100}
+                  />
+               </Link>
                <Text size={{ initial: "2", sm: "3" }}>
                   Fiscal Sponsorship: Denver Streets Partnership
                </Text>
