@@ -1,6 +1,6 @@
 "use client";
 
-import { Em, Flex, Heading, Text } from "@radix-ui/themes";
+import { Em, Flex, Heading, Strong, Text } from "@radix-ui/themes";
 import { CollapsiblePartnerGrid } from "@/components";
 import { partners, partnerTiers } from "../../partner-data";
 
@@ -24,35 +24,38 @@ export default function PartnersPage() {
          >
             Denver Bike Fest Partners
          </Heading>
-         <Text
-            style={{ color: "var(--dark-green)" }}
-            size={{ initial: "3", sm: "5", md: "6" }}
-         >
-            {
-               "Denver Bike Fest is proud to partner with so many amazing local groups, organizations, and businesses."
-            }
-         </Text>
+         <Flex direction="column" gap="8px" justify="center" align="center">
+            <Heading
+               as="h2"
+               size={{ initial: "5", sm: "6", md: "7" }}
+               style={{ color: "black" }}
+            >
+               <Strong>Partner registration for 2026 opens on March 15!</Strong>
+            </Heading>
+            <Text
+               style={{ color: "black", textAlign: "center" }}
+               size={{ initial: "3", sm: "5", md: "6" }}
+            >
+               {`By registering as a partner, you'll get the chance to showcase your
+            work or mission, connect with local residents, and be part of the
+            city's biggest bike celebration.`}
+            </Text>
+         </Flex>
          <PartnerTiers />
+         <Flex justify="center">
+            <Heading
+               as="h2"
+               trim="end"
+               weight="medium"
+               size={{ initial: "5", sm: "6", md: "7" }}
+               style={{ color: "black", textAlign: "center" }}
+            >
+               Here are some of the amazing 2025 Partners!
+            </Heading>
+         </Flex>
          {partners.map((partner) => (
             <CollapsiblePartnerGrid key={partner.header} partner={partner} />
          ))}
-
-         <Flex
-            id="contact-form"
-            direction={{ initial: "column", sm: "row" }}
-            width="100%"
-            gap="16px"
-         >
-            <Flex align="center" direction="column" gap="32px" p="12px">
-               <Text
-                  style={{ color: "var(--dark-green)" }}
-                  size={{ initial: "3", sm: "5", md: "6" }}
-               >
-                  Interested in partnering with Denver Bike Fest next year?
-                  Check back in on <strong>March 15, 2026!</strong>
-               </Text>
-            </Flex>
-         </Flex>
       </Flex>
    );
 }
