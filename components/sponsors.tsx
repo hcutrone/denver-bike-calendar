@@ -14,16 +14,30 @@ const sponsorTiers = [
       name: "Tandem",
       logo: "/tandem.png",
       color: "#af9096",
+      sponsors: [],
    },
    {
       name: "Cargo",
       logo: "/cargo.png",
       color: "#d8af53",
+      sponsors: [],
    },
    {
       name: "Cruiser",
       logo: "/cruiser.png",
       color: "#8f9b93",
+      sponsors: [
+         {
+            name: "Z Cycle",
+            url: "https://www.zcycledenver.com/",
+            logo: "/partners/zcycle.png",
+         },
+         {
+            name: "Way to Go",
+            url: "https://drcog.org/way-to-go",
+            logo: "/sponsors/way-to-go.png",
+         },
+      ],
    },
 ];
 
@@ -91,7 +105,7 @@ export function Sponsors() {
          {sponsorTiers.map((tier, idx) => (
             <Flex direction="column" key={tier.name} gap="16px" align="center">
                <SponsorHeader {...tier} index={idx} />
-               <SponsorSpace index={idx} />
+               <SponsorSpace sponsors={tier.sponsors} index={idx} />
                {idx < sponsorTiers.length - 1 && (
                   <Separator
                      orientation="horizontal"
@@ -146,12 +160,56 @@ export function Sponsors() {
    );
 }
 
-const SponsorSpace = ({ index }: { index: number }) => (
-   // 200, 150, 100
+const SponsorSpace = ({
+   sponsors,
+   index,
+}: {
+   sponsors: { name: string; url: string; logo: string }[];
+   index: number;
+}) => (
    <Box
       style={{
          width: "100%",
          height: `${200 - index * 50}px`,
       }}
-   />
+   >
+      <Flex
+         direction="row"
+         justify="center"
+         align="center"
+         gap="16px"
+         wrap="wrap"
+      >
+         {sponsors.map((sponsor) => (
+            <Flex
+               key={sponsor.name}
+               minHeight={`${150 - index * 25}px`}
+               minWidth={`${150 - index * 25}px`}
+               align="center"
+               justify="center"
+               position="relative"
+            >
+               <Link
+                  href={sponsor.url}
+                  target="_blank"
+                  style={{ width: "100%", height: "100%" }}
+               >
+                  <Image
+                     className="hover-highlight-yellow-orange"
+                     src={sponsor.logo}
+                     alt={sponsor.name}
+                     fill
+                     style={{
+                        objectFit: "contain",
+                        maxHeight: "200px",
+                        borderRadius: "12px",
+                        padding: "4px",
+                        backgroundColor: "var(--light-background)",
+                     }}
+                  />
+               </Link>
+            </Flex>
+         ))}
+      </Flex>
+   </Box>
 );

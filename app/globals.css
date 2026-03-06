@@ -110,3 +110,12 @@ body {
 .rt-Text {
    color: var(--light-background);
 }
+
+.hover-highlight-yellow-orange {
+   border: 2px solid var(--yellow-accent);
+   transition: border-color 0.3s ease;
+}
+
+.hover-highlight-yellow-orange:hover {
+   border: 2px solid var(--orange-accent);
+}
