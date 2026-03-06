@@ -107,6 +107,29 @@ export function Footer() {
                size="3"
                style={{ backgroundColor: "var(--light-background)" }}
             />
+            <Flex
+               direction="column"
+               align="center"
+               gap="8px"
+               justify="center"
+               mx="auto"
+            >
+               <Link
+                  href="https://denverstreetspartnership.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
+                  <Image
+                     src="/sponsors/denver-streets-partnership.png"
+                     alt="Denver Streets Partnership"
+                     width={150}
+                     height={100}
+                  />
+               </Link>
+               <Text size={{ initial: "2", sm: "3" }}>
+                  Fiscal Sponsorship: Denver Streets Partnership
+               </Text>
+            </Flex>
             <Image
                src="/logo_horizontal_no_year.png"
                alt="Logo"

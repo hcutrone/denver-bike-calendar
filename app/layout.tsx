@@ -39,6 +39,11 @@ const poppins = localFont({
          weight: "800",
          style: "italic",
       },
+      {
+         path: "../public/fonts/poppins/Poppins-LightItalic.ttf",
+         weight: "200",
+         style: "italic",
+      },
    ],
 });
 

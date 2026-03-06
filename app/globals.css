@@ -62,7 +62,8 @@ body {
 
    --dark-green: #03574a;
    --yellow-accent: #b5a546;
-   --orange-accent: #ce8734;
+   --orange-accent: #f47743;
+   --blue-accent: #526ab2;
    --light-background: #eaeade;
 }
 
@@ -108,4 +109,13 @@ body {
 
 .rt-Text {
    color: var(--light-background);
+}
+
+.hover-highlight-yellow-orange {
+   border: 2px solid var(--yellow-accent);
+   transition: border-color 0.3s ease;
+}
+
+.hover-highlight-yellow-orange:hover {
+   border: 2px solid var(--orange-accent);
 }
