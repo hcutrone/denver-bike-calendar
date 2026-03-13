@@ -365,7 +365,7 @@ const faqs = [
    {
       question: "Are pets allowed?",
       answer:
-         "While we love our furry friends, pets are not allowed inside Denver Bike Fest events located on The Yard. However, Skip Town, a dog bar and park is right next door and would love to meet your pup!",
+         "Yes, dogs are allowed at the Yard. Additionally, Skip Town, a dog bar and park is right next door and would love to meet your pup!",
    },
    {
       question: "How much does it cost to attend?",
