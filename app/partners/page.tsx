@@ -1,10 +1,16 @@
 "use client";
 
-import { Em, Flex, Grid, Heading, Strong, Text } from "@radix-ui/themes";
+import { Em, Flex, Grid, Heading, Link, Strong, Text } from "@radix-ui/themes";
+import Countdown from "react-countdown";
 import { CollapsiblePartnerGrid } from "@/components";
 import { partners, partnerTiers } from "../../partner-data";
 
+const REGISTRATION_RELEASE = 1773586800; // March 15th, 2026 at 9:00 AM MDT in Unix timestamp
+// const REGISTRATION_RELEASE = 1773386800;
+
 export default function PartnersPage() {
+   const currentTime = Math.floor(Date.now() / 1000);
+   const isRegistrationOpen = currentTime >= REGISTRATION_RELEASE;
    return (
       <Flex
          maxWidth="1280px"
@@ -30,8 +36,13 @@ export default function PartnersPage() {
                size={{ initial: "5", sm: "6", md: "7" }}
                style={{ color: "black", textAlign: "center" }}
             >
-               <Strong>Partner registration for 2026 opens on March 15!</Strong>
+               <Strong>
+                  {isRegistrationOpen
+                     ? "Partner registration is open from March 15th to May 15th, 2026!"
+                     : "Partner registration for 2026 opens on March 15!"}
+               </Strong>
             </Heading>
+            <RegisterButton isRegistrationOpen={isRegistrationOpen} />
             <Text
                style={{ color: "black", textAlign: "center" }}
                size={{ initial: "3", sm: "5", md: "6" }}
@@ -153,3 +164,58 @@ const PartnerInfoCard = ({
       {children}
    </Flex>
 );
+
+function RegisterButton({
+   isRegistrationOpen,
+}: {
+   isRegistrationOpen: boolean;
+}) {
+   return (
+      <Flex
+         asChild={isRegistrationOpen}
+         py={{ initial: "4px", sm: "8px", md: "12px" }}
+         px={{ initial: "16px", sm: "20px", md: "24px" }}
+         style={{
+            backgroundColor: "var(--yellow-accent)",
+            borderRadius: "50px",
+         }}
+      >
+         {isRegistrationOpen ? (
+            <Link
+               href="https://www.eventbrite.com/e/denver-bike-fest-2026-partner-registration-registration-1984436547132?aff=oddtdtcreator"
+               target="_blank"
+               rel="noopener noreferrer"
+            >
+               <Text
+                  size={{ initial: "5", sm: "6", md: "7" }}
+                  style={{ color: "white" }}
+               >
+                  <Strong>Click here to register!</Strong>
+               </Text>
+            </Link>
+         ) : (
+            <Flex gap="8px" align="center" justify="center">
+               <Text
+                  size={{ initial: "5", sm: "6", md: "7" }}
+                  style={{ color: "white" }}
+               >
+                  <Strong>{`Check back in:`}</Strong>
+               </Text>
+               <Text
+                  size={{ initial: "5", sm: "6", md: "7" }}
+                  style={{
+                     color: "white",
+                     textWrap: "nowrap",
+                     marginTop: "2px",
+                     marginInline: "auto",
+                  }}
+               >
+                  <Strong>
+                     <Countdown date={new Date(REGISTRATION_RELEASE * 1000)} />
+                  </Strong>
+               </Text>
+            </Flex>
+         )}
+      </Flex>
+   );
+}

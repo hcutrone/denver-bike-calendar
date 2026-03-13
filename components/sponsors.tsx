@@ -14,18 +14,27 @@ const sponsorTiers = [
       name: "Tandem",
       logo: "/tandem.png",
       color: "#af9096",
-      sponsors: [],
+      imageSize: 200,
+      sponsors: [
+         {
+            name: "City Cast Denver",
+            url: "https://denver.citycast.fm/",
+            logo: "/sponsors/city-cast-denver.png",
+         },
+      ],
    },
    {
       name: "Cargo",
       logo: "/cargo.png",
       color: "#d8af53",
+      imageSize: 150,
       sponsors: [],
    },
    {
       name: "Cruiser",
       logo: "/cruiser.png",
       color: "#8f9b93",
+      imageSize: 100,
       sponsors: [
          {
             name: "Z Cycle",
@@ -105,7 +114,7 @@ export function Sponsors() {
          {sponsorTiers.map((tier, idx) => (
             <Flex direction="column" key={tier.name} gap="16px" align="center">
                <SponsorHeader {...tier} index={idx} />
-               <SponsorSpace sponsors={tier.sponsors} index={idx} />
+               <SponsorSpace sponsors={tier.sponsors} imageSize={tier.imageSize} index={idx} />
                {idx < sponsorTiers.length - 1 && (
                   <Separator
                      orientation="horizontal"
@@ -162,9 +171,11 @@ export function Sponsors() {
 
 const SponsorSpace = ({
    sponsors,
+   imageSize,
    index,
 }: {
    sponsors: { name: string; url: string; logo: string }[];
+   imageSize: number;
    index: number;
 }) => (
    <Box
@@ -183,8 +194,8 @@ const SponsorSpace = ({
          {sponsors.map((sponsor) => (
             <Flex
                key={sponsor.name}
-               minHeight={`${150 - index * 25}px`}
-               minWidth={`${150 - index * 25}px`}
+               minHeight={`${imageSize}px`}
+               minWidth={`${imageSize}px`}
                align="center"
                justify="center"
                position="relative"
@@ -201,7 +212,7 @@ const SponsorSpace = ({
                      fill
                      style={{
                         objectFit: "contain",
-                        maxHeight: "200px",
+                        maxHeight: `${imageSize}px`,
                         borderRadius: "12px",
                         padding: "4px",
                         backgroundColor: "var(--light-background)",
