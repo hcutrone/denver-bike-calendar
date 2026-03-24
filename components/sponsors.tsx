@@ -21,6 +21,11 @@ const sponsorTiers = [
             url: "https://denver.citycast.fm/",
             logo: "/sponsors/city-cast-denver.png",
          },
+         {
+            name: "Cohesion Brewing",
+            url: "https://www.cohesionbeer.com/",
+            logo: "/sponsors/cohesion-brewing.png",
+         },
       ],
    },
    {
@@ -45,6 +50,11 @@ const sponsorTiers = [
             name: "Way to Go",
             url: "https://drcog.org/way-to-go",
             logo: "/sponsors/way-to-go.png",
+         },
+         {
+            name: "DUDE, IDK Studios",
+            url: "https://www.dudeidkstudios.com/",
+            logo: "/sponsors/dude-idk-studios.png",
          },
       ],
    },
@@ -114,7 +124,11 @@ export function Sponsors() {
          {sponsorTiers.map((tier, idx) => (
             <Flex direction="column" key={tier.name} gap="16px" align="center">
                <SponsorHeader {...tier} index={idx} />
-               <SponsorSpace sponsors={tier.sponsors} imageSize={tier.imageSize} index={idx} />
+               <SponsorSpace
+                  sponsors={tier.sponsors}
+                  imageSize={tier.imageSize}
+                  index={idx}
+               />
                {idx < sponsorTiers.length - 1 && (
                   <Separator
                      orientation="horizontal"
