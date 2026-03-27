@@ -147,38 +147,6 @@ export function Sponsors() {
             height="20px"
             style={{ backgroundColor: "var(--yellow-accent)" }}
          />
-         <Flex
-            direction="column"
-            justify="center"
-            p={{ initial: "24px", sm: "32px" }}
-            mx="auto"
-            mb="16px"
-            gap={{ initial: "8px", sm: "16px" }}
-            maxWidth="1280px"
-         >
-            <Heading
-               as="h2"
-               trim="end"
-               size={{ initial: "5", sm: "7", md: "8" }}
-               style={{ color: "var(--light-background)" }}
-            >
-               Want to help make Denver Bike Fest happen?
-            </Heading>
-            <Text
-               size={{ initial: "3", sm: "5", md: "6" }}
-               style={{ color: "var(--light-background)" }}
-            >
-               If your business or organization is interested in sponsoring the
-               event or partnering with us, please reach out at{" "}
-               <Link
-                  href="mailto:denverbikefest@gmail.com"
-                  underline="always"
-                  style={{ color: "var(--yellow-accent)" }}
-               >
-                  denverbikefest@gmail.com
-               </Link>
-            </Text>
-         </Flex>
       </Flex>
    );
 }
