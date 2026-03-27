@@ -1,0 +1,50 @@
+[
+   {
+      "name": "Handlestash",
+      "logo": "/partners/handlestash.png",
+      "url": "https://handlestash.com",
+      "instagram": "@handlestash",
+      "ready": true
+   },
+   {
+      "name": "Stowe Trunks",
+      "logo": "/partners/stowe-trunks.png",
+      "url": "https://www.stowetrunks.com",
+      "instagram": "@stowetrunks",
+      "ready": true
+   },
+   {
+      "name": "City Cast Denver",
+      "logo": "/partners/city-cast-denver.png",
+      "url": "https://denver.citycast.fm",
+      "instagram": "@citycastdenver",
+      "ready": true
+   },
+   {
+      "name": "Out & Back Outdoor",
+      "logo": "/partners/out-and-back-outdoor.png",
+      "url": "https://outandbackoutdoor.com",
+      "instagram": "@outandbackoutdoor",
+      "ready": true
+   },
+   {
+      "name": "Z Cycle Shop",
+      "logo": "/partners/z-cycle-shop.png",
+      "url": "https://www.zcycledenver.org/",
+      "instagram": "@zcycleshop",
+      "ready": true
+   },
+   {
+      "name": "ALSO.",
+      "logo": "/partners/also.png",
+      "url": "https://www.ridealso.com/",
+      "ready": false
+   },
+   {
+      "name": "Topo Designs",
+      "logo": "/partners/topo-designs.png",
+      "url": "https://topodesigns.com/",
+      "instagram": "@topodesigns",
+      "ready": true
+   }
+]

@@ -1,0 +1,16 @@
+[
+   {
+      "name": "Scoops Ice Cream",
+      "logo": "/partners/scoops.png",
+      "url": "https://scoopsdenver.com",
+      "instagram": "@scoopsdenver",
+      "ready": true
+   },
+   {
+      "name": "Muy Loco Tacos",
+      "logo": "/partners/muy-loco.png",
+      "url": "https://cateringgolden.com",
+      "instagram": "@muylocotacos",
+      "ready": true
+   }
+]

@@ -2,7 +2,7 @@
 
 import { Em, Flex, Grid, Heading, Link, Strong, Text } from "@radix-ui/themes";
 import { CollapsiblePartnerGrid } from "@/components";
-import { partners, partnerTiers } from "../../partner-data";
+import { partners, partnerTiers } from "../../partner-data/partner-data";
 
 export default function PartnersPage() {
    return (
