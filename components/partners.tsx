@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Heading, Link, Text } from "@radix-ui/themes";
+import {
+   Box,
+   Button,
+   Flex,
+   Heading,
+   Link,
+   Strong,
+   Text,
+} from "@radix-ui/themes";
 import Image from "next/image";
 import { featuredPartners } from "../partner-data";
 
@@ -56,10 +64,43 @@ export function Partners() {
                hand spreading the word, there's a place for you here.`}
             </Text>
             <Text size={{ initial: "3", sm: "5", md: "6" }}>
-               Partner registration for 2026 opens on{" "}
-               <strong>March 15, 2026!</strong> Here are some of the amazing
-               groups we partnered with for the 2025 event:
+               {`By registering as a partner, you'll get the chance to showcase
+               your work or mission, connect with local residents, and be part of
+               the city's biggest bike celebration. Partner registration is open
+               from `}
+               <Strong>March 15th to May 15th, 2026!</Strong>
             </Text>
+            <Button
+               asChild
+               radius="full"
+               style={{
+                  marginInline: "auto",
+                  fontFamily: "var(--font-poppins)",
+                  backgroundColor: "#d8af53",
+                  cursor: "pointer",
+               }}
+            >
+               <Flex
+                  asChild
+                  p={{ initial: "16px", sm: "20px", md: "24px" }}
+                  width="fit-content"
+               >
+                  <Link
+                     href="https://www.eventbrite.com/e/denver-bike-fest-2026-partner-registration-registration-1984436547132?aff=oddtdtcreator"
+                     underline="none"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                  >
+                     <Text
+                        size={{ initial: "5", sm: "7", md: "8" }}
+                        style={{ color: "white" }}
+                        weight="bold"
+                     >
+                        Register Here!
+                     </Text>
+                  </Link>
+               </Flex>
+            </Button>
             <Flex gap={{ initial: "16px", sm: "32px" }} direction="column">
                {featuredPartners.map((partner) => (
                   <Flex
@@ -124,32 +165,6 @@ export function Partners() {
                      </Flex>
                   </Flex>
                ))}
-               <Button
-                  asChild
-                  radius="full"
-                  style={{
-                     marginInline: "auto",
-                     fontFamily: "var(--font-poppins)",
-                     backgroundColor: "#d8af53",
-                     cursor: "pointer",
-                  }}
-               >
-                  <Flex
-                     asChild
-                     p={{ initial: "16px", sm: "20px", md: "24px" }}
-                     width="fit-content"
-                  >
-                     <Link href="/partners" underline="none">
-                        <Text
-                           size={{ initial: "5", sm: "7", md: "8" }}
-                           style={{ color: "white" }}
-                           weight="bold"
-                        >
-                           Get Involved
-                        </Text>
-                     </Link>
-                  </Flex>
-               </Button>
             </Flex>
          </Flex>
       </Flex>

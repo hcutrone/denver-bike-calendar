@@ -1,26 +1,26 @@
 "use client";
 
-import { Button, Flex, IconButton, Link, Text } from "@radix-ui/themes";
-import Image from "next/image";
+import { Button, Flex, IconButton, Link, Strong, Text } from "@radix-ui/themes";
 import { useState } from "react";
 
-export const DonateBanner = () => {
+export const RegisterBanner = () => {
    const [isVisible, setIsVisible] = useState(true);
    if (!isVisible) {
       return null;
    }
    return (
       <Flex
-         id="donate-banner"
+         id="register-banner"
          position="fixed"
          bottom="0"
          left="50%"
-         minWidth={{ initial: "90%", sm: "700px", md: "760px" }}
-         p="12px"
+         minWidth={{ initial: "90%", xs: "max-content" }}
+         py={{ initial: "12px", sm: "16px" }}
+         px={{ initial: "20px", sm: "24px" }}
          mb="8px"
          align="center"
          justify="between"
-         gap="12px"
+         gap={{ initial: "14px", sm: "36px" }}
          style={{
             backgroundColor: "var(--light-background)",
             border: "1px solid var(--dark-green)",
@@ -44,24 +44,18 @@ export const DonateBanner = () => {
          >
             &times;
          </IconButton>
-         <Flex gap="inherit" align="center">
-            <Image
-               src="/blucifer-tee.png"
-               alt="Blucifer Bike Tee"
-               width="60"
-               height="60"
-               style={{
-                  borderRadius: "8px",
-                  objectFit: "cover",
-                  border: "1px solid var(--yellow-accent)",
-               }}
-            />
+         <Flex direction="column">
             <Text
                size={{ initial: "3", sm: "4", md: "5" }}
                style={{ color: "var(--dark-green)" }}
             >
-               Donate now to preorder a{" "}
-               <strong>Denver Bike Fest 2026 shirt</strong>!
+               <Strong>Register to be a 2026 Partner today!</Strong>
+            </Text>
+            <Text
+               size={{ initial: "1", sm: "2", md: "3" }}
+               style={{ color: "var(--dark-green)" }}
+            >
+               Registration is open until May 15th, 2026
             </Text>
          </Flex>
          <Button
@@ -75,7 +69,7 @@ export const DonateBanner = () => {
             }}
          >
             <Link
-               href="https://bikewalkbus.donorsupport.co/page/DenverBikeFest2026"
+               href="https://www.eventbrite.com/e/denver-bike-fest-2026-partner-registration-registration-1984436547132?aff=oddtdtcreator"
                target="_blank"
                rel="noopener noreferrer"
             >
@@ -84,7 +78,7 @@ export const DonateBanner = () => {
                   style={{ color: "var(--light-background)" }}
                   weight="bold"
                >
-                  Donate
+                  Register
                </Text>
             </Link>
          </Button>
