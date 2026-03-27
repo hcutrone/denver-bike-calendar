@@ -129,7 +129,7 @@ const us = [
       role: "Lead Organizer",
       handle: "@bike.this.city",
       link: "https://www.instagram.com/bike.this.city/",
-      image: "/emily.png",
+      image: "/emily.jpg",
    },
    {
       name: "Harrison Cutrone",
@@ -145,6 +145,6 @@ const us = [
       role: "Graphic Designer",
       handle: "www.studiogratton.com",
       link: "https://www.studiogratton.com",
-      image: "/brandon.png",
+      image: "/brandon.jpeg",
    },
 ];
