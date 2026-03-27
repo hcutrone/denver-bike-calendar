@@ -54,7 +54,7 @@ const sponsorTiers = [
          {
             name: "DUDE, IDK Studios",
             url: "https://www.dudeidkstudios.com/",
-            logo: "/sponsors/dude-idk-studios.png",
+            logo: "/sponsors/dude-idk.avif",
          },
       ],
    },
