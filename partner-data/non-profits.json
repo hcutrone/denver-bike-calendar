@@ -29,7 +29,7 @@
    },
    {
       "name": "Front Rangers Cycling Club",
-      "logo": "/partners/front-rangers.png",
+      "logo": "/partners/front-rangers.jpg",
       "url": "https://www.frontrangersdenver.org/",
       "instagram": "@frontrangers",
       "ready": true
@@ -43,14 +43,14 @@
    },
    {
       "name": "American Diabetes Association",
-      "logo": "/partners/diabetes-association.png",
+      "logo": "/partners/american-diabetes-association.png",
       "url": "https://tour.diabetes.org/743",
       "instagram": "@am.diabetes_rockymountain",
       "ready": true
    },
    {
       "name": "Denver Streets Partnership",
-      "logo": "/partners/denver-streets-partnership.png",
+      "logo": "/sponsors/denver-streets-partnership.png",
       "url": "https://denverstreetspartnership.org/",
       "instagram": "@bikewalkbus",
       "ready": true
@@ -71,7 +71,7 @@
    },
    {
       "name": "Office of Climate Action, Sustainability, and Resiliency (CASR)",
-      "logo": "/partners/casr.png",
+      "logo": "/partners/casr.jpg",
       "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Climate-Action-Sustainability-and-Resiliency/About-Us",
       "instagram": "@denvercasr",
       "ready": true

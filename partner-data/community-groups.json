@@ -1,7 +1,7 @@
 [
    {
       "name": "Wash Park Crewzers",
-      "logo": "/partners/wash-park-crewzers.png",
+      "logo": "/partners/crewzers.png",
       "instagram": "@wash_park_crewzers",
       "ready": true
    },
@@ -20,7 +20,7 @@
    },
    {
       "name": "Chains of Strength",
-      "logo": "/partners/chains-of-strength.png",
+      "logo": "/partners/chains.png",
       "instagram": "@chains.of.strength",
       "ready": false
    },
@@ -32,7 +32,7 @@
    },
    {
       "name": "Denver Bicycle Lobby",
-      "logo": "/partners/denver-bicycle-lobby.png",
+      "logo": "/partners/dbl.png",
       "url": "https://denverbicyclelobby.com/",
       "instagram": "@denverbicyclelobby",
       "ready": true

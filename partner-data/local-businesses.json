@@ -8,14 +8,14 @@
    },
    {
       "name": "Stowe Trunks",
-      "logo": "/partners/stowe-trunks.png",
+      "logo": "/partners/stowe.jpeg",
       "url": "https://www.stowetrunks.com",
       "instagram": "@stowetrunks",
       "ready": true
    },
    {
       "name": "City Cast Denver",
-      "logo": "/partners/city-cast-denver.png",
+      "logo": "/sponsors/city-cast-denver.png",
       "url": "https://denver.citycast.fm",
       "instagram": "@citycastdenver",
       "ready": true
@@ -29,7 +29,7 @@
    },
    {
       "name": "Z Cycle Shop",
-      "logo": "/partners/z-cycle-shop.png",
+      "logo": "/sponsors/z-cycle.png",
       "url": "https://www.zcycledenver.org/",
       "instagram": "@zcycleshop",
       "ready": true
@@ -42,7 +42,7 @@
    },
    {
       "name": "Topo Designs",
-      "logo": "/partners/topo-designs.png",
+      "logo": "/partners/topo-designs.jpg",
       "url": "https://topodesigns.com/",
       "instagram": "@topodesigns",
       "ready": true
