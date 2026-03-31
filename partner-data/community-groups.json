@@ -1,0 +1,47 @@
+[
+   {
+      "name": "Wash Park Crewzers",
+      "logo": "/partners/crewzers.png",
+      "instagram": "@wash_park_crewzers",
+      "ready": true
+   },
+   {
+      "name": "SkidMarks Bike Club",
+      "logo": "/partners/skidmarks.png",
+      "instagram": "@skidmarksbc",
+      "ready": false
+   },
+   {
+      "name": "Littleton Social Cycle",
+      "logo": "/partners/littleton-social-cycle.png",
+      "url": "https://www.littletonsocialcycle.com/",
+      "instagram": "@littletonsocialcycle",
+      "ready": true
+   },
+   {
+      "name": "Chains of Strength",
+      "logo": "/partners/chains.png",
+      "instagram": "@chains.of.strength",
+      "ready": false
+   },
+   {
+      "name": "Bike and Brew Denver",
+      "logo": "/partners/bike-and-brew.png",
+      "instagram": "@bikeandbrewdenver",
+      "ready": true
+   },
+   {
+      "name": "Denver Bicycle Lobby",
+      "logo": "/partners/dbl.png",
+      "url": "https://denverbicyclelobby.com/",
+      "instagram": "@denverbicyclelobby",
+      "ready": true
+   },
+   {
+      "name": "Denver Critical Mass",
+      "logo": "/partners/denver-critical-mass.png",
+      "url": "https://denvercriticalmass.org/",
+      "instagram": "@criticalmassdenver",
+      "ready": false
+   }
+]

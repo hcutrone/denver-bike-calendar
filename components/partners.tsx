@@ -8,7 +8,7 @@ import {
    Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
-import { featuredPartners } from "../partner-data";
+import { featuredPartners } from "../partner-data/partner-data";
 
 export function Partners() {
    return (

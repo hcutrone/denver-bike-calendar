@@ -1,0 +1,86 @@
+[
+   {
+      "name": "We Ride 4",
+      "logo": "/partners/we-ride-4.png",
+      "url": "https://weride4.org/",
+      "instagram": "@weridefor",
+      "ready": true
+   },
+   {
+      "name": "Way to Go",
+      "logo": "/partners/way-to-go.png",
+      "url": "https://waytogo.org/",
+      "instagram": "@drcog_waytogo",
+      "ready": false
+   },
+   {
+      "name": "Bike Law CO",
+      "logo": "/partners/bike-law.png",
+      "url": "https://denverbicyclelaw.com/colorado-bicycle-laws",
+      "instagram": "@bicycleattorney",
+      "ready": true
+   },
+   {
+      "name": "Denver Food Rescue",
+      "logo": "/partners/denver-food-rescue.png",
+      "url": "https://denverfoodrescue.org",
+      "instagram": "@denverfoodrescue",
+      "ready": false
+   },
+   {
+      "name": "Front Rangers Cycling Club",
+      "logo": "/partners/front-rangers.jpg",
+      "url": "https://www.frontrangersdenver.org/",
+      "instagram": "@frontrangers",
+      "ready": true
+   },
+   {
+      "name": "Department of Transportation and Infrastructure / Community Active Living Coalition",
+      "logo": "/partners/doti.png",
+      "url": "https://denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Transportation-and-Infrastructure",
+      "instagram": "@denverdoti",
+      "ready": true
+   },
+   {
+      "name": "American Diabetes Association",
+      "logo": "/partners/american-diabetes-association.png",
+      "url": "https://tour.diabetes.org/743",
+      "instagram": "@am.diabetes_rockymountain",
+      "ready": true
+   },
+   {
+      "name": "Denver Streets Partnership",
+      "logo": "/sponsors/denver-streets-partnership.png",
+      "url": "https://denverstreetspartnership.org/",
+      "instagram": "@bikewalkbus",
+      "ready": true
+   },
+   {
+      "name": "Sun Valley Youth Center",
+      "logo": "/partners/sun-valley-youth-center.webp",
+      "url": "https://www.sunvalleyyouthcenter.org/",
+      "instagram": "@sunvalleyyouthcenter",
+      "ready": true
+   },
+   {
+      "name": "Bikes Together",
+      "logo": "/partners/bikes-together.png",
+      "url": "https://www.bikestogether.org/",
+      "instagram": "@bikes.together",
+      "ready": true
+   },
+   {
+      "name": "Office of Climate Action, Sustainability, and Resiliency (CASR)",
+      "logo": "/partners/casr.jpg",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Climate-Action-Sustainability-and-Resiliency/About-Us",
+      "instagram": "@denvercasr",
+      "ready": true
+   },
+   {
+      "name": "Bicycle Colorado",
+      "logo": "/partners/bicycle-colorado.png",
+      "url": "https://bicyclecolorado.org/",
+      "instagram": "@bicyclecolo",
+      "ready": true
+   }
+]

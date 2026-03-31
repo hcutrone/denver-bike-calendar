@@ -8,7 +8,7 @@ import {
    Partners,
    SponsorCTA,
    Sponsors,
-   // WhoWeAre,
+   WhoWeAre,
 } from "@/components";
 
 export default async function Home() {
@@ -18,7 +18,7 @@ export default async function Home() {
          <General />
          <Partners />
          <Sponsors />
-         {/* <WhoWeAre /> */}
+         <WhoWeAre />
          <SponsorCTA />
          <ContactUs />
       </>

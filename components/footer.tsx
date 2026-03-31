@@ -78,7 +78,7 @@ export function Footer() {
                </Text>
                <Box>
                   <Avatar
-                     src="/bike-this-city.png"
+                     src="/emily.jpg"
                      fallback="EK"
                      alt="Emily Klienfelter"
                      size="2"
