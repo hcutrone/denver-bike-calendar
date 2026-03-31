@@ -47,6 +47,7 @@ export default function PartnersPage() {
             </Text>
          </Flex>
          <PartnerTiers />
+         <FoodVendorInfo />
          <Flex justify="center">
             <Heading
                as="h2"
@@ -185,3 +186,68 @@ function RegisterButton() {
       </Flex>
    );
 }
+
+const FoodVendorInfo = () => (
+   <Flex
+      p="16px"
+      gap="16px"
+      style={{ backgroundColor: "var(--dark-green)", borderRadius: "25px" }}
+   >
+      <Flex
+         style={{
+            backgroundColor: "var(--dark-green)",
+            borderRadius: "20px",
+            border: "5px solid var(--light-background)",
+         }}
+         width="100%"
+         direction={{ initial: "column", sm: "row" }}
+         gap="8px"
+      >
+         <Flex m="16px" justify="center" align="center">
+            <Heading
+               as="h2"
+               size={{ initial: "6", sm: "7", md: "8" }}
+               style={{ color: "var(--light-background)", textAlign: "center" }}
+               weight={"bold"}
+            >
+               Food & Drink Vendors
+            </Heading>
+         </Flex>
+         <Flex
+            px={{ initial: "0px", sm: "16px" }}
+            py={{ initial: "16px", sm: "0px" }}
+            align="center"
+            justify={"center"}
+            style={{ backgroundColor: "var(--light-background)" }}
+         >
+            <Text
+               size={{ initial: "6", sm: "8", md: "8" }}
+               style={{ color: "var(--dark-green)" }}
+               weight="bold"
+            >
+               $250
+            </Text>
+         </Flex>
+         <ul
+            style={{
+               listStyleType: "disc",
+               paddingInline: "32px",
+               paddingBlock: "16px",
+            }}
+         >
+            <li style={{ color: "var(--light-background)" }}>
+               <Text>{`For food or non-alcoholic beverage trucks, carts, and vendors`}</Text>
+            </li>
+            <li style={{ color: "var(--light-background)" }}>
+               <Text>{`Must meet all Denver food permitting requirements`}</Text>
+            </li>
+            <li style={{ color: "var(--light-background)" }}>
+               <Text>{`Must provide own power source`}</Text>
+            </li>
+            <li style={{ color: "var(--light-background)" }}>
+               <Text>{`10'x10' space provided`}</Text>
+            </li>
+         </ul>
+      </Flex>
+   </Flex>
+);
