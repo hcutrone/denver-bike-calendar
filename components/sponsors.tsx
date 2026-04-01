@@ -44,17 +44,12 @@ const sponsorTiers = [
          {
             name: "Z Cycle",
             url: "https://www.zcycledenver.com/",
-            logo: "/partners/zcycle.png",
+            logo: "/sponsors/z-cycle.png",
          },
          {
             name: "Way to Go",
             url: "https://drcog.org/way-to-go",
             logo: "/sponsors/way-to-go.png",
-         },
-         {
-            name: "DUDE, IDK Studios",
-            url: "https://www.dudeidkstudios.com/",
-            logo: "/sponsors/dude-idk.avif",
          },
       ],
    },
