@@ -44,7 +44,7 @@ const sponsorTiers = [
          {
             name: "Z Cycle",
             url: "https://www.zcycledenver.com/",
-            logo: "/partners/zcycle.png",
+            logo: "/sponsors/z-cycle.png",
          },
          {
             name: "Way to Go",
