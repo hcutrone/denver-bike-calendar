@@ -51,11 +51,6 @@ const sponsorTiers = [
             url: "https://drcog.org/way-to-go",
             logo: "/sponsors/way-to-go.png",
          },
-         {
-            name: "DUDE, IDK Studios",
-            url: "https://www.dudeidkstudios.com/",
-            logo: "/sponsors/dude-idk.avif",
-         },
       ],
    },
 ];
