@@ -8,10 +8,10 @@
    },
    {
       "name": "Way to Go",
-      "logo": "/partners/way-to-go.png",
+      "logo": "/sponsors/way-to-go.png",
       "url": "https://waytogo.org/",
       "instagram": "@drcog_waytogo",
-      "ready": false
+      "ready": true
    },
    {
       "name": "Bike Law CO",
@@ -25,7 +25,7 @@
       "logo": "/partners/denver-food-rescue.png",
       "url": "https://denverfoodrescue.org",
       "instagram": "@denverfoodrescue",
-      "ready": false
+      "ready": true
    },
    {
       "name": "Front Rangers Cycling Club",
@@ -82,5 +82,11 @@
       "url": "https://bicyclecolorado.org/",
       "instagram": "@bicyclecolo",
       "ready": true
+   },
+   {
+      "name": "RTD Board of Directors",
+      "logo": "/partners/rtd.png",
+      "url": "https://www.rtd-denver.com/about-rtd/board-of-directors",
+      "ready": false
    }
 ]
