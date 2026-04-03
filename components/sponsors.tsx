@@ -72,7 +72,7 @@ const sponsorTiers = [
    {
       name: "Strider",
       logo: "/strider.png",
-      color: "#c9d8c5",
+      color: "#d5c38a",
       imageSize: 75,
       sponsors: [
          {
@@ -202,7 +202,7 @@ const SponsorSpace = ({
    <Box
       style={{
          width: "100%",
-         height: `${200 - index * 50}px`,
+         height: `${225 - index * 50}px`,
       }}
    >
       <Flex
