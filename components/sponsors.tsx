@@ -33,7 +33,18 @@ const sponsorTiers = [
       logo: "/cargo.png",
       color: "#d8af53",
       imageSize: 150,
-      sponsors: [],
+      sponsors: [
+         {
+            name: "ALSO.",
+            url: "https://www.ridealso.com/",
+            logo: "/sponsors/also.png",
+         },
+         {
+            name: "RTD Board of Directors",
+            url: "https://www.rtd-denver.com/about-rtd/board-of-directors",
+            logo: "/sponsors/rtd.png",
+         },
+      ],
    },
    {
       name: "Cruiser",
@@ -42,14 +53,47 @@ const sponsorTiers = [
       imageSize: 100,
       sponsors: [
          {
+            name: "Way to Go",
+            url: "https://drcog.org/way-to-go",
+            logo: "/sponsors/way-to-go.png",
+         },
+         {
+            name: "Denver Streets Partnership",
+            url: "https://denverstreets.org/",
+            logo: "/sponsors/denver-streets-partnership.png",
+         },
+         {
+            name: "Bicycle Colorado",
+            url: "https://bicyclecolorado.org/",
+            logo: "/partners/bicycle-colorado.png",
+         },
+      ],
+   },
+   {
+      name: "Strider",
+      logo: "/strider.png",
+      color: "#d5c38a",
+      imageSize: 75,
+      sponsors: [
+         {
+            name: "Denver Food Rescue",
+            url: "https://denverfoodrescue.org",
+            logo: "/partners/denver-food-rescue.png",
+         },
+         {
+            name: "Out & Back Outdoor",
+            url: "https://www.outandback.com/",
+            logo: "/partners/out-and-back-outdoor.png",
+         },
+         {
             name: "Z Cycle",
             url: "https://www.zcycledenver.com/",
             logo: "/sponsors/z-cycle.png",
          },
          {
-            name: "Way to Go",
-            url: "https://drcog.org/way-to-go",
-            logo: "/sponsors/way-to-go.png",
+            name: "Topo Designs",
+            url: "https://topodesigns.com/",
+            logo: "/partners/topo-designs.jpg",
          },
       ],
    },
@@ -158,7 +202,7 @@ const SponsorSpace = ({
    <Box
       style={{
          width: "100%",
-         height: `${200 - index * 50}px`,
+         height: `${225 - index * 50}px`,
       }}
    >
       <Flex

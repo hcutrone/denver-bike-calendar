@@ -7,9 +7,9 @@
    },
    {
       "name": "SkidMarks Bike Club",
-      "logo": "/partners/skidmarks.png",
+      "logo": "/partners/skidmarks.jpg",
       "instagram": "@skidmarksbc",
-      "ready": false
+      "ready": true
    },
    {
       "name": "Littleton Social Cycle",
@@ -22,7 +22,7 @@
       "name": "Chains of Strength",
       "logo": "/partners/chains.png",
       "instagram": "@chains.of.strength",
-      "ready": false
+      "ready": true
    },
    {
       "name": "Bike and Brew Denver",
@@ -42,6 +42,12 @@
       "logo": "/partners/denver-critical-mass.png",
       "url": "https://denvercriticalmass.org/",
       "instagram": "@criticalmassdenver",
-      "ready": false
+      "ready": true
+   },
+   {
+      "name": "High Plains Record Exchange",
+      "logo": "/partners/high-plains.png",
+      "instagram": "@high_plains_record_exchange",
+      "ready": true
    }
 ]

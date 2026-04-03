@@ -36,15 +36,15 @@
    },
    {
       "name": "ALSO.",
-      "logo": "/partners/also.png",
+      "logo": "/sponsors/also.png",
       "url": "https://www.ridealso.com/",
-      "ready": false
+      "ready": true
    },
    {
       "name": "Topo Designs",
       "logo": "/partners/topo-designs.jpg",
       "url": "https://topodesigns.com/",
       "instagram": "@topodesigns",
-      "ready": false
+      "ready": true
    }
 ]
