@@ -56,7 +56,7 @@ export default function PartnersPage() {
                size={{ initial: "5", sm: "6", md: "7" }}
                style={{ color: "black", textAlign: "center" }}
             >
-               Here are some of the amazing 2025 Partners!
+               Come See Our 2026 Partners!
             </Heading>
          </Flex>
          {partners.map((partner) => (
