@@ -67,6 +67,11 @@ const sponsorTiers = [
             url: "https://bicyclecolorado.org/",
             logo: "/partners/bicycle-colorado.png",
          },
+         {
+            name: "Ripton",
+            url: "https://www.riptonco.com",
+            logo: "/partners/ripton.tiff",
+         }
       ],
    },
    {
