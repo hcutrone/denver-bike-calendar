@@ -46,5 +46,31 @@
       "url": "https://topodesigns.com/",
       "instagram": "@topodesigns",
       "ready": true
+   },
+   {
+      "name": "Bike Streets",
+      "logo": "/partners/bike-streets.png",
+      "url": "https://www.bikestreets.com/",
+      "ready": true
+   },
+   {
+      "name": "Cohesion Brewing",
+      "logo": "/partners/cohesion.png",
+      "url": "https://cohesionbeer.com/",
+      "instagram": "@cohesionbeer",
+      "ready": true
+   },
+   {
+      "name": "Ripton",
+      "logo": "/partners/ripton.png",
+      "url": "https://www.riptonco.com/",
+      "instagram": "@ripton_co",
+      "ready": true
+   },
+   {
+      "name": "ROVR",
+      "logo": "/partners/rovr.png",
+      "url": "https://rovrproducts.com/",
+      "ready": true
    }
 ]
