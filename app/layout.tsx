@@ -124,7 +124,7 @@ const jsonLd: WithContext<Event> = {
       name: "York Street Yards",
       address: {
          "@type": "PostalAddress",
-         streetAddress: "3821-3893 Steele Street",
+         streetAddress: "3845 Steele Street",
          addressLocality: "Denver",
          addressRegion: "CO",
          postalCode: "80205",
