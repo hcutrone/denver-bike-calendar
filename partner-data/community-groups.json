@@ -19,12 +19,6 @@
       "ready": true
    },
    {
-      "name": "Chains of Strength",
-      "logo": "/partners/chains.png",
-      "instagram": "@chains.of.strength",
-      "ready": true
-   },
-   {
       "name": "Bike and Brew Denver",
       "logo": "/partners/bike-and-brew.png",
       "instagram": "@bikeandbrewdenver",
@@ -45,9 +39,28 @@
       "ready": true
    },
    {
+      "name": "Big Dumb Rides",
+      "logo": "/partners/big-dumb-rides.png",
+      "instagram": "@bigdumbrides",
+      "ready": true
+   },
+   {
       "name": "High Plains Record Exchange",
       "logo": "/partners/high-plains.png",
       "instagram": "@high_plains_record_exchange",
+      "ready": true
+   },
+   {
+      "name": "Denver Cruiser Ride",
+      "logo": "/partners/denver-cruiser-ride.png",
+      "url": "https://denvercruiserride.com/",
+      "ready": true
+   },
+   {
+      "name": "Mayor's Bicycle Advisory Committee",
+      "logo": "/partners/mbac.png",
+      "url": "https://denvergov.org/Government/Agencies-Departments-O",
+      "instagram": "@mbacdenver",
       "ready": true
    }
 ]
