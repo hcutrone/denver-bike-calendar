@@ -174,11 +174,18 @@ export function Partners() {
 export const PartnerCard = ({
    group,
 }: {
-   group: { name: string; logo: string };
+   group: { name: string; logo: string; url?: string; instagram?: string };
 }) => {
    const imageSizing = { initial: "150px", sm: "175px", md: "200px" };
+   const groupUrl =
+      group.url ??
+      (group.instagram
+         ? "https://www.instagram.com/" + group.instagram.substring(1)
+         : "#");
    return (
       <Flex
+         asChild
+         className="hover-highlight-yellow-orange"
          direction="column"
          align="center"
          justify="between"
@@ -190,37 +197,39 @@ export const PartnerCard = ({
             borderRadius: "8px",
          }}
       >
-         <Flex
-            minHeight={imageSizing}
-            minWidth={imageSizing}
-            align="center"
-            justify="center"
-            position="relative"
-         >
-            <Image
-               src={group.logo}
-               alt={group.name}
-               fill
-               style={{ objectFit: "contain", maxHeight: "200px" }}
-            />
-         </Flex>
-         <Flex
-            p={{ initial: "4px", sm: "6px", md: "8px" }}
-            width="100%"
-            height="100%"
-            justify="center"
-            align="center"
-            style={{ backgroundColor: "var(--dark-green)" }}
-         >
-            <Text
+         <Link href={groupUrl} target="_blank">
+            <Flex
+               minHeight={imageSizing}
+               minWidth={imageSizing}
                align="center"
-               size={{ initial: "3", md: "4" }}
-               weight={"medium"}
-               style={{ color: "var(--light-background)" }}
+               justify="center"
+               position="relative"
             >
-               {group.name}
-            </Text>
-         </Flex>
+               <Image
+                  src={group.logo}
+                  alt={group.name}
+                  fill
+                  style={{ objectFit: "contain", maxHeight: "200px" }}
+               />
+            </Flex>
+            <Flex
+               p={{ initial: "4px", sm: "6px", md: "8px" }}
+               width="100%"
+               height="100%"
+               justify="center"
+               align="center"
+               style={{ backgroundColor: "var(--dark-green)" }}
+            >
+               <Text
+                  align="center"
+                  size={{ initial: "3", md: "4" }}
+                  weight={"medium"}
+                  style={{ color: "var(--light-background)" }}
+               >
+                  {group.name}
+               </Text>
+            </Flex>
+         </Link>
       </Flex>
    );
 };
