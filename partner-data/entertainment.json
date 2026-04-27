@@ -1,0 +1,23 @@
+[
+   {
+      "name": "DJ Willy Sunshine",
+      "logo": "/partners/dj-willy-sunshine.png",
+      "ready": true
+   },
+   {
+      "name": "Day Job Music",
+      "logo": "/partners/day-job.png",
+      "ready": true
+   },
+   {
+      "name": "Boys Wiith Blue",
+      "logo": "/partners/boys-with-blue.png",
+      "ready": false
+   },
+   { "name": "modrn", "logo": "/partners/modrn.png", "ready": false },
+   {
+      "name": "YUGS",
+      "logo": "/partners/yugs.png",
+      "ready": false
+   }
+]

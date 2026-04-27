@@ -62,15 +62,37 @@
    },
    {
       "name": "Ripton",
-      "logo": "/partners/ripton.tiff",
+      "logo": "/partners/ripton.webp",
       "url": "https://www.riptonco.com/",
       "instagram": "@ripton_co",
       "ready": true
    },
    {
-      "name": "ROVR",
+      "name": "ROVR Products",
       "logo": "/partners/rovr.png",
       "url": "https://rovrproducts.com/",
+      "instagram": "@rovrproducts",
       "ready": true
+   },
+   {
+      "name": "Happy Llama",
+      "logo": "/partners/happy-llama.png",
+      "url": "https://www.happyllamainc.com/",
+      "instagram": "@happyllamadenver",
+      "ready": true
+   },
+   {
+      "name": "Pedal Stoke",
+      "logo": "/partners/pedal-stoke.png",
+      "url": "https://pedalstoke.com/",
+      "instagram": "@pedal_stoke",
+      "ready": false
+   },
+   {
+      "name": "The Ride Collective",
+      "logo": "/partners/ride-collective.png",
+      "url": "https://theridecollective.com/",
+      "instagram": "@theridecollective",
+      "ready": false
    }
 ]

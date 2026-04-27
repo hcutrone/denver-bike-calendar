@@ -40,7 +40,7 @@
    },
    {
       "name": "Big Dumb Rides",
-      "logo": "/partners/big-dumb-rides.png",
+      "logo": "/partners/big-dumb-rides.svg",
       "instagram": "@bigdumbrides",
       "ready": true
    },
@@ -62,5 +62,10 @@
       "url": "https://denvergov.org/Government/Agencies-Departments-O",
       "instagram": "@mbacdenver",
       "ready": true
+   },
+   {
+      "name": "SCORCHERS B/C",
+      "logo": "/partners/scorchers.png",
+      "ready": false
    }
 ]
