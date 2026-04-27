@@ -12,5 +12,26 @@
       "url": "https://cateringgolden.com",
       "instagram": "@muylocotacos",
       "ready": true
+   },
+   {
+      "name": "OG Burgers",
+      "logo": "/partners/og-burgers.webp",
+      "url": "https://ogburgers.co",
+      "instagram": "@OGBurger_Denver",
+      "ready": true
+   },
+   {
+      "name": "Little Bodega",
+      "logo": "/partners/little-bodega.png",
+      "url": "https://littlebodegadenver.com",
+      "instagram": "@littlebodegadenver",
+      "ready": true
+   },
+   {
+      "name": "Mama Kabob",
+      "logo": "/partners/mama-kabob.jpeg",
+      "url": "https://www.mamakabob.net",
+      "instagram": "@mamakabob",
+      "ready": true
    }
 ]

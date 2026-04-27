@@ -26,6 +26,16 @@ const sponsorTiers = [
             url: "https://www.cohesionbeer.com/",
             logo: "/sponsors/cohesion-brewing.png",
          },
+         {
+            name: "RTD",
+            url: "https://www.rtd-denver.com/",
+            logo: "/sponsors/rtd.jpg",
+         },
+         {
+            name: "CASR",
+            url: "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Climate-Action-Sustainability-and-Resiliency",
+            logo: "/partners/casr.jpg",
+         },
       ],
    },
    {
@@ -38,11 +48,6 @@ const sponsorTiers = [
             name: "ALSO.",
             url: "https://www.ridealso.com/",
             logo: "/sponsors/also.png",
-         },
-         {
-            name: "RTD Board of Directors",
-            url: "https://www.rtd-denver.com/about-rtd/board-of-directors",
-            logo: "/sponsors/rtd.png",
          },
       ],
    },
@@ -70,8 +75,8 @@ const sponsorTiers = [
          {
             name: "Ripton",
             url: "https://www.riptonco.com",
-            logo: "/partners/ripton.tiff",
-         }
+            logo: "/partners/ripton.webp",
+         },
       ],
    },
    {
@@ -99,6 +104,11 @@ const sponsorTiers = [
             name: "Topo Designs",
             url: "https://topodesigns.com/",
             logo: "/partners/topo-designs.jpg",
+         },
+         {
+            name: "Happy Llama",
+            url: "https://www.happyllamainc.com/",
+            logo: "/partners/happy-llama.png",
          },
       ],
    },

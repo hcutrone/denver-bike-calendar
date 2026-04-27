@@ -72,7 +72,7 @@
    {
       "name": "Office of Climate Action, Sustainability, and Resiliency (CASR)",
       "logo": "/partners/casr.jpg",
-      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Climate-Action-Sustainability-and-Resiliency/About-Us",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Climate-Action-Sustainability-and-Resiliency",
       "instagram": "@denvercasr",
       "ready": false
    },
@@ -100,6 +100,34 @@
       "logo": "/partners/afca.png",
       "url": "https://americasforconservation.com/",
       "instagram": "@afcanatura",
+      "ready": true
+   },
+   {
+      "name": "Outspokin",
+      "logo": "/partners/outspokin.png",
+      "url": "https://www.outspokin.org/",
+      "instagram": "@outspokin_denver",
+      "ready": true
+   },
+   {
+      "name": "Outride",
+      "logo": "/partners/outride.png",
+      "url": "https://www.outridebike.org/",
+      "instagram": "@outride",
+      "ready": true
+   },
+   {
+      "name": "Denver Public Library",
+      "logo": "/partners/denver-public-library.jpg",
+      "url": "https://www.denverlibrary.org/",
+      "instagram": "@denverlibrary",
+      "ready": true
+   },
+   {
+      "name": "RTD",
+      "logo": "/sponsors/rtd.jpg",
+      "url": "https://www.rtd-denver.com/",
+      "instagram": "@ridertd",
       "ready": true
    }
 ]

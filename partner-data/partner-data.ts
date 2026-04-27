@@ -14,7 +14,7 @@ export const partners = [
       header: "Nonprofit Organizations & Government Agencies",
       groups: nonProfits,
    },
-   { header: "Local Businesses", groups: localBusinesses },
+   { header: "Businesses", groups: localBusinesses },
    { header: "Food Vendors", groups: foodVendors },
 ];
 
@@ -24,7 +24,7 @@ export const featuredPartners = [
       header: "Nonprofit Organizations & Government Agencies",
       groups: nonProfits.slice(0, 8),
    },
-   { header: "Local Businesses", groups: localBusinesses.slice(0, 8) },
+   { header: "Businesses", groups: localBusinesses.slice(0, 8) },
    { header: "Food Vendors", groups: foodVendors.slice(0, 8) },
 ];
 
