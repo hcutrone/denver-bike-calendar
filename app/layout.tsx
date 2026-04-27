@@ -73,7 +73,7 @@ export const metadata: Metadata = {
          url: "https://instagram.com/harrisoncutrone",
       },
       {
-         name: "Emily Klienfelter",
+         name: "Emily Kleinfelter",
          url: "https://instagram.com/bike.this.city",
       },
    ],

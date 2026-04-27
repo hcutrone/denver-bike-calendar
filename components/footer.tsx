@@ -80,14 +80,14 @@ export function Footer() {
                   <Avatar
                      src="/emily.jpg"
                      fallback="EK"
-                     alt="Emily Klienfelter"
+                     alt="Emily Kleinfelter"
                      size="2"
                   />
                   <Text
                      size={{ initial: "2", sm: "3" }}
                      style={{ marginLeft: "8px" }}
                   >
-                     Emily Klienfelter (
+                     Emily Kleinfelter (
                      <Link
                         href="https://instagram.com/bike.this.city"
                         style={{
