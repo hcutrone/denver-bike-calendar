@@ -8,6 +8,7 @@ import {
    Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
+import { PartnerCard } from "./partners";
 
 const sponsorTiers = [
    {
@@ -71,7 +72,7 @@ const sponsorTiers = [
             name: "Bicycle Colorado",
             url: "https://bicyclecolorado.org/",
             logo: "/partners/bicycle-colorado.png",
-         }
+         },
       ],
    },
    {
@@ -176,7 +177,6 @@ export function Sponsors() {
                <SponsorSpace
                   sponsors={tier.sponsors}
                   imageSize={tier.imageSize}
-                  index={idx}
                />
                {idx < sponsorTiers.length - 1 && (
                   <Separator
@@ -203,55 +203,29 @@ export function Sponsors() {
 const SponsorSpace = ({
    sponsors,
    imageSize,
-   index,
 }: {
    sponsors: { name: string; url: string; logo: string }[];
    imageSize: number;
-   index: number;
-}) => (
-   <Box
-      style={{
-         width: "100%",
-         height: `${225 - index * 50}px`,
-      }}
-   >
-      <Flex
-         direction="row"
-         justify="center"
-         align="center"
-         gap="16px"
-         wrap="wrap"
-      >
-         {sponsors.map((sponsor) => (
-            <Flex
-               key={sponsor.name}
-               minHeight={`${imageSize}px`}
-               minWidth={`${imageSize}px`}
-               align="center"
-               justify="center"
-               position="relative"
-            >
-               <Link
-                  href={sponsor.url}
-                  target="_blank"
-                  style={{ width: "100%", height: "100%" }}
-               >
-                  <Image
-                     className="hover-highlight-yellow-orange"
-                     src={sponsor.logo}
-                     alt={sponsor.name}
-                     fill
-                     style={{
-                        objectFit: "contain",
-                        maxHeight: `${imageSize}px`,
-                        borderRadius: "12px",
-                        padding: "4px",
-                        backgroundColor: "var(--light-background)",
-                     }}
-                  />
-               </Link>
-            </Flex>
-         ))}
-      </Flex>
-   </Box>
-);
+}) => {
+   const imageSizing = { initial: `${imageSize}px` };
+   return (
+      <Box width="100%" px="8px">
+         <Flex
+            direction="row"
+            justify="center"
+            align="center"
+            gap="16px"
+            wrap="wrap"
+         >
+            {sponsors.map((sponsor) => (
+               <PartnerCard
+                  key={sponsor.name}
+                  {...sponsor}
+                  imageSizing={imageSizing}
+                  highlightClass="hover-highlight-yellow-orange"
+               />
+            ))}
+         </Flex>
+      </Box>
+   );
+};
