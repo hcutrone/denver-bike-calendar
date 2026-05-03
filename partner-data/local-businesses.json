@@ -79,6 +79,13 @@
       "logo": "/partners/ride-collective.png",
       "url": "https://theridecollective.com/",
       "instagram": "@theridecollective",
-      "ready": false
+      "ready": true
+   },
+   {
+      "name": "Veo",
+      "logo": "/partners/veo.png",
+      "url": "https://www.veoride.com/",
+      "instagram": "@veomobility",
+      "ready": true
    }
 ]
