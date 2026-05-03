@@ -1,4 +1,5 @@
 import communityGroupsRaw from "./community-groups.json";
+import entertainmentRaw from "./entertainment.json";
 import foodVendorsRaw from "./food-vendors.json";
 import localBusinessesRaw from "./local-businesses.json";
 import nonProfitsRaw from "./non-profits.json";
@@ -7,15 +8,18 @@ const communityGroups = communityGroupsRaw.filter((group) => group.ready);
 const foodVendors = foodVendorsRaw.filter((vendor) => vendor.ready);
 const localBusinesses = localBusinessesRaw.filter((business) => business.ready);
 const nonProfits = nonProfitsRaw.filter((org) => org.ready);
+const entertainment = entertainmentRaw.filter((ent) => ent.ready);
 
 export const partners = [
-   { header: "Community Groups", groups: communityGroups },
+   { header: "Community Groups", groups: communityGroups, id: "community" },
    {
       header: "Nonprofit Organizations & Government Agencies",
       groups: nonProfits,
+      id: "nonProfits",
    },
-   { header: "Businesses", groups: localBusinesses },
-   { header: "Food Vendors", groups: foodVendors },
+   { header: "Businesses", groups: localBusinesses, id: "businesses" },
+   { header: "Food & Drink Vendors", groups: foodVendors, id: "vendors" },
+   { header: "Music", groups: entertainment, id: "music" },
 ];
 
 export const featuredPartners = [

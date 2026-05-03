@@ -136,6 +136,16 @@ export const General = () => (
                      >
                         {item.description}
                      </Text>
+                     <Flex asChild pt={"8px"} width="fit-content">
+                        <Link href={item.buttonLink} underline="always">
+                           <Text
+                              size={{ initial: "4", sm: "5", md: "6" }}
+                              style={{ color: "var(--dark-green)" }}
+                           >
+                              {`See our ${item.buttonText} >`}
+                           </Text>
+                        </Link>
+                     </Flex>
                   </Flex>
                </Flex>
                {idx !== whatToExpect.length - 1 && (
@@ -147,46 +157,6 @@ export const General = () => (
                )}
             </Fragment>
          ))}
-
-         <Flex
-            direction="column"
-            my={{ initial: "20px", sm: "22px", md: "24px" }}
-            mx="auto"
-            style={{ textAlign: "center" }}
-            gap="8px"
-         >
-            <Text
-               size={{ initial: "5", sm: "6", md: "7" }}
-               style={{ color: "var(--dark-green)" }}
-            >
-               Learn more:
-            </Text>
-            <Button
-               asChild
-               radius="full"
-               style={{
-                  backgroundColor: "var(--dark-green)",
-                  fontFamily: "var(--font-poppins)",
-                  cursor: "pointer",
-               }}
-            >
-               <Flex
-                  asChild
-                  p={{ initial: "16px", sm: "20px", md: "24px" }}
-                  width="fit-content"
-               >
-                  <Link href="/partners" underline="none">
-                     <Text
-                        size={{ initial: "5", sm: "6", md: "7" }}
-                        style={{ color: "var(--light-background)" }}
-                        weight="bold"
-                     >
-                        2026 PARTNERS
-                     </Text>
-                  </Link>
-               </Flex>
-            </Button>
-         </Flex>
       </ContentContainer>
       <Box
          width="100%"
@@ -456,16 +426,22 @@ const whatToExpect = [
       description:
          "Meet over 25 local bike organizations, community groups, and shops that make Denver a better place to ride.",
       image: "/community-connections.png",
+      buttonText: "2026 Partners",
+      buttonLink: "/partners#community",
    },
    {
       header: "Live Music and Entertainment",
       description:
          "Enjoy performances from local artists and bands throughout the day.",
       image: "/live-music.png",
+      buttonText: "2026 Music Lineup",
+      buttonLink: "/partners#music",
    },
    {
       header: "Food and Drink",
       description: "Grab a bite or drink from local food trucks and vendors.",
       image: "/food.png",
+      buttonText: "2026 Food & Drink Vendors",
+      buttonLink: "/partners#vendors",
    },
 ];

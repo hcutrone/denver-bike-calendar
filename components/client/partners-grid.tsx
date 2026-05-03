@@ -8,12 +8,17 @@ import { PartnerCard } from "@/components";
 export function CollapsiblePartnerGrid({
    partner,
 }: {
-   partner: { header: string; groups: { name: string; logo: string }[] };
+   partner: {
+      header: string;
+      groups: { name: string; logo: string }[];
+      id: string;
+   };
 }) {
    const [isOpen, setIsOpen] = useState(true);
    return (
       <Collapsible.Root open={isOpen} onOpenChange={setIsOpen}>
          <Flex
+            id={partner.id}
             direction="column"
             gap="16px"
             width="100%"
