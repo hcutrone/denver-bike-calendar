@@ -33,5 +33,12 @@
       "url": "https://www.mamakabob.net",
       "instagram": "@mamakabob",
       "ready": true
+   },
+   {
+      "name": "Cohesion Brewing",
+      "logo": "/sponsors/cohesion-brewing.png",
+      "url": "https://cohesionbeer.com/",
+      "instagram": "@cohesionbeer",
+      "ready": true
    }
 ]

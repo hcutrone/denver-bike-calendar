@@ -10,14 +10,14 @@
       "ready": true
    },
    {
-      "name": "Boys Wiith Blue",
+      "name": "Boys With Blue",
       "logo": "/partners/boys-with-blue.png",
-      "ready": false
+      "ready": true
    },
-   { "name": "modrn", "logo": "/partners/modrn.png", "ready": false },
+   { "name": "modrn", "logo": "/partners/modrn.png", "ready": true },
    {
       "name": "YUGS",
-      "logo": "/partners/yugs.png",
-      "ready": false
+      "logo": "/partners/yugs.jpeg",
+      "ready": true
    }
 ]
