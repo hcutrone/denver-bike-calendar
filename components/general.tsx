@@ -326,12 +326,35 @@ export const General = () => (
                         </Flex>
                      </Accordion.Trigger>
                      <Accordion.Content style={{ paddingTop: "8px" }}>
-                        <Text
-                           size={{ initial: "3", sm: "4", md: "5" }}
-                           style={{ color: "var(--dark-green)" }}
-                        >
-                           {q.answer}
-                        </Text>
+                        {typeof q.answer === "string" ? (
+                           <Text
+                              size={{ initial: "3", sm: "4", md: "5" }}
+                              style={{ color: "var(--dark-green)" }}
+                           >
+                              {q.answer}
+                           </Text>
+                        ) : (
+                           <ul
+                              style={{
+                                 listStyleType: "disc",
+                                 paddingLeft: "28px",
+                              }}
+                           >
+                              {q.answer.map((answer) => (
+                                 <li
+                                    key={answer}
+                                    style={{ paddingLeft: "8px" }}
+                                 >
+                                    <Text
+                                       size={{ initial: "3", sm: "4", md: "5" }}
+                                       style={{ color: "var(--dark-green)" }}
+                                    >
+                                       {answer}
+                                    </Text>
+                                 </li>
+                              ))}
+                           </ul>
+                        )}
                      </Accordion.Content>
                   </Accordion.Item>
                   {index !== faqs.length - 1 && (
@@ -369,8 +392,7 @@ const faqs = [
    },
    {
       question: "How much does it cost to attend?",
-      answer:
-         "Denver Bike Fest is FREE and open to the public to attend. Food and beverages, along with merchandise from vendors will be for sale at the festival. If you would like to participate as a Bike Partner, vendor, or musician, please see the Get Involved page.",
+      answer: "It's FREE!",
    },
    {
       question: "Is the event family-friendly?",
@@ -381,6 +403,50 @@ const faqs = [
       question: "Are there bathrooms?",
       answer:
          "Yes! There are multiple indoor common area bathrooms (with a total of 24 toilets/urinals) available and additional portable toilets will be available outdoors.",
+   },
+   {
+      question: "What should I bring to the fest?",
+      answer: [
+         "Reusable water bottle for water stations",
+         "Sunscreen/Hat/Sunscreen/Umbrella for that Colorado sun!",
+         "Camp chair, blanket, or towel to launge in the Yard",
+         "Camera (Non-pro digital and film, no flashes)",
+         "ID for adult beverages from Cohesion Brewing",
+         "Money for food, beverages, merch, and more!",
+      ],
+   },
+   {
+      question: "What's NOT allowed at the fest?",
+      answer: [
+         "Air horns",
+         "Aerosol products",
+         "Illicit substances",
+         "Marijuana and marijuana products",
+         "Outside alcohol",
+         "Fireworks and other explosives",
+         "Guns, knives, or other weapons",
+         "Glass bottles",
+      ],
+   },
+   {
+      question: "Can I bring my own alcohol to the fest?",
+      answer:
+         "Negative, ghost rider. No outside alcohol allowed. Same goes for illegal drugs.",
+   },
+   {
+      question: "Will alcohol be available?",
+      answer:
+         "Yes. Cohesion Brewing will serve beer in a designated 21 and over area. Please bring a valid government issued ID. Card and cash will be accepted.",
+   },
+   {
+      question: "What happens if the weather is bad?",
+      answer:
+         "Denver Bike Fest is a rain or shine event. In the case of severe weather, such as lightning or high wind, programming may be paused or modified for safety. Any major changes will be posted to Instagram at @denverbikefest.",
+   },
+   {
+      question: "Is the event ADA accessible?",
+      answer:
+         "Denver Bike Fest is committed to being welcoming for everyone. The venue is flat, paved, and stroller and wheelchair accessible. ADA accessible restrooms will be available on site. Accessible parking is available in the York Street Yards lot. If you have specific accessibility questions or requests, please email us at denverbikefest@gmail.com and we will do our best to accommodate.",
    },
 ];
 
