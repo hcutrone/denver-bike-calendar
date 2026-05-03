@@ -72,6 +72,7 @@ const DesktopHeader = () => (
             <Text size={{ initial: "3", sm: "6" }}>{label}</Text>
          </HeaderButton>
       ))}
+      <VolunteerButton />
       <DonateButton />
    </Flex>
 );
@@ -99,6 +100,34 @@ const DonateButton = () => (
             weight="bold"
          >
             Donate
+         </Text>
+      </Link>
+   </Button>
+);
+
+const VolunteerButton = () => (
+   <Button
+      asChild
+      style={{
+         padding: "18px",
+         cursor: "pointer",
+         fontFamily: "var(--font-poppins)",
+         backgroundColor: "var(--light-background)",
+         borderRadius: "12px",
+      }}
+   >
+      <Link
+         href="https://www.signupgenius.com/go/10C044AA8A92EA4F9CE9-63862642-volunteer"
+         target="_blank"
+         rel="noopener noreferrer"
+         underline="none"
+      >
+         <Text
+            size={{ initial: "3", sm: "6", md: "7" }}
+            style={{ color: "var(--dark-green)" }}
+            weight="bold"
+         >
+            Volunteer
          </Text>
       </Link>
    </Button>
