@@ -78,7 +78,11 @@ export default function PartnersPage() {
             </Heading>
          </Flex>
          {foodAndMusic.map((partner) => (
-            <CollapsiblePartnerGrid key={partner.header} partner={partner} variant="green" />
+            <CollapsiblePartnerGrid
+               key={partner.header}
+               partner={partner}
+               variant="green"
+            />
          ))}
       </Flex>
    );

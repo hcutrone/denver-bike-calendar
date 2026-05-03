@@ -1,12 +1,4 @@
-import {
-   Box,
-   Em,
-   Flex,
-   Heading,
-   Link,
-   Separator,
-   Text,
-} from "@radix-ui/themes";
+import { Box, Em, Flex, Heading, Separator, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { PartnerCard } from "./partners";
 

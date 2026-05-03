@@ -15,7 +15,7 @@ export function CollapsiblePartnerGrid({
       groups: PartnerType[];
       id: string;
    };
-   variant: "yellow" | "green";
+   variant?: "yellow" | "green";
 }) {
    const [isOpen, setIsOpen] = useState(true);
    const bgColor =
