@@ -119,3 +119,12 @@ body {
 .hover-highlight-yellow-orange:hover {
    border: 2px solid var(--orange-accent);
 }
+
+.hover-highlight-green-orange {
+   border: 2px solid var(--dark-green);
+   transition: border-color 0.3s ease;
+}
+
+.hover-highlight-green-orange:hover {
+   border: 2px solid var(--orange-accent);
+}

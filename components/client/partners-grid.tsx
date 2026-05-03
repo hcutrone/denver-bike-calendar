@@ -4,21 +4,31 @@ import { ChevronDownIcon, Flex, Grid, Text } from "@radix-ui/themes";
 import { Collapsible } from "radix-ui";
 import { useState } from "react";
 import { PartnerCard } from "@/components";
+import type { PartnerType } from "@/partner-data/partner-data";
 
 export function CollapsiblePartnerGrid({
    partner,
+   variant = "yellow",
 }: {
-   partner: { header: string; groups: { name: string; logo: string }[] };
+   partner: {
+      header: string;
+      groups: PartnerType[];
+      id: string;
+   };
+   variant?: "yellow" | "green";
 }) {
    const [isOpen, setIsOpen] = useState(true);
+   const bgColor =
+      variant === "yellow" ? "var(--yellow-accent)" : "var(--dark-green)";
    return (
       <Collapsible.Root open={isOpen} onOpenChange={setIsOpen}>
          <Flex
+            id={partner.id}
             direction="column"
             gap="16px"
             width="100%"
             style={{
-               backgroundColor: "var(--yellow-accent)",
+               backgroundColor: bgColor,
                borderRadius: "12px",
                padding: "16px",
             }}
@@ -66,7 +76,23 @@ export function CollapsiblePartnerGrid({
                      {partner.groups.map((group, index) => (
                         <PartnerCard
                            key={group.name + index.toString()}
-                           group={group}
+                           {...group}
+                           url={
+                              group.url ??
+                              (group.instagram
+                                 ? `https://www.instagram.com/${group.instagram.substring(1)}`
+                                 : "#")
+                           }
+                           highlightClass={
+                              variant === "yellow"
+                                 ? "hover-highlight-green-orange"
+                                 : "hover-highlight-yellow-orange"
+                           }
+                           imageSizing={{
+                              initial: "150px",
+                              sm: "175px",
+                              md: "200px",
+                           }}
                         />
                      ))}
                   </Grid>

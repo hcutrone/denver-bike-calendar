@@ -136,6 +136,16 @@ export const General = () => (
                      >
                         {item.description}
                      </Text>
+                     <Flex asChild pt={"8px"} width="fit-content">
+                        <Link href={item.buttonLink} underline="always">
+                           <Text
+                              size={{ initial: "4", sm: "5", md: "6" }}
+                              style={{ color: "var(--dark-green)" }}
+                           >
+                              {`See our ${item.buttonText} >`}
+                           </Text>
+                        </Link>
+                     </Flex>
                   </Flex>
                </Flex>
                {idx !== whatToExpect.length - 1 && (
@@ -147,46 +157,6 @@ export const General = () => (
                )}
             </Fragment>
          ))}
-
-         <Flex
-            direction="column"
-            my={{ initial: "20px", sm: "22px", md: "24px" }}
-            mx="auto"
-            style={{ textAlign: "center" }}
-            gap="8px"
-         >
-            <Text
-               size={{ initial: "5", sm: "6", md: "7" }}
-               style={{ color: "var(--dark-green)" }}
-            >
-               Learn more:
-            </Text>
-            <Button
-               asChild
-               radius="full"
-               style={{
-                  backgroundColor: "var(--dark-green)",
-                  fontFamily: "var(--font-poppins)",
-                  cursor: "pointer",
-               }}
-            >
-               <Flex
-                  asChild
-                  p={{ initial: "16px", sm: "20px", md: "24px" }}
-                  width="fit-content"
-               >
-                  <Link href="/partners" underline="none">
-                     <Text
-                        size={{ initial: "5", sm: "6", md: "7" }}
-                        style={{ color: "var(--light-background)" }}
-                        weight="bold"
-                     >
-                        2026 PARTNERS
-                     </Text>
-                  </Link>
-               </Flex>
-            </Button>
-         </Flex>
       </ContentContainer>
       <Box
          width="100%"
@@ -326,12 +296,35 @@ export const General = () => (
                         </Flex>
                      </Accordion.Trigger>
                      <Accordion.Content style={{ paddingTop: "8px" }}>
-                        <Text
-                           size={{ initial: "3", sm: "4", md: "5" }}
-                           style={{ color: "var(--dark-green)" }}
-                        >
-                           {q.answer}
-                        </Text>
+                        {typeof q.answer === "string" ? (
+                           <Text
+                              size={{ initial: "3", sm: "4", md: "5" }}
+                              style={{ color: "var(--dark-green)" }}
+                           >
+                              {q.answer}
+                           </Text>
+                        ) : (
+                           <ul
+                              style={{
+                                 listStyleType: "disc",
+                                 paddingLeft: "28px",
+                              }}
+                           >
+                              {q.answer.map((answer) => (
+                                 <li
+                                    key={answer}
+                                    style={{ paddingLeft: "8px" }}
+                                 >
+                                    <Text
+                                       size={{ initial: "3", sm: "4", md: "5" }}
+                                       style={{ color: "var(--dark-green)" }}
+                                    >
+                                       {answer}
+                                    </Text>
+                                 </li>
+                              ))}
+                           </ul>
+                        )}
                      </Accordion.Content>
                   </Accordion.Item>
                   {index !== faqs.length - 1 && (
@@ -369,8 +362,7 @@ const faqs = [
    },
    {
       question: "How much does it cost to attend?",
-      answer:
-         "Denver Bike Fest is FREE and open to the public to attend. Food and beverages, along with merchandise from vendors will be for sale at the festival. If you would like to participate as a Bike Partner, vendor, or musician, please see the Get Involved page.",
+      answer: "It's FREE!",
    },
    {
       question: "Is the event family-friendly?",
@@ -382,6 +374,50 @@ const faqs = [
       answer:
          "Yes! There are multiple indoor common area bathrooms (with a total of 24 toilets/urinals) available and additional portable toilets will be available outdoors.",
    },
+   {
+      question: "What should I bring to the fest?",
+      answer: [
+         "Reusable water bottle for water stations",
+         "Sunscreen/Hat/Sunscreen/Umbrella for that Colorado sun!",
+         "Camp chair, blanket, or towel to launge in the Yard",
+         "Camera (Non-pro digital and film, no flashes)",
+         "ID for adult beverages from Cohesion Brewing",
+         "Money for food, beverages, merch, and more!",
+      ],
+   },
+   {
+      question: "What's NOT allowed at the fest?",
+      answer: [
+         "Air horns",
+         "Aerosol products",
+         "Illicit substances",
+         "Marijuana and marijuana products",
+         "Outside alcohol",
+         "Fireworks and other explosives",
+         "Guns, knives, or other weapons",
+         "Glass bottles",
+      ],
+   },
+   {
+      question: "Can I bring my own alcohol to the fest?",
+      answer:
+         "Negative, ghost rider. No outside alcohol allowed. Same goes for illegal drugs.",
+   },
+   {
+      question: "Will alcohol be available?",
+      answer:
+         "Yes. Cohesion Brewing will serve beer in a designated 21 and over area. Please bring a valid government issued ID. Card and cash will be accepted.",
+   },
+   {
+      question: "What happens if the weather is bad?",
+      answer:
+         "Denver Bike Fest is a rain or shine event. In the case of severe weather, such as lightning or high wind, programming may be paused or modified for safety. Any major changes will be posted to Instagram at @denverbikefest.",
+   },
+   {
+      question: "Is the event ADA accessible?",
+      answer:
+         "Denver Bike Fest is committed to being welcoming for everyone. The venue is flat, paved, and stroller and wheelchair accessible. ADA accessible restrooms will be available on site. Accessible parking is available in the York Street Yards lot. If you have specific accessibility questions or requests, please email us at denverbikefest@gmail.com and we will do our best to accommodate.",
+   },
 ];
 
 const whatToExpect = [
@@ -390,16 +426,22 @@ const whatToExpect = [
       description:
          "Meet over 25 local bike organizations, community groups, and shops that make Denver a better place to ride.",
       image: "/community-connections.png",
+      buttonText: "2026 Partners",
+      buttonLink: "/partners#community",
    },
    {
       header: "Live Music and Entertainment",
       description:
          "Enjoy performances from local artists and bands throughout the day.",
       image: "/live-music.png",
+      buttonText: "2026 Music Lineup",
+      buttonLink: "/partners#music",
    },
    {
       header: "Food and Drink",
       description: "Grab a bite or drink from local food trucks and vendors.",
       image: "/food.png",
+      buttonText: "2026 Food & Drink Vendors",
+      buttonLink: "/partners#vendors",
    },
 ];

@@ -1,32 +1,39 @@
 import communityGroupsRaw from "./community-groups.json";
+import entertainmentRaw from "./entertainment.json";
 import foodVendorsRaw from "./food-vendors.json";
 import localBusinessesRaw from "./local-businesses.json";
 import nonProfitsRaw from "./non-profits.json";
 
-const communityGroups = communityGroupsRaw.filter((group) => group.ready);
-const foodVendors = foodVendorsRaw.filter((vendor) => vendor.ready);
-const localBusinesses = localBusinessesRaw.filter((business) => business.ready);
-const nonProfits = nonProfitsRaw.filter((org) => org.ready);
+const communityGroups: PartnerType[] = communityGroupsRaw.filter(
+   (group) => group.ready,
+);
+const foodVendors: PartnerType[] = foodVendorsRaw.filter(
+   (vendor) => vendor.ready,
+);
+const localBusinesses: PartnerType[] = localBusinessesRaw.filter(
+   (business) => business.ready,
+);
+const nonProfits: PartnerType[] = nonProfitsRaw.filter((org) => org.ready);
+const entertainment: PartnerType[] = entertainmentRaw.filter(
+   (ent) => ent.ready,
+);
 
 export const partners = [
-   { header: "Community Groups", groups: communityGroups },
+   { header: "Community Groups", groups: communityGroups, id: "community" },
    {
       header: "Nonprofit Organizations & Government Agencies",
       groups: nonProfits,
+      id: "nonProfits",
    },
-   { header: "Businesses", groups: localBusinesses },
-   { header: "Food Vendors", groups: foodVendors },
+   { header: "Businesses", groups: localBusinesses, id: "businesses" },
 ];
 
-export const featuredPartners = [
-   { header: "Community Groups", groups: communityGroups.slice(0, 8) },
-   {
-      header: "Nonprofit Organizations & Government Agencies",
-      groups: nonProfits.slice(0, 8),
-   },
-   { header: "Businesses", groups: localBusinesses.slice(0, 8) },
-   { header: "Food Vendors", groups: foodVendors.slice(0, 8) },
+export const foodAndMusic = [
+   { header: "Food & Drink Vendors", groups: foodVendors, id: "vendors" },
+   { header: "Music", groups: entertainment, id: "music" },
 ];
+
+export const allPartners = [...partners, ...foodAndMusic];
 
 export const partnerTiers = [
    {
@@ -72,3 +79,11 @@ export const partnerTiers = [
       ],
    },
 ];
+
+export interface PartnerType {
+   name: string;
+   logo: string;
+   url?: string;
+   instagram?: string;
+   ready: boolean;
+}

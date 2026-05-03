@@ -2,7 +2,11 @@
 
 import { Em, Flex, Grid, Heading, Link, Strong, Text } from "@radix-ui/themes";
 import { CollapsiblePartnerGrid } from "@/components";
-import { partners, partnerTiers } from "../../partner-data/partner-data";
+import {
+   foodAndMusic,
+   partners,
+   partnerTiers,
+} from "../../partner-data/partner-data";
 
 export default function PartnersPage() {
    return (
@@ -61,6 +65,24 @@ export default function PartnersPage() {
          </Flex>
          {partners.map((partner) => (
             <CollapsiblePartnerGrid key={partner.header} partner={partner} />
+         ))}
+         <Flex py={"32px"} justify="center">
+            <Heading
+               as="h2"
+               trim="end"
+               weight="medium"
+               size={{ initial: "5", sm: "6", md: "7" }}
+               style={{ color: "black", textAlign: "center" }}
+            >
+               Enjoy live music and great food at the fest!
+            </Heading>
+         </Flex>
+         {foodAndMusic.map((partner) => (
+            <CollapsiblePartnerGrid
+               key={partner.header}
+               partner={partner}
+               variant="green"
+            />
          ))}
       </Flex>
    );

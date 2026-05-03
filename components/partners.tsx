@@ -7,8 +7,9 @@ import {
    Strong,
    Text,
 } from "@radix-ui/themes";
+import type { Responsive } from "@radix-ui/themes/props";
 import Image from "next/image";
-import { featuredPartners } from "../partner-data/partner-data";
+import { allPartners as partners } from "../partner-data/partner-data";
 
 export function Partners() {
    return (
@@ -102,7 +103,7 @@ export function Partners() {
                </Flex>
             </Button>
             <Flex gap={{ initial: "16px", sm: "32px" }} direction="column">
-               {featuredPartners.map((partner) => (
+               {partners.map((partner) => (
                   <Flex
                      gap={{ initial: "8px", sm: "12px", md: "16px" }}
                      direction="column"
@@ -145,10 +146,22 @@ export function Partners() {
                                  "linear-gradient(90deg, var(--yellow-accent) 0%, rgba(255, 255, 255, 0) 100%)",
                            }}
                         />
-                        {partner.groups.map((group, index) => (
+                        {partner.groups.map((group) => (
                            <PartnerCard
-                              key={group.name + index.toString()}
-                              group={group}
+                              key={group.name}
+                              {...group}
+                              url={
+                                 group.url ??
+                                 (group.instagram
+                                    ? `https://www.instagram.com/${group.instagram.substring(1)}`
+                                    : "#")
+                              }
+                              highlightClass={"hover-highlight-green-orange"}
+                              imageSizing={{
+                                 initial: "150px",
+                                 sm: "175px",
+                                 md: "200px",
+                              }}
                            />
                         ))}
                         <div
@@ -172,63 +185,44 @@ export function Partners() {
 }
 
 export const PartnerCard = ({
-   group,
+   name,
+   url,
+   logo,
+   highlightClass,
+   imageSizing,
 }: {
-   group: { name: string; logo: string; url?: string; instagram?: string };
+   name: string;
+   url: string;
+   logo: string;
+   highlightClass: string;
+   imageSizing: string | Responsive<string>;
 }) => {
-   const imageSizing = { initial: "150px", sm: "175px", md: "200px" };
-   const groupUrl =
-      group.url ??
-      (group.instagram
-         ? "https://www.instagram.com/" + group.instagram.substring(1)
-         : "#");
    return (
       <Flex
-         asChild
-         className="hover-highlight-yellow-orange"
-         direction="column"
-         align="center"
-         justify="between"
-         maxWidth={imageSizing}
+         key={name}
+         minHeight={imageSizing}
          minWidth={imageSizing}
-         overflow="hidden"
-         style={{
-            backgroundColor: "var(--light-background)",
-            borderRadius: "8px",
-         }}
+         align="center"
+         justify="center"
+         position="relative"
       >
-         <Link href={groupUrl} target="_blank">
-            <Flex
-               minHeight={imageSizing}
-               minWidth={imageSizing}
-               align="center"
-               justify="center"
-               position="relative"
-            >
-               <Image
-                  src={group.logo}
-                  alt={group.name}
-                  fill
-                  style={{ objectFit: "contain", maxHeight: "200px" }}
-               />
-            </Flex>
-            <Flex
-               p={{ initial: "4px", sm: "6px", md: "8px" }}
-               width="100%"
-               height="100%"
-               justify="center"
-               align="center"
-               style={{ backgroundColor: "var(--dark-green)" }}
-            >
-               <Text
-                  align="center"
-                  size={{ initial: "3", md: "4" }}
-                  weight={"medium"}
-                  style={{ color: "var(--light-background)" }}
-               >
-                  {group.name}
-               </Text>
-            </Flex>
+         <Link
+            href={url}
+            target="_blank"
+            style={{ width: "100%", height: "100%" }}
+         >
+            <Image
+               className={highlightClass}
+               src={logo}
+               alt={name}
+               fill
+               style={{
+                  objectFit: "contain",
+                  borderRadius: "12px",
+                  padding: "4px",
+                  backgroundColor: "var(--light-background)",
+               }}
+            />
          </Link>
       </Flex>
    );
