@@ -4,13 +4,14 @@ import { ChevronDownIcon, Flex, Grid, Text } from "@radix-ui/themes";
 import { Collapsible } from "radix-ui";
 import { useState } from "react";
 import { PartnerCard } from "@/components";
+import type { PartnerType } from "@/partner-data/partner-data";
 
 export function CollapsiblePartnerGrid({
    partner,
 }: {
    partner: {
       header: string;
-      groups: { name: string; logo: string }[];
+      groups: PartnerType[];
       id: string;
    };
 }) {
@@ -71,7 +72,19 @@ export function CollapsiblePartnerGrid({
                      {partner.groups.map((group, index) => (
                         <PartnerCard
                            key={group.name + index.toString()}
-                           group={group}
+                           {...group}
+                           url={
+                              group.url ??
+                              (group.instagram
+                                 ? `https://www.instagram.com/${group.instagram.substring(1)}`
+                                 : "#")
+                           }
+                           highlightClass={"hover-highlight-green-orange"}
+                           imageSizing={{
+                              initial: "150px",
+                              sm: "175px",
+                              md: "200px",
+                           }}
                         />
                      ))}
                   </Grid>
