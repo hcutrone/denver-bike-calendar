@@ -9,7 +9,7 @@ import {
 } from "@radix-ui/themes";
 import type { Responsive } from "@radix-ui/themes/props";
 import Image from "next/image";
-import { partners } from "../partner-data/partner-data";
+import { allPartners as partners } from "../partner-data/partner-data";
 
 export function Partners() {
    return (

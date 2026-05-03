@@ -8,14 +8,18 @@ import type { PartnerType } from "@/partner-data/partner-data";
 
 export function CollapsiblePartnerGrid({
    partner,
+   variant = "yellow",
 }: {
    partner: {
       header: string;
       groups: PartnerType[];
       id: string;
    };
+   variant: "yellow" | "green";
 }) {
    const [isOpen, setIsOpen] = useState(true);
+   const bgColor =
+      variant === "yellow" ? "var(--yellow-accent)" : "var(--dark-green)";
    return (
       <Collapsible.Root open={isOpen} onOpenChange={setIsOpen}>
          <Flex
@@ -24,7 +28,7 @@ export function CollapsiblePartnerGrid({
             gap="16px"
             width="100%"
             style={{
-               backgroundColor: "var(--yellow-accent)",
+               backgroundColor: bgColor,
                borderRadius: "12px",
                padding: "16px",
             }}
@@ -79,7 +83,11 @@ export function CollapsiblePartnerGrid({
                                  ? `https://www.instagram.com/${group.instagram.substring(1)}`
                                  : "#")
                            }
-                           highlightClass={"hover-highlight-green-orange"}
+                           highlightClass={
+                              variant === "yellow"
+                                 ? "hover-highlight-green-orange"
+                                 : "hover-highlight-yellow-orange"
+                           }
                            imageSizing={{
                               initial: "150px",
                               sm: "175px",

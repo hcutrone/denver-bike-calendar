@@ -26,9 +26,14 @@ export const partners = [
       id: "nonProfits",
    },
    { header: "Businesses", groups: localBusinesses, id: "businesses" },
+];
+
+export const foodAndMusic = [
    { header: "Food & Drink Vendors", groups: foodVendors, id: "vendors" },
    { header: "Music", groups: entertainment, id: "music" },
 ];
+
+export const allPartners = [...partners, ...foodAndMusic];
 
 export const partnerTiers = [
    {
