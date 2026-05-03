@@ -195,7 +195,7 @@ export const PartnerCard = ({
    url: string;
    logo: string;
    highlightClass: string;
-   imageSizing: Responsive<string>;
+   imageSizing: string | Responsive<string>;
 }) => {
    return (
       <Flex

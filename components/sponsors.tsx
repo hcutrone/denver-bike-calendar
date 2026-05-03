@@ -206,26 +206,23 @@ const SponsorSpace = ({
 }: {
    sponsors: { name: string; url: string; logo: string }[];
    imageSize: number;
-}) => {
-   const imageSizing = { initial: `${imageSize}px` };
-   return (
-      <Box width="100%" px="8px">
-         <Flex
-            direction="row"
-            justify="center"
-            align="center"
-            gap="16px"
-            wrap="wrap"
-         >
-            {sponsors.map((sponsor) => (
-               <PartnerCard
-                  key={sponsor.name}
-                  {...sponsor}
-                  imageSizing={imageSizing}
-                  highlightClass="hover-highlight-yellow-orange"
-               />
-            ))}
-         </Flex>
-      </Box>
-   );
-};
+}) => (
+   <Box width="100%" px="8px">
+      <Flex
+         direction="row"
+         justify="center"
+         align="center"
+         gap="16px"
+         wrap="wrap"
+      >
+         {sponsors.map((sponsor) => (
+            <PartnerCard
+               key={sponsor.name}
+               {...sponsor}
+               imageSizing={`${imageSize}px`}
+               highlightClass="hover-highlight-yellow-orange"
+            />
+         ))}
+      </Flex>
+   </Box>
+);
